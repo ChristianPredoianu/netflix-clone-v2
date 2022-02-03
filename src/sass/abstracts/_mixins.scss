@@ -1,0 +1,102 @@
+@mixin flex-config(
+  $display: flex,
+  $wrap: false,
+  $direction: false,
+  $justify: false,
+  $align: false
+) {
+  display: $display;
+
+  @if $wrap !=false {
+    flex-wrap: $wrap;
+  }
+
+  @if $justify != false {
+    justify-content: $justify;
+  }
+
+  @if $direction != false {
+    flex-direction: $direction;
+  }
+
+  @if $align != false {
+    align-items: $align;
+  }
+}
+
+@mixin position(
+  $pos,
+  $top: false,
+  $right: false,
+  $bottom: false,
+  $left: false
+) {
+  position: $pos;
+
+  @if $top != false {
+    top: $top;
+  }
+
+  @if $right != false {
+    right: $right;
+  }
+
+  @if $bottom != false {
+    bottom: $bottom;
+  }
+
+  @if $left !=false {
+    left: $left;
+  }
+}
+
+@mixin pseudo(
+  $content: '',
+  $position: absolute,
+  $top: false,
+  $right: false,
+  $bottom: false,
+  $left: false
+) {
+  content: $content;
+  position: $position;
+
+  @if $top != false {
+    top: $top;
+  }
+
+  @if $right !=false {
+    right: $right;
+  }
+
+  @if $bottom != false {
+    bottom: $bottom;
+  }
+
+  @if $left != false {
+    left: $left;
+  }
+}
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: 40.5em) {
+      //640px
+      @content;
+    }
+  }
+
+  @if $breakpoint == md {
+    @media (min-width: 64em) {
+      //1024px
+      @content;
+    }
+  }
+
+  @if $breakpoint == lg {
+    @media (min-width: 80em) {
+      //1280px
+      @content;
+    }
+  }
+}

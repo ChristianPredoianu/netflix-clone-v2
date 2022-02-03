@@ -1,0 +1,11 @@
+@use '../abstracts/' as *;
+
+:root {
+  @include respond(sm) {
+    --section-spacing: 10rem;
+  }
+
+  @include respond(md) {
+    --section-spacing: 20rem;
+  }
+}

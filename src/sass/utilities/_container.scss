@@ -1,0 +1,19 @@
+@use '../abstracts/' as *;
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+
+  @include respond(sm) {
+    max-width: 64rem;
+  }
+
+  @include respond(md) {
+    max-width: 102.4rem;
+  }
+
+  @include respond(lg) {
+    max-width: 128rem;
+  }
+}
