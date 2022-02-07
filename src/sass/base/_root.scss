@@ -1,6 +1,9 @@
 @use '../abstracts/' as *;
 
 :root {
+  --clr-white: #fff;
+  --clr-red: #e50914;
+
   @include respond(sm) {
     --section-spacing: 10rem;
   }
