@@ -1,15 +1,15 @@
-<script setup>
-import classes from '../../sass/components/ui/NetflixLogo.module.scss';
-</script>
+<script setup></script>
 
 <template>
   <div>
     <img
-      src="../../assets/images/netclone.png"
+      src="@/assets/images/netclone.png"
       :class="classes.netflixLogo"
       alt="Netclone logo"
     />
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" module="classes">
+@use '@/sass/ui/netflix-logo';
+</style>

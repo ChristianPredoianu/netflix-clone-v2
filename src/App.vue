@@ -5,5 +5,5 @@
 </template>
 
 <style lang="scss">
-@use './sass/base/font' as *;
+@use '@/sass/base/font' as *;
 </style>

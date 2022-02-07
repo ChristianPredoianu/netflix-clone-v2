@@ -1,6 +1,4 @@
-<script setup>
-import classes from '../../sass/components/buttons/GetStartedBtn.module.scss';
-</script>
+<script setup></script>
 
 <template>
   <div>
@@ -10,4 +8,6 @@ import classes from '../../sass/components/buttons/GetStartedBtn.module.scss';
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" module="classes">
+@use '@/sass/components/buttons/get-started-btn';
+</style>

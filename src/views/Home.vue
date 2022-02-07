@@ -1,17 +1,16 @@
 <script setup>
-import NetflixLogo from '../components/ui/NetflixLogo.vue';
-import LogInBtn from '../components/buttons/LogInBtn.vue';
-import GetStartedForm from '../components/forms/GetStartedForm.vue';
-import classes from '../sass/views/Home.module.scss';
+import NetflixLogo from '@/components/ui/NetflixLogo.vue';
+import SignInBtn from '@/components/buttons/SignInBtn.vue';
+import GetStartedForm from '@/components/forms/GetStartedForm.vue';
 </script>
 
 <template>
-  <div :class="classes.home">
+  <div>
     <div :class="classes.hero">
       <header :class="classes.header">
         <nav :class="classes.nav">
           <NetflixLogo />
-          <LogInBtn>Sign In</LogInBtn>
+          <SignInBtn>Sign In</SignInBtn>
         </nav>
       </header>
       <div class="container">
@@ -34,4 +33,6 @@ import classes from '../sass/views/Home.module.scss';
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" module="classes">
+@use '@/sass/views/home';
+</style>

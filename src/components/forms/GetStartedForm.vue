@@ -1,6 +1,5 @@
 <script setup>
 import GetStartedBtn from '@/components/buttons/GetStartedBtn.vue';
-import classes from '@/sass/components/forms/GetStartedForm.module.scss';
 </script>
 <template>
   <div>
@@ -11,10 +10,11 @@ import classes from '@/sass/components/forms/GetStartedForm.module.scss';
         class="get-started__input"
         required
       />
-
       <GetStartedBtn />
     </form>
   </div>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss" module="classes">
+@use '@/sass/components/forms/get-started-form';
+</style>
