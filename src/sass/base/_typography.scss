@@ -1,0 +1,9 @@
+.headingPrimary {
+  font-size: clamp(1.75rem, 2vw + 0.1rem, 2.7rem);
+  color: var(--clr-white);
+}
+
+.headingSecondary {
+  font-size: clamp(1.125rem, 2vw + 0.1rem, 1.5rem);
+  color: var(--clr-white);
+}
