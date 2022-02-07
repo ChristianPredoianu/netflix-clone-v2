@@ -1,1 +1,53 @@
 @use '../abstracts/' as *;
+@use '../base/typography' as *;
+@use '../utilities/' as *;
+
+.hero {
+  @include flex-config($direction: column);
+  position: relative;
+  background-image: url('../../assets/images/netflix-background.jpg');
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.header {
+  @include flex-config($justify: center);
+}
+
+.nav {
+  @include flex-config($justify: space-between, $align: center);
+  @include position($pos: absolute, $top: 0);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+  background-color: blue;
+
+  @include respond(sm) {
+    max-width: 64rem;
+  }
+
+  @include respond(md) {
+    max-width: 102.4rem;
+  }
+
+  @include respond(lg) {
+    max-width: 128rem;
+  }
+}
+
+.heroContent {
+  @include flex-config($direction: column, $align: center);
+  margin-top: 10rem;
+  text-align: center;
+  padding: 0 2rem;
+}
+
+.heroSecondaryHeading {
+  margin: 1rem 0;
+}
+
+.heroParagraph {
+  font-size: clamp(1.125rem, 2vw + 0.1rem, 1.4rem);
+  color: var(--clr-white);
+}
