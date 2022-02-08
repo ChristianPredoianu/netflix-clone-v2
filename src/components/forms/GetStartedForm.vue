@@ -2,12 +2,12 @@
 import GetStartedBtn from '@/components/buttons/GetStartedBtn.vue';
 </script>
 <template>
-  <div>
+  <div :class="classes.formContainer">
     <form :class="classes.getStartedForm" @submit.prevent="goToSignup">
       <input
         type="email"
+        :class="classes.getStartedInput"
         placeholder="E-mail"
-        class="get-started__input"
         required
       />
       <GetStartedBtn />
