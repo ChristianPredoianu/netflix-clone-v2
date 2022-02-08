@@ -3,12 +3,17 @@
 @use '@/sass/utilities/' as *;
 
 .hero {
-  @include flex-config($direction: column);
+  @include flex-config($direction: column, $justify: center);
   position: relative;
-  background-image: url('../../assets/images/netflix-background.jpg');
+  background-image: url('@/assets/images/netflix-background.jpg');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
+  padding: 5rem 2rem 10rem 2rem;
+  border-bottom: 0.8rem solid var(--clr-gray-dark);
+  @include respond(lg) {
+    min-height: 80vh;
+  }
 }
 
 .header {
@@ -35,18 +40,96 @@
   }
 }
 
-.heroContent {
-  @include flex-config($direction: column, $align: center);
-  margin-top: 10rem;
-  text-align: center;
+.homeSectionTextContainer {
   padding: 0 2rem;
+
+  @include respond(md) {
+    width: 50%;
+  }
 }
 
-.heroSecondaryHeading {
-  margin: 1rem 0;
+.imgContainer {
+  width: 60%;
+  position: relative;
+  margin-top: 5rem;
+  z-index: 100;
+
+  @include respond(md) {
+    width: 30%;
+    margin-top: 0;
+  }
 }
 
-.heroParagraph {
-  font-size: clamp(1.125rem, 2vw + 0.1rem, 1.4rem);
-  color: var(--clr-white);
+.outsideImg {
+  width: 100%;
+  height: 100%;
+}
+
+.inside {
+  @include position($pos: absolute, $top: 0, $left: 0);
+  width: 100%;
+  height: 90%;
+  z-index: -1;
+  object-fit: cover;
+}
+
+.homeWrapper {
+  @include flex-config($direction: column, $align: center);
+  text-align: center;
+
+  @include respond(md) {
+    @include flex-config(
+      $direction: row,
+      $justify: space-between,
+      $align: center
+    );
+  }
+}
+
+.phoneOutside {
+  position: relative;
+  width: 80%;
+  margin: 0 auto 2rem auto;
+}
+
+.phoneInside {
+  @include position($pos: absolute, $top: 10%, $left: 20%);
+  width: 60%;
+  height: 80%;
+  z-index: -1;
+}
+
+.insideImac {
+  @include position($pos: absolute, $top: 6%, $left: 8%);
+  width: 80%;
+  height: 70%;
+  z-index: -1;
+  object-fit: cover;
+}
+
+.imacOutsideIphone {
+  @include position($pos: absolute, $bottom: -5rem);
+  width: 8rem;
+}
+
+.accordionHeading {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+}
+
+.faqWrapper {
+  @include flex-config($direction: column, $align: center, $justify: center);
+}
+
+.formHeading {
+  font-size: 2rem;
+  margin: 3rem;
+}
+
+.faqFormWrapper {
+  width: 100%;
+}
+
+.credit {
+  text-align: center;
 }
