@@ -2,13 +2,15 @@
 
 :root {
   --clr-white: #fff;
+  --clr-black: #000000;
   --clr-red: #e50914;
+  --clr-blue: #0909f0;
+  --clr-gray-medium: #8a8585;
+  --clr-gray-dark: #222;
 
-  @include respond(sm) {
-    --section-spacing: 10rem;
-  }
+  --section-spacing: 10rem 0;
 
   @include respond(md) {
-    --section-spacing: 20rem;
+    --section-spacing: 20rem 0;
   }
 }
