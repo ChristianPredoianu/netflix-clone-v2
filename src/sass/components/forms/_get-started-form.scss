@@ -1,3 +1,51 @@
+@use '../../abstracts/' as *;
+
+.formContainer {
+  @include respond(md) {
+    @include flex-config($justify: center);
+  }
+}
+
 .getStartedForm {
-  margin-top: 2rem;
+  position: relative;
+  margin-top: 1rem;
+  width: 100%;
+
+  @include respond(md) {
+    @include flex-config($justify: center);
+  }
+}
+
+.getStartedInput {
+  padding: 1rem;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  border: solid 0.1rem #8c8c8c;
+  border-radius: 0.2rem;
+  width: 80%;
+
+  @include respond(md) {
+    width: 50%;
+  }
+
+  &:focus {
+    outline-color: var(--clr-blue);
+    outline-style: solid;
+  }
+
+  &::placeholder {
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    color: var(--clr-black);
+    margin-left: 3rem;
+    transition: all 0.2s ease;
+  }
+
+  &:focus::placeholder {
+    color: var(--clr-gray-medium);
+    transform: translateY(-1rem);
+  }
+}
+
+.inputLabel {
+  @include position($pos: absolute, $top: 20%, $left: 1rem);
+  font-size: 1.4rem;
 }
