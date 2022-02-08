@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
   <div>
     <img
@@ -11,5 +9,5 @@
 </template>
 
 <style lang="scss" module="classes">
-@use '@/sass/ui/netflix-logo';
+@use '@/sass/components/ui/netflix-logo';
 </style>
