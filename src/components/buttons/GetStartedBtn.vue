@@ -3,7 +3,7 @@
 <template>
   <div>
     <button type="submit" value="Get started" :class="classes.getStartedBtn">
-      Get Started
+      Get Started >
     </button>
   </div>
 </template>
