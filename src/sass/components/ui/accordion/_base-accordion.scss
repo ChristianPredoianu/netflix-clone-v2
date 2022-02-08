@@ -1,0 +1,33 @@
+@use '@/sass/abstracts' as *;
+
+.wrapper {
+  width: 90%;
+  background-color: var(--clr-gray-dark);
+  margin: 0 auto;
+
+  &:not(:first-child) {
+    margin-top: 1rem;
+  }
+}
+
+.accordion {
+  @include flex-config($justify: space-between, $align: center);
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.title {
+  font-size: 2.4rem;
+  color: var(--clr-white);
+}
+
+.accordionIcon {
+  font-size: 2rem;
+}
+
+.content {
+  font-size: 2rem;
+  color: white;
+  padding: 1rem;
+  border-top: 1px solid black;
+}
