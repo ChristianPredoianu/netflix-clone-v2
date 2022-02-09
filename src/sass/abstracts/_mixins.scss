@@ -1,3 +1,16 @@
+@mixin nav-container {
+  width: 100%;
+  padding: 0 2rem;
+
+  @include respond(md) {
+    max-width: 102.4rem;
+  }
+
+  @include respond(lg) {
+    max-width: 128rem;
+  }
+}
+
 @mixin flex-config(
   $display: flex,
   $wrap: false,
