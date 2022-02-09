@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from 'vue';
-import { isInDestructureAssignment } from 'vue/compiler-sfc';
 
 let isOpen = ref(null);
 
