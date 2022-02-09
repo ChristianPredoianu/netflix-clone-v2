@@ -1,9 +1,14 @@
 <script setup>
 import GetStartedBtn from '@/components/buttons/GetStartedBtn.vue';
+import router from '../../router';
+
+function goToSignupHandler() {
+  router.push({ name: 'SignupStep1' });
+}
 </script>
 <template>
   <div :class="classes.formContainer">
-    <form :class="classes.getStartedForm" @submit.prevent="goToSignup">
+    <form :class="classes.getStartedForm" @submit.prevent="goToSignupHandler">
       <input
         type="email"
         :class="classes.getStartedInput"
