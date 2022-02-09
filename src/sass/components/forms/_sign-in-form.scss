@@ -1,0 +1,53 @@
+@use '@/sass/abstracts' as *;
+
+.signInForm {
+  @include flex-config($display: flex, $direction: column);
+}
+
+.signInHeading {
+  font-size: 3rem;
+  color: var(--clr-white);
+  margin-bottom: 3rem;
+}
+
+.label {
+  font-size: 1.5rem;
+  color: var(--clr-white);
+}
+
+.formInput {
+  font-size: 2rem;
+  padding: 1.5rem 1rem;
+  outline: none;
+
+  &:not(:last-of-type) {
+    margin-bottom: 3rem;
+  }
+
+  &:last-of-type {
+    margin-bottom: 2rem;
+  }
+
+  &::placeholder {
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+  }
+
+  &:focus::placeholder {
+    font-weight: 600;
+    transform: translateY(-1.5rem);
+  }
+}
+
+.signUpParagraph {
+  color: var(--clr-white);
+  margin-top: 1rem;
+}
+
+.signUpSpan {
+  color: var(--clr-gray-medium);
+}
+
+.signUpError {
+  color: var(--clr-red);
+}
