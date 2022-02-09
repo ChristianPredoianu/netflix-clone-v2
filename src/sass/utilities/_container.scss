@@ -15,5 +15,6 @@
 
   @include respond(lg) {
     max-width: 128rem;
+    padding: 0;
   }
 }
