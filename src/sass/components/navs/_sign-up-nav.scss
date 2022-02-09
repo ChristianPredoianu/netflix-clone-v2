@@ -1,0 +1,10 @@
+@use '@/sass/abstracts' as *;
+
+.signUpNav {
+  @include flex-config($justify: space-between, $align: center);
+  padding: 2rem 4rem;
+}
+
+.border {
+  border-bottom: 0.1rem solid #d8d8d8;
+}

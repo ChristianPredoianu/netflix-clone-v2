@@ -1,0 +1,12 @@
+@use '@/sass/abstracts' as *;
+@use '@/sass/utilities' as *;
+
+.header {
+  @include flex-config($justify: center);
+}
+
+.nav {
+  @include flex-config($justify: space-between, $align: center);
+  @include position($pos: absolute, $top: 0);
+  @include nav-container;
+}

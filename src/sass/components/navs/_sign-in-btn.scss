@@ -1,0 +1,8 @@
+.signInBtn {
+  font-size: 2rem;
+  cursor: pointer;
+
+  &:hover {
+    border-bottom: 1px solid var(--clr-gray-dark);
+  }
+}
