@@ -1,6 +1,5 @@
 <script setup>
-import NetflixLogo from '@/components/ui/NetflixLogo.vue';
-import SignInBtn from '@/components/buttons/SignInBtn.vue';
+import HomeNav from '@/components/navs/HomeNav.vue';
 import HeroContent from '@/components/hero/HeroContent.vue';
 import GetStartedForm from '@/components/forms/GetStartedForm.vue';
 import HomeSection from '@/components/home-section/HomeSection.vue';
@@ -11,13 +10,8 @@ import BaseAccordion from '@/components/ui/accordion/BaseAccordion.vue';
 <template>
   <div>
     <div :class="classes.hero">
-      <header :class="classes.header">
-        <nav :class="classes.nav">
-          <NetflixLogo />
-          <SignInBtn>Sign In</SignInBtn>
-        </nav>
-      </header>
       <div class="container">
+        <HomeNav />
         <HeroContent />
       </div>
     </div>
