@@ -1,10 +1,10 @@
-<script setup></script>
+<script setup>
+import router from '../../router';
+</script>
 
 <template>
   <div>
-    <button type="submit" value="Get started" :class="classes.getStartedBtn">
-      Get Started >
-    </button>
+    <input type="submit" value="Get started" :class="classes.getStartedBtn" />
   </div>
 </template>
 
