@@ -1,0 +1,50 @@
+@use '@/sass/abstracts' as *;
+
+.signIn {
+  position: relative;
+  min-height: 100vh;
+  background-image: url('@/assets/images/netflix-background2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-bottom: 5rem;
+
+  @include respond(md) {
+    padding-bottom: 0;
+  }
+}
+
+.header {
+  @include nav-container;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgb(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+.main {
+  @include flex-config($justify: center, $align: center);
+  width: 100%;
+  min-height: calc(100vh - 8rem);
+}
+
+.signInForm {
+  position: relative;
+  width: 100%;
+  background-color: rgb(0, 0, 0, 0.6);
+  padding: 5rem;
+  z-index: 5;
+
+  @include respond(md) {
+    width: 80%;
+    padding: 10rem;
+  }
+
+  @include respond(lg) {
+    width: 60%;
+  }
+}
