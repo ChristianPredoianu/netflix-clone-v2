@@ -1,0 +1,56 @@
+@use '@/sass/abstracts' as *;
+
+.setUpAccount {
+  @include flex-config($direction: column, $align: center);
+  margin: 10rem auto;
+
+  @include respond(md) {
+    width: 80%;
+  }
+
+  @include respond(lg) {
+    width: 50%;
+    margin: 15rem auto;
+  }
+}
+
+.icons {
+  @include flex-config($justify: space-around);
+  width: 70%;
+
+  @include respond(md) {
+    width: 60%;
+  }
+
+  @include respond(lg) {
+    width: 100%;
+  }
+}
+
+.icon {
+  font-size: 5rem;
+  color: var(--clr-red);
+
+  @include respond(md) {
+    font-size: 10rem;
+  }
+}
+
+.infoParagraph {
+  font-size: 2rem;
+  padding: 10rem 0 1rem 0;
+}
+
+.span {
+  font-weight: 700;
+}
+
+.infoHeading {
+  font-size: clamp(2rem, 2vw + 0.1rem, 3rem);
+  padding: 2rem 0;
+}
+
+.infoHeadingSecondary {
+  font-size: clamp(1.8rem, 2vw + 0.1rem, 2.5rem);
+  font-weight: 400;
+}
