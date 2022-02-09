@@ -11,32 +11,9 @@
   background-size: cover;
   padding: 5rem 2rem 10rem 2rem;
   border-bottom: 0.8rem solid var(--clr-gray-dark);
+
   @include respond(lg) {
     min-height: 80vh;
-  }
-}
-
-.header {
-  @include flex-config($justify: center);
-}
-
-.nav {
-  @include flex-config($justify: space-between, $align: center);
-  @include position($pos: absolute, $top: 0);
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 0.5rem;
-
-  @include respond(sm) {
-    max-width: 64rem;
-  }
-
-  @include respond(md) {
-    max-width: 102.4rem;
-  }
-
-  @include respond(lg) {
-    max-width: 128rem;
   }
 }
 
@@ -49,8 +26,8 @@
 }
 
 .imgContainer {
-  width: 60%;
   position: relative;
+  width: 60%;
   margin-top: 5rem;
   z-index: 100;
 
@@ -80,7 +57,7 @@
   @include respond(md) {
     @include flex-config(
       $direction: row,
-      $justify: space-between,
+      $justify: space-around,
       $align: center
     );
   }
