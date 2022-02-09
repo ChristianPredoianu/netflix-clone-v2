@@ -1,0 +1,22 @@
+@use '@/sass/abstracts' as *;
+
+label {
+  font-size: 1.5rem;
+}
+
+.formInput {
+  width: 100%;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+
+  &::placeholder {
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+  }
+
+  &:focus::placeholder {
+    font-weight: 600;
+    transform: translateY(-0.5rem);
+  }
+}
