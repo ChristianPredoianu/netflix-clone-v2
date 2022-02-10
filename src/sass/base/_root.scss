@@ -1,12 +1,19 @@
 @use '@/sass/abstracts/' as *;
 
 :root {
+  --main-bg-color: #0c0c0c;
+
   --clr-white: #fff;
   --clr-black: #000000;
   --clr-red: #e50914;
   --clr-blue: #0909f0;
   --clr-gray-medium: #8a8585;
   --clr-gray-dark: #222;
+
+  --size-heading-lg: clamp(2.8rem, 2vw + 0.1rem, 5rem);
+  --size-heading-md: clamp(2rem, 2vw + 0.1rem, 2.6rem);
+  --size-heading-sm: clamp(1.8rem, 2vw + 0.1rem, 2rem);
+  /* --size-paragraph */
 
   --section-spacing: 10rem 0;
 
