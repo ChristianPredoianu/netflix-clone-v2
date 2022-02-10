@@ -4,15 +4,15 @@ import GetStartedForm from '@/components/forms/GetStartedForm.vue';
 
 <template>
   <div :class="classes.heroContent">
-    <h1 :class="[classes.headingPrimary]">
+    <h1 :class="classes.headingPrimary">
       Unlimited access to movies, series and other.
     </h1>
-    <h2 :class="[classes.headingSecondary, classes.heroSecondaryHeading]">
+    <h2 :class="classes.heroSecondaryHeading">
       Watch where you want. Unsubscribe when you want
     </h2>
-    <p :class="classes.heroParagraph">
+    <h3 :class="classes.heroTertiaryHeading">
       Ready to start watching? Fill in your e-mail to create an account.
-    </p>
+    </h3>
     <div :class="classes.heroForm">
       <GetStartedForm />
     </div>
