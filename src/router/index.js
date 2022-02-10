@@ -30,6 +30,12 @@ const routes = [
     name: 'SignupStep2',
     component: () => import('@/views/signup/Step2.vue'),
   },
+
+  {
+    path: '/profiles',
+    name: 'Profiles',
+    component: () => import('@/views/Profiles.vue'),
+  },
 ];
 const router = createRouter({
   history: createWebHistory(),
