@@ -2,16 +2,17 @@
 
 .homeSectionTextContainer {
   padding: 0 2rem;
+
   @include respond(md) {
     width: 50%;
   }
 }
 
 .homeSectionHeading {
-  font-size: 4rem;
+  font-size: var(--size-heading-lg);
   margin-bottom: 2rem;
 }
 
 .homeSectionSubHeading {
-  font-size: 1.8rem;
+  font-size: var(--size-heading-md);
 }
