@@ -1,9 +1,7 @@
 <script setup></script>
 
 <template>
-  <div>
-    <button type="submit" :class="classes.continueBtn"><slot></slot></button>
-  </div>
+  <button type="submit" :class="classes.continueBtn"><slot></slot></button>
 </template>
 
 <style lang="scss" module="classes">
