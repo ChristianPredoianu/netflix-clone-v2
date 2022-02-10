@@ -1,20 +1,23 @@
 @use '@/sass/abstracts' as *;
 
 .heroContent {
-  @include flex-config($direction: column, $align: center);
   color: var(--clr-white);
   margin-top: 10rem;
   padding: 0 2rem;
   text-align: center;
 }
 
+.headingPrimary {
+  font-size: var(--size-heading-lg);
+}
+
 .heroSecondaryHeading {
+  font-size: var(--size-heading-md);
   margin: 1rem 0;
 }
 
-.heroParagraph {
-  font-size: clamp(1.125rem, 2vw + 0.1rem, 1.4rem);
-  color: var(--clr-white);
+.heroTertiaryHeading {
+  font-size: var(--size-heading-sm);
 }
 
 .heroForm {
