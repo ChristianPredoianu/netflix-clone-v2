@@ -1,0 +1,6 @@
+@use '@/sass/abstracts' as *;
+
+.header {
+  @include nav-container;
+  position: relative;
+}
