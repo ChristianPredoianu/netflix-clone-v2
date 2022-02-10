@@ -46,11 +46,11 @@
 }
 
 .infoHeading {
-  font-size: clamp(2rem, 2vw + 0.1rem, 3rem);
+  font-size: var(--size-heading-lg);
   padding: 2rem 0;
 }
 
 .infoHeadingSecondary {
-  font-size: clamp(1.8rem, 2vw + 0.1rem, 2.5rem);
+  font-size: var(--size-heading-md);
   font-weight: 400;
 }
