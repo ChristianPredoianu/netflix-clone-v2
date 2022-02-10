@@ -1,5 +1,5 @@
 <script setup>
-import NetflixLogo from '@/components/ui/NetflixLogo.vue';
+import LogoNav from '@/components/navs/LogoNav.vue';
 import SignInForm from '@/components/forms/SignInForm.vue';
 </script>
 
@@ -7,12 +7,7 @@ import SignInForm from '@/components/forms/SignInForm.vue';
   <div :class="classes.signIn">
     <div :class="classes.overlay"></div>
     <div class="container">
-      <header :class="classes.header">
-        <nav>
-          <NetflixLogo />
-        </nav>
-      </header>
-
+      <LogoNav />
       <main :class="classes.main">
         <div :class="classes.signInForm">
           <SignInForm />
