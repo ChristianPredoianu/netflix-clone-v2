@@ -1,0 +1,55 @@
+@use '@/sass/abstracts' as *;
+
+.addProfilesWrapper {
+  @include flex-config($direction: column, $align: center);
+  margin-top: 5rem;
+}
+
+.profileHeading {
+  font-size: var(--size-heading-md);
+}
+
+.profileSecondaryHeading {
+  font-size: var(--size-heading-sm);
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.profileFormWrapper {
+  @include flex-config($justify: center, $align: center);
+  background-color: rgba(37, 37, 37, 0.4);
+  margin: 5rem 0;
+  padding: 10rem 3rem;
+
+  @include respond(md) {
+    padding: 10rem;
+  }
+}
+
+.icon {
+  font-size: 4rem;
+}
+
+.profileInput {
+  width: 18rem;
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  padding: 0.3rem 0.5rem;
+  border: none;
+}
+
+.ctaWrapper {
+  width: 90%;
+
+  @include respond(md) {
+    width: 50%;
+  }
+
+  @include respond(lg) {
+    width: 35%;
+  }
+}
+
+.continueBtn {
+  margin-bottom: 1rem;
+}

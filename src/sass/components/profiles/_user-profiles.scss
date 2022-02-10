@@ -1,0 +1,20 @@
+@use '@/sass/abstracts' as *;
+
+.userProfilesWrapper {
+  @include flex-config($direction: column, $align: center);
+  margin-top: 5rem;
+}
+
+.profilesHeading {
+  font-size: var(--size-heading-md);
+}
+
+.addIcon {
+  font-size: 4rem;
+  margin: 4rem 0;
+}
+
+.profileParagraph {
+  font-size: 1.6rem;
+  margin-bottom: 4rem;
+}
