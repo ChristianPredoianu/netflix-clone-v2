@@ -1,0 +1,63 @@
+@use '@/sass/abstracts' as *;
+
+.browse {
+  /*  position: relative; */
+  min-height: 100vh;
+  /* Image background on mobile to not waste users internet */
+  background-image: url('@/assets/images/cinema.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: var(--clr-white);
+  overflow: auto;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  inset: 0;
+  background-color: rgb(34, 33, 32, 0.6);
+  z-index: 5;
+}
+
+.heroContent {
+  position: relative;
+  width: 70%;
+  color: var(--clr-white);
+  margin-top: 15rem;
+  z-index: 6;
+}
+
+.heroPrimaryHeading {
+  font-size: calc(var(--size-heading-lg) - 1rem);
+  letter-spacing: 0.5rem;
+}
+
+.heroSecondaryHeading {
+  font-size: calc(var(--size-heading-md) - 0.5rem);
+  margin-top: 1rem;
+}
+
+.heroCta {
+  margin-top: 2rem;
+}
+
+.btn {
+  width: 20rem;
+  display: inline-block;
+  font-size: 1.5rem;
+  padding: 2rem 3rem;
+  width: 80%;
+  border: none;
+
+  &--info {
+    background-color: rgba(109, 109, 110, 0.9);
+    color: var(--clr-white);
+    margin-top: 1rem;
+  }
+}
+
+.btnSpan {
+  margin-right: 1rem;
+}
