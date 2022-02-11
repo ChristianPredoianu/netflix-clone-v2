@@ -1,0 +1,64 @@
+@use '@/sass/abstracts' as *;
+
+.header {
+  @include position($pos: fixed, $top: 0);
+  width: 100%;
+  background-image: linear-gradient(rgb(0, 0, 0) 10%, rgba(0, 0, 0, 0.5));
+  z-index: 10;
+}
+
+.nav {
+  @include flex-config($justify: space-between, $align: center);
+  @include nav-container;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.navLeft {
+  @include flex-config($align: center);
+
+  @include respond(md) {
+    flex: 1;
+  }
+}
+
+.navRight {
+  @include flex-config($justify: space-around, $align: center);
+  width: 5%;
+  background-color: blue;
+}
+
+.browseBtn {
+  margin-left: 1rem;
+}
+
+.navLinks {
+  @include position($pos: absolute, $top: 8rem, $left: 7rem);
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 5rem;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.15);
+  border-image: initial;
+  border-width: 0.5rem 0.1rem 0.1rem;
+
+  @include respond(md) {
+    @include flex-config($justify: space-around);
+    position: initial;
+    width: 50%;
+    background-color: red;
+    padding: 0;
+    border: none;
+  }
+}
+
+.navLinksItem {
+  &:not(:first-child) {
+    margin-top: 1rem;
+  }
+
+  @include respond(md) {
+    &:not(:first-child) {
+      margin-top: 0;
+    }
+  }
+}
