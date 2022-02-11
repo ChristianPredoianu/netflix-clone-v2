@@ -1,6 +1,6 @@
 @mixin nav-container {
   width: 100%;
-  padding: 0 2rem;
+  padding: 0 1rem;
 
   @include respond(md) {
     max-width: 102.4rem;
