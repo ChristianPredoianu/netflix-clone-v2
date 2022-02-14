@@ -5,9 +5,9 @@
   margin: 0 auto;
   padding: 0 1rem;
 
-  @include respond(sm) {
+  /*   @include respond(sm) {
     max-width: 64rem;
-  }
+  } */
 
   @include respond(md) {
     max-width: 102.4rem;
