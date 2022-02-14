@@ -22,30 +22,27 @@
   }
 }
 
-.navRight {
-  @include flex-config($justify: space-around, $align: center);
-  width: 5%;
-  background-color: blue;
-}
-
 .browseBtn {
+  font-size: 1.3rem;
+  background-color: transparent;
+  color: var(--clr-white);
   margin-left: 1rem;
+  border: none;
 }
 
 .navLinks {
   @include position($pos: absolute, $top: 8rem, $left: 7rem);
+  font-size: 1.5rem;
   background-color: rgba(0, 0, 0, 0.9);
   padding: 5rem;
   border-style: solid;
   border-color: rgba(255, 255, 255, 0.15);
-  border-image: initial;
   border-width: 0.5rem 0.1rem 0.1rem;
 
   @include respond(md) {
     @include flex-config($justify: space-around);
     position: initial;
     width: 50%;
-    background-color: red;
     padding: 0;
     border: none;
   }
@@ -53,12 +50,30 @@
 
 .navLinksItem {
   &:not(:first-child) {
-    margin-top: 1rem;
+    margin-top: 4rem;
   }
 
   @include respond(md) {
     &:not(:first-child) {
       margin-top: 0;
     }
+  }
+}
+
+.navRight {
+  @include flex-config($justify: space-around, $align: center);
+  font-size: 1.8rem;
+  background-color: blue;
+}
+
+.searchInput {
+  margin-right: 1rem;
+}
+
+.navRightIcon {
+  cursor: pointer;
+
+  &:not(:last-child) {
+    margin-right: 1.5rem;
   }
 }
