@@ -1,15 +1,26 @@
 <script setup>
 import ResponsiveNav from '@/components/navs/ResponsiveNav.vue';
+import VideoBackground from '@/components/ui/VideoBackground.vue';
+import { ref, defineExpose } from 'vue';
+
+const isVideoMuted = ref(true);
+
+const video = ref(null);
+
+defineExpose({ video });
+
+console.log(video);
 </script>
 
 <template>
-  <div :class="classes.browse">
+  <div :class="classes.hero">
     <ResponsiveNav />
+    <VideoBackground ref="video" />
     <div :class="classes.overlay"></div>
     <div class="container">
-      <section :class="classes.heroContent">
+      <div :class="classes.heroContent">
         <div :class="classes.heroHeadings">
-          <h1 :class="classes.heroPrimaryHeading">
+          <h1 :class="classes.heroPrimaryHeading" ref="target">
             The Jack in the box: Awakening
           </h1>
           <h2 :class="classes.heroSecondaryHeading">
@@ -30,7 +41,18 @@ import ResponsiveNav from '@/components/navs/ResponsiveNav.vue';
             >MoreInfo
           </button>
         </div>
-      </section>
+      </div>
+      <div :class="classes.videoControls">
+        <font-awesome-icon
+          :icon="isVideoMuted ? 'volume-mute' : 'volume-up'"
+          :class="classes.videoControlIcon"
+        />
+
+        <!-- <font-awesome-icon icon="volume-up" :class="classes.videoControlIcon" /> -->
+
+        <font-awesome-icon icon="history" :class="classes.videoControlIcon" />
+        <div :class="classes.recAge">13+</div>
+      </div>
     </div>
   </div>
 </template>
