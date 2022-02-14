@@ -3,10 +3,16 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import NetflixLogo from '@/components/ui/NetflixLogo.vue';
 
 const isNavOpen = ref(true);
+const isSearchOpen = ref(false);
 const mobileView = ref(true);
 
 function toggleNavLinks() {
   isNavOpen.value = !isNavOpen.value;
+  console.log(isNavOpen.value);
+}
+
+function toggleSearch() {
+  isSearchOpen.value = !isSearchOpen.value;
 }
 
 //if widow width <= 1024px mobileView=true & nav should close else keep nav open
@@ -47,8 +53,19 @@ onUnmounted(() => {
         </ul>
       </div>
       <div :class="classes.navRight">
-        <font-awesome-icon icon="search" />
-        <font-awesome-icon icon="smile" />
+        <input
+          type="text"
+          name="search"
+          size="10"
+          :class="classes.searchInput"
+          v-if="isSearchOpen"
+        />
+        <font-awesome-icon
+          icon="search"
+          :class="classes.navRightIcon"
+          @click="toggleSearch"
+        />
+        <font-awesome-icon icon="smile" :class="classes.navRightIcon" />
       </div>
     </nav>
   </header>
