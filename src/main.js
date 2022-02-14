@@ -4,7 +4,6 @@ import router from '@/router/index';
 import store from '@/store';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import addIcons from '@/font-awesome-icons/icons';
-
 import '@/sass/main.scss';
 
 addIcons();
