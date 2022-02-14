@@ -1,7 +1,6 @@
 @use '@/sass/abstracts' as *;
 
-.browse {
-  /*  position: relative; */
+.hero {
   min-height: 100vh;
   /* Image background on mobile to not waste users internet */
   background-image: url('@/assets/images/cinema.jpg');
@@ -10,13 +9,17 @@
   background-repeat: no-repeat;
   color: var(--clr-white);
   overflow: auto;
+
+  @include respond(md) {
+    background-image: none;
+  }
 }
 
 .overlay {
   position: absolute;
+  inset: 0;
   width: 100%;
   min-height: 100vh;
-  inset: 0;
   background-color: rgb(34, 33, 32, 0.6);
   z-index: 5;
 }
@@ -24,8 +27,8 @@
 .heroContent {
   position: relative;
   width: 70%;
-  color: var(--clr-white);
   margin-top: 15rem;
+  color: var(--clr-white);
   z-index: 6;
 }
 
@@ -41,11 +44,19 @@
 
 .heroCta {
   margin-top: 2rem;
+
+  @include respond(sm) {
+    width: 80%;
+  }
+
+  @include respond(md) {
+    width: 50%;
+  }
 }
 
 .btn {
-  width: 20rem;
   display: inline-block;
+  width: 20rem;
   font-size: 1.5rem;
   padding: 2rem 3rem;
   width: 80%;
@@ -60,4 +71,29 @@
 
 .btnSpan {
   margin-right: 1rem;
+}
+
+.videoControls {
+  display: none;
+
+  @include respond(md) {
+    @include flex-config($justify: flex-end, $align: center);
+    position: relative;
+    margin-top: 20rem;
+    z-index: 10;
+  }
+}
+
+.videoControlIcon {
+  font-size: 2rem;
+  margin-right: 3rem;
+}
+
+.recAge {
+  @include flex-config($align: center);
+  background-color: rgba(51, 51, 51, 0.6);
+  font-size: 2rem;
+  padding: 1rem 8rem 1rem 2rem;
+  border-left: 5px solid #d1d1d1;
+  color: var(--clr-white);
 }
