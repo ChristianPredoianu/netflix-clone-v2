@@ -1,0 +1,50 @@
+@use '@/sass/abstracts' as *;
+
+.heroContent {
+  position: relative;
+  width: 70%;
+  margin-top: 15rem;
+  color: var(--clr-white);
+  z-index: 6;
+}
+
+.heroPrimaryHeading {
+  font-size: calc(var(--size-heading-lg) - 1rem);
+  letter-spacing: 0.5rem;
+}
+
+.heroSecondaryHeading {
+  font-size: calc(var(--size-heading-md) - 0.5rem);
+  margin-top: 1rem;
+}
+
+.heroCta {
+  margin-top: 2rem;
+
+  @include respond(sm) {
+    width: 80%;
+  }
+
+  @include respond(md) {
+    width: 50%;
+  }
+}
+
+.btn {
+  display: inline-block;
+  width: 20rem;
+  font-size: 1.5rem;
+  padding: 2rem 3rem;
+  width: 80%;
+  border: none;
+
+  &--info {
+    background-color: rgba(109, 109, 110, 0.9);
+    color: var(--clr-white);
+    margin-top: 1rem;
+  }
+}
+
+.btnSpan {
+  margin-right: 1rem;
+}
