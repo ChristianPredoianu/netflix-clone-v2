@@ -1,9 +1,15 @@
 <script setup>
-import GetStartedBtn from '@/components/buttons/GetStartedBtn.vue';
+import { ref } from 'vue';
+import { useStore } from 'vuex';
 import router from '../../router';
+import GetStartedBtn from '@/components/buttons/GetStartedBtn.vue';
+
+const store = useStore();
+const email = ref('');
 
 function goToSignupHandler() {
   router.push({ name: 'SignupStep1' });
+  store.dispatch('updateEmail', email.value);
 }
 </script>
 <template>
@@ -14,8 +20,11 @@ function goToSignupHandler() {
         :class="classes.getStartedInput"
         placeholder="E-mail"
         required
+        v-model="email"
       />
       <GetStartedBtn />
+
+      {{ email }}
     </form>
   </div>
 </template>
