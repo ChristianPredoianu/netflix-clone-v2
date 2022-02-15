@@ -1,0 +1,26 @@
+@use '@/sass/abstracts' as *;
+
+.videoControls {
+  display: none;
+
+  @include respond(md) {
+    @include flex-config($justify: flex-end, $align: center);
+    position: relative;
+    margin-top: 20rem;
+    z-index: 10;
+  }
+}
+
+.videoControlIcon {
+  font-size: 2rem;
+  margin-right: 3rem;
+}
+
+.recAge {
+  @include flex-config($align: center);
+  background-color: rgba(51, 51, 51, 0.6);
+  font-size: 2rem;
+  padding: 1rem 8rem 1rem 2rem;
+  border-left: 5px solid #d1d1d1;
+  color: var(--clr-white);
+}
