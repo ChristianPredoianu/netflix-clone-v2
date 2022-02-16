@@ -1,15 +1,19 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
-import router from '@/router';
 import ContinueBtn from '@/components/buttons/ContinueBtn.vue';
-import { s } from '../../../dist/assets/vendor.71f932d3';
 
 const store = useStore();
 
-const userEmail = ref(store.state.forms.email);
+const userEmail = ref(store.state.auth.email);
 const userPassword = ref(null);
-const error = computed(() => store.getters.getError);
+const error = computed(() => store.state.auth.error);
+const accountMessage = computed(() => store.state.auth.accountMessage);
+
+onMounted(() => {
+  store.commit('setAccountMessage', null);
+  store.commit('setError', null);
+});
 
 function signUp() {
   store.dispatch('signUserUp', {
@@ -43,7 +47,10 @@ function signUp() {
       />
       <!--  We could also set a custom message in vuex if error and display the custom message -->
       <p v-if="error" :class="classes.error">
-        {{ error ? error : 'Account created' }}
+        {{ error }}
+      </p>
+      <p v-else :class="classes.accountCreated">
+        {{ accountMessage }}
       </p>
 
       <ContinueBtn>Continue</ContinueBtn>
