@@ -1,11 +1,13 @@
 import { createStore } from 'vuex';
-import forms from '@/store/modules/forms';
+import auth from '@/store/modules/auth';
+import theMovieDB from '@/store/modules/theMovieDB';
 
 import createPersistedState from 'vuex-persistedstate';
 
 export default createStore({
   modules: {
-    forms,
+    auth,
+    theMovieDB,
   },
   plugins: [createPersistedState()],
 });
