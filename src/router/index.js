@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '@/views/Home.vue';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+
 const routes = [
   {
     path: '/',
@@ -17,6 +20,9 @@ const routes = [
     path: '/browse',
     name: 'Browse',
     component: () => import('@/views/Browse.vue'),
+    meta: {
+      requiresAuth: true,
+    },
   },
 
   {
@@ -41,4 +47,15 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
+  const isAuthenticated = firebase.auth().currentUser;
+  if (requiresAuth && !isAuthenticated) {
+    next('/signin');
+  } else {
+    next();
+  }
+});
+
 export default router;
