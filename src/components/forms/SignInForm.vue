@@ -1,7 +1,25 @@
 <script setup>
+import { ref, computed, onMounted } from 'vue';
+import { useStore } from 'vuex';
 import ContinueBtn from '@/components//buttons/ContinueBtn.vue';
+
+const store = useStore();
+
+const userEmail = ref(null);
+const userPassword = ref(null);
+const error = computed(() => store.state.auth.error);
+const accountMessage = computed(() => store.state.auth.accountMessage);
+
+onMounted(() => {
+  store.commit('setAccountMessage', null);
+  store.commit('setError', null);
+});
+
 function signIn() {
-  console.log('signing in...');
+  store.dispatch('signUserIn', {
+    email: userEmail.value,
+    password: userPassword.value,
+  });
 }
 </script>
 
@@ -15,6 +33,7 @@ function signIn() {
         placeholder="E-mail"
         required
         :class="classes.formInput"
+        v-model="userEmail"
       />
       <label for="password" :class="classes.label">Password:</label>
       <input
@@ -24,7 +43,7 @@ function signIn() {
         maxlength="60"
         required
         :class="classes.formInput"
-        v-model="classes.password"
+        v-model="userPassword"
       />
       <ContinueBtn>Sign In</ContinueBtn>
       <div :class="classes.signUpNow">
@@ -34,7 +53,14 @@ function signIn() {
             ><span :class="classes.signUpSpan"> Sign up now.</span></router-link
           >
         </p>
-        <h1 :class="classes.signUpError">Error goes here</h1>
+        <div :class="classes.userMessage">
+          <p v-if="error" :class="classes.error">
+            {{ error }}
+          </p>
+          <p v-else :class="classes.signedIn">
+            {{ accountMessage }}
+          </p>
+        </div>
       </div>
     </form>
   </div>
