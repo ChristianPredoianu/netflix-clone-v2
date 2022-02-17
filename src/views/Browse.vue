@@ -5,19 +5,18 @@ import ResponsiveNav from '@/components/navs/ResponsiveNav.vue';
 import BrowseHeroContent from '@/components/hero/BrowseHeroContent.vue';
 import VideoControls from '@/components/ui/VideoControls.vue';
 
-const isVideoMuted = ref(true);
-const video = ref(null);
+const isVideoMuted = ref(true),
+  video = ref(null);
 
 defineExpose({ video });
 
 const store = useStore();
 
+const movieData = computed(() => store.getters.GET_MOVIES),
+  isLoadingData = computed(() => store.state.theMovieDB.isLoadingData);
+
 onMounted(() => {
-  store.dispatch('fetchMovies');
-  store.dispatch('fetchPopularMovies');
-  const state = computed(() => store.getters.getMovies);
-  const popular = computed(() => store.state.theMovieDB.popularMovies);
-  console.log(state.value);
+  store.dispatch('FETCH_MOVIES');
 });
 
 function toggleVideoSound(isMuted, isSoundOn) {
