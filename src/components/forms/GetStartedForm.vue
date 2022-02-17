@@ -9,7 +9,7 @@ const email = ref('');
 
 function goToSignupHandler() {
   router.push({ name: 'SignupStep1' });
-  store.dispatch('updateEmail', email.value);
+  store.dispatch('UPDATE_EMAIL', email.value);
 }
 </script>
 <template>

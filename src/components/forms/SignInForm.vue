@@ -11,12 +11,12 @@ const error = computed(() => store.state.auth.error);
 const accountMessage = computed(() => store.state.auth.accountMessage);
 
 onMounted(() => {
-  store.commit('setAccountMessage', null);
-  store.commit('setError', null);
+  store.commit('SET_ACCOUNT_MESSAGE', null);
+  store.commit('SET_ERROR', null);
 });
 
 function signIn() {
-  store.dispatch('signUserIn', {
+  store.dispatch('SIGN_USER_IN', {
     email: userEmail.value,
     password: userPassword.value,
   });
