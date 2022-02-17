@@ -11,76 +11,89 @@ export default {
       sciFi: [],
     },
     loadingData: true,
+    error: null,
   },
 
   getters: {
-    getMovies(state) {
+    GET_MOVIES(state) {
       return state.movieData;
     },
   },
 
   mutations: {
-    setPopularMovies(state, data) {
-      state.popularMovies = data;
+    SET_IS_LOADING_DATA(state, payload) {
+      state.isLoadingData = payload;
     },
-    setMovieData(state, payload) {
-      state.movieData = data;
+
+    SET_MOVIE_DATA(state, payload) {
+      state.movieData.popular = payload.popular.results;
+      state.movieData.action = payload.action.results;
+      state.movieData.comedy = payload.comedy.results;
+      state.movieData.crime = payload.crime.results;
+      state.movieData.animation = payload.animation.results;
+      state.movieData.drama = payload.drama.results;
+      state.movieData.horror = payload.horror.results;
+      state.movieData.sciFi = payload.sciFi.results;
+    },
+
+    SET_ERROR(state, payload) {
+      state.error = payload;
     },
   },
 
   actions: {
-    async fetchPopularMovies({ commit }) {
-      const apiKey = '6e4acdeab93e10b5ba3a48dec9a8ba3d';
+    async FETCH_MOVIES({ commit }) {
       try {
-        const response = await fetch(
-          `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`
-        );
-        const data = await response.json();
+        const categoryUrl = 'https://api.themoviedb.org/3/discover/movie',
+          apiKey = `?api_key=${import.meta.env.VITE_APP_API_KEY}`,
+          query =
+            '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false';
 
-        commit('setPopularMovies', data);
-      } catch (error) {
-        console.log(error);
-      }
-    },
-
-    async fetchMovies({ commit }) {
-      try {
-        const apiKey = '6e4acdeab93e10b5ba3a48dec9a8ba3d';
-        //Fetching multiple genres from api
-        const results = await Promise.all([
+        const [
+          popularResponse,
+          actionResponse,
+          comedyResponse,
+          crimeResponse,
+          animationResponse,
+          dramaResponse,
+          horrorResponse,
+          sciFiResponse,
+        ] = await Promise.all([
           fetch(
             `
-                https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US&page=1`
-          ).then((response) => response.json()),
-          fetch(
-            `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=28`
-          ).then((response) => response.json()),
-          fetch(
-            `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=35`
-          ).then((response) => response.json()),
-          fetch(
-            `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=80`
-          ).then((response) => response.json()),
-          fetch(
-            `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=16`
-          ).then((response) => response.json()),
-          fetch(
-            `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=18`
-          ).then((response) => response.json()),
-          fetch(
-            `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=27`
-          ).then((response) => response.json()),
-          fetch(
-            `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=878`
-          ).then((response) => response.json()),
+                https://api.themoviedb.org/3/movie/popular${apiKey}&language=en-US&page=1`
+          ),
+          fetch(`${categoryUrl}${apiKey}${query}&with_genres=28`),
+          fetch(`${categoryUrl}${apiKey}${query}&with_genres=35`),
+          fetch(`${categoryUrl}${apiKey}${query}&with_genres=80`),
+          fetch(`${categoryUrl}${apiKey}${query}&with_genres=16`),
+          fetch(`${categoryUrl}${apiKey}${query}&with_genres=18`),
+          fetch(`${categoryUrl}${apiKey}${query}&with_genres=27`),
+          fetch(`${categoryUrl}${apiKey}${query}&with_genres=878`),
         ]);
-        /* 
-        commit('setMovieData', ) */
-        results.forEach((element) => {
-          console.log(element.results);
-        });
+        const popular = await popularResponse.json(),
+          action = await actionResponse.json(),
+          comedy = await comedyResponse.json(),
+          crime = await crimeResponse.json(),
+          animation = await animationResponse.json(),
+          drama = await dramaResponse.json(),
+          horror = await horrorResponse.json(),
+          sciFi = await sciFiResponse.json();
+
+        const payload = {
+          popular,
+          action,
+          comedy,
+          crime,
+          animation,
+          drama,
+          horror,
+          sciFi,
+        };
+        commit('SET_IS_LOADING_DATA', false);
+        commit('SET_MOVIE_DATA', payload);
       } catch (error) {
-        console.log(error);
+        if (error) commit('SET_ERROR', error);
       }
     },
   },
