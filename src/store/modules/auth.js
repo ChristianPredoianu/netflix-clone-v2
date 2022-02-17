@@ -1,6 +1,6 @@
+import router from '@/router';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import router from '@/router';
 
 export default {
   state: {
@@ -11,24 +11,26 @@ export default {
   },
 
   mutations: {
-    updateEmail(state, payload) {
+    UPDATE_EMAIL(state, payload) {
       state.email = payload;
     },
 
-    setUser(state, payload) {
+    SET_USER(state, payload) {
       state.user = payload;
     },
-    setError(state, payload) {
+
+    SET_ERROR(state, payload) {
       state.error = payload;
     },
-    setAccountMessage(state, payload) {
+
+    SET_ACCOUNT_MESSAGE(state, payload) {
       state.accountMessage = payload;
     },
   },
 
   actions: {
-    updateEmail({ commit }, payload) {
-      commit('updateEmail', payload);
+    UPDATE_EMAIL({ commit }, payload) {
+      commit('UPDATE_EMAIL', payload);
     },
 
     signUserUp({ commit }, payload) {
@@ -36,9 +38,9 @@ export default {
         .auth()
         .createUserWithEmailAndPassword(payload.email, payload.password)
         .then(() => {
-          commit('setError', null);
+          commit('SET_ERROR', null);
           commit(
-            'setAccountMessage',
+            'SET_ACCOUNT_MESSAGE',
             'Account Created. You are being redirected to sign in page'
           );
           setTimeout(() => {
@@ -48,28 +50,29 @@ export default {
 
         .catch((error) => {
           if (error) {
-            commit('setError', error.message);
+            commit('SET_ERROR', error.message);
           }
         });
     },
-    signUserIn({ commit }, payload) {
+
+    SIGN_USER_IN({ commit }, payload) {
       firebase
         .auth()
         .signInWithEmailAndPassword(payload.email, payload.password)
         .then((user) => {
-          commit('setError', null);
-          commit('setAccountMessage', 'Logging in...');
+          commit('SET_ERROR', null);
+          commit('SET_ACCOUNT_MESSAGE', 'Logging in...');
           const currentUser = {
             email: user.user.email,
           };
-          commit('setUser', currentUser);
+          commit('SET_USER', currentUser);
           setTimeout(() => {
             router.push({ name: 'Browse' });
           }, 2000);
         })
         .catch((error) => {
           if (error) {
-            commit('setError', error.message);
+            commit('SET_ERROR', error.message);
           }
         });
     },
