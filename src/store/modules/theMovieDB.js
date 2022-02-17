@@ -71,6 +71,7 @@ export default {
           fetch(`${categoryUrl}${apiKey}${query}&with_genres=27`),
           fetch(`${categoryUrl}${apiKey}${query}&with_genres=878`),
         ]);
+
         const popular = await popularResponse.json(),
           action = await actionResponse.json(),
           comedy = await comedyResponse.json(),
@@ -90,6 +91,7 @@ export default {
           horror,
           sciFi,
         };
+
         commit('SET_IS_LOADING_DATA', false);
         commit('SET_MOVIE_DATA', payload);
       } catch (error) {
