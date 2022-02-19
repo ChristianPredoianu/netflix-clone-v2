@@ -4,6 +4,7 @@ import { useStore } from 'vuex';
 import ResponsiveNav from '@/components/navs/ResponsiveNav.vue';
 import BrowseHeroContent from '@/components/hero/BrowseHeroContent.vue';
 import VideoControls from '@/components/ui/VideoControls.vue';
+import Swiper from '@/components/swiper/Swiper.vue';
 
 const isVideoMuted = ref(true),
   video = ref(null);
@@ -14,6 +15,8 @@ const store = useStore();
 
 const movieData = computed(() => store.getters.GET_MOVIES),
   isLoadingData = computed(() => store.state.theMovieDB.isLoadingData);
+
+console.log(movieData.value);
 
 onMounted(() => {
   store.dispatch('FETCH_MOVIES');
@@ -44,6 +47,9 @@ function replayVideo() {
         :isVideoMuted="isVideoMuted"
       />
     </div>
+  </div>
+  <div :class="classes.swiperContainer">
+    <Swiper :movieData="movieData.popular" heading="Popular Movies" />
   </div>
 </template>
 
