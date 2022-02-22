@@ -1,0 +1,11 @@
+@use '@/sass/abstracts' as *;
+
+.filter {
+  @include flex-config($justify: space-around);
+  width: 60%;
+  margin: 10rem auto 0 auto;
+
+  @include respond(sm) {
+    width: 30%;
+  }
+}
