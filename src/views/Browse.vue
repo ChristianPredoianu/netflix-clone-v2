@@ -13,10 +13,8 @@ defineExpose({ video });
 
 const store = useStore();
 
-const movieData = computed(() => store.getters.GET_MOVIES),
+const movieData = computed(() => store.state.theMovieDB.movieData),
   isLoadingData = computed(() => store.state.theMovieDB.isLoadingData);
-
-console.log(movieData.value);
 
 onMounted(() => {
   store.dispatch('FETCH_MOVIES');
@@ -33,23 +31,34 @@ function replayVideo() {
 </script>
 
 <template>
-  <div :class="classes.hero">
-    <ResponsiveNav />
-    <video :class="classes.video" ref="video" muted autoplay>
-      <source src="@/assets/videos/showcase.mp4" type="video/mp4" />
-    </video>
-    <div :class="classes.overlay"></div>
-    <div class="container">
-      <BrowseHeroContent />
-      <VideoControls
-        @toggle-video-sound="toggleVideoSound"
-        @replay-video="replayVideo"
-        :isVideoMuted="isVideoMuted"
-      />
+  <div :class="classes.browse">
+    <div :class="classes.hero">
+      <ResponsiveNav />
+      <video :class="classes.video" ref="video" muted autoplay>
+        <source src="@/assets/videos/showcase.mp4" type="video/mp4" />
+      </video>
+      <div :class="classes.overlay"></div>
+      <div class="container">
+        <BrowseHeroContent />
+        <VideoControls
+          @toggle-video-sound="toggleVideoSound"
+          @replay-video="replayVideo"
+          :isVideoMuted="isVideoMuted"
+        />
+      </div>
     </div>
-  </div>
-  <div :class="classes.swiperContainer">
-    <Swiper :movieData="movieData.popular" heading="Popular Movies" />
+    <div class="container">
+      <div :class="classes.swiperContainer">
+        <Swiper :movieData="movieData.popular" heading="Popular Movies" />
+        <Swiper :movieData="movieData.action" heading="Action Movies" />
+        <Swiper :movieData="movieData.comedy" heading="Comedy Movies" />
+        <Swiper :movieData="movieData.animation" heading="Animation Movies" />
+        <Swiper :movieData="movieData.crime" heading="Crime Movies" />
+        <Swiper :movieData="movieData.drama" heading="Drama Movies" />
+        <Swiper :movieData="movieData.horror" heading="Horror Movies" />
+        <Swiper :movieData="movieData.sciFi" heading="Sci Fi Movies" />
+      </div>
+    </div>
   </div>
 </template>
 
