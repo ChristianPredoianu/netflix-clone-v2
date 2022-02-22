@@ -12,11 +12,16 @@ export default {
     },
     loadingData: true,
     error: null,
+    userSelectedGenre: 'popular',
   },
 
   getters: {
-    GET_MOVIES(state) {
-      return state.movieData;
+    GET_GENRES(state) {
+      return Object.keys(state.movieData);
+    },
+
+    GET_MOVIES_BY_GENRE(state) {
+      return state.movieData[state.userSelectedGenre];
     },
   },
 
@@ -38,6 +43,10 @@ export default {
 
     SET_ERROR(state, payload) {
       state.error = payload;
+    },
+
+    SET_USER_SELECTED_GENRE(state, payload) {
+      state.userSelectedGenre = payload;
     },
   },
 
@@ -97,6 +106,10 @@ export default {
       } catch (error) {
         if (error) commit('SET_ERROR', error);
       }
+    },
+
+    SET_USER_SELECTED_GENRE({ commit }, payload) {
+      commit('SET_USER_SELECTED_GENRE', payload);
     },
   },
 };
