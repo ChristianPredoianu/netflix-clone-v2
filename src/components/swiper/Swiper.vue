@@ -16,8 +16,6 @@ export default {
   },
 
   setup(props) {
-    console.log(props.heading);
-
     return {
       modules: [Navigation],
       props,
@@ -27,21 +25,42 @@ export default {
 </script>
 
 <template>
-  <h3>{{ props.heading }}</h3>
-  <swiper
-    :navigation="true"
-    :modules="modules"
-    class="mySwiper"
-    :slidesPerView="3"
-  >
-    <swiper-slide v-for="movie in movieData" :key="movie.id">
-      <img
-        :src="`https://image.tmdb.org/t/p/w300${movie.poster_path}`"
-        :class="swiperSlideImg"
-        alt="movie poster"
-      />
-    </swiper-slide>
-  </swiper>
+  <div :class="classes.swiper">
+    <h3 :class="classes.swiperHeading">{{ props.heading }}</h3>
+    <swiper
+      :navigation="true"
+      :modules="modules"
+      class="mySwiper"
+      :slidesPerView="2"
+      :space-between="20"
+      :breakpoints="{
+        '900': {
+          slidesPerView: 3,
+          spaceBetween: 40,
+        },
+        '1280': {
+          slidesPerView: 5,
+          spaceBetween: 50,
+        },
+      }"
+    >
+      <swiper-slide v-for="movie in movieData" :key="movie.id">
+        <img
+          :src="`https://image.tmdb.org/t/p/w300${movie.poster_path}`"
+          alt="movie poster"
+        />
+        <div :class="classes.swiperOverlay">
+          <h4 :class="classes.movieHeading">{{ movie.original_title }}</h4>
+          <h5>Release: {{ movie.release_date }}</h5>
+          <div :class="classes.overlayIcons">
+            <font-awesome-icon icon="play" />
+            <font-awesome-icon icon="plus-square" />
+            <font-awesome-icon icon="info-circle" />
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper>
+  </div>
 </template>
 
 <style lang="scss" module="classes">
