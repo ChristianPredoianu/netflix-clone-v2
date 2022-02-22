@@ -1,5 +1,9 @@
 @use '@/sass/abstracts' as *;
 
+.browse {
+  background-color: var(--secondary-bg-color);
+}
+
 .hero {
   min-height: 100vh;
   /* Image background on mobile to not waste users internet */
@@ -23,7 +27,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 1;
     inset: 0;
     object-fit: cover;
   }
@@ -37,29 +41,3 @@
   background-color: rgb(34, 33, 32, 0.6);
   z-index: 5;
 }
-
-/* .videoControls {
-  display: none;
-
-  @include respond(md) {
-    @include flex-config($justify: flex-end, $align: center);
-    position: relative;
-    margin-top: 20rem;
-    z-index: 10;
-  }
-}
-
-.videoControlIcon {
-  font-size: 2rem;
-  margin-right: 3rem;
-}
-
-.recAge {
-  @include flex-config($align: center);
-  background-color: rgba(51, 51, 51, 0.6);
-  font-size: 2rem;
-  padding: 1rem 8rem 1rem 2rem;
-  border-left: 5px solid #d1d1d1;
-  color: var(--clr-white);
-}
- */
