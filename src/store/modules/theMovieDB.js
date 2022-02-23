@@ -13,6 +13,7 @@ export default {
     loadingData: true,
     error: null,
     userSelectedGenre: 'popular',
+    movieDetails: null,
   },
 
   getters: {
@@ -39,6 +40,10 @@ export default {
       state.movieData.drama = payload.drama.results;
       state.movieData.horror = payload.horror.results;
       state.movieData.sciFi = payload.sciFi.results;
+    },
+
+    SET_MOVIE_DETAILS(state, payload) {
+      state.movieDetails = payload;
     },
 
     SET_ERROR(state, payload) {
@@ -105,6 +110,19 @@ export default {
         commit('SET_MOVIE_DATA', payload);
       } catch (error) {
         if (error) commit('SET_ERROR', error);
+      }
+    },
+
+    async SET_MOVIE_DETAILS({ commit }, payload) {
+      try {
+        const url = 'https://api.themoviedb.org/3/movie/';
+        const apiKey = `?api_key=${import.meta.env.VITE_APP_API_KEY}`;
+
+        const response = await fetch(`${url}${payload}${apiKey}`);
+        const movieDetails = await response.json();
+        commit('SET_MOVIE_DETAILS', movieDetails);
+      } catch (err) {
+        console.log(err);
       }
     },
 
