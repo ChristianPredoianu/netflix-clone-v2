@@ -1,0 +1,10 @@
+.backdrop {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  min-height: 100vh;
+  background: rgba(56, 55, 55, 0.55);
+  z-index: 1000;
+}
