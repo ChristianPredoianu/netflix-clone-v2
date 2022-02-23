@@ -2,42 +2,41 @@
 import { ref, computed } from 'vue';
 import { useStore } from 'vuex';
 import ResponsiveNav from '@/components/navs/ResponsiveNav.vue';
-import store from '../store';
+import GenresFilter from '@/components/filters/GenresFilter.vue';
+import MovieCard from '@/components/ui/MovieCard.vue';
+import MovieModal from '@/components/ui/movie-modal/MovieModal.vue';
 
-const movieGenres = computed(() => store.getters.GET_GENRES);
-const selectedGenre = ref('popular');
+const store = useStore();
+const isMovieModalOpen = ref(false);
+const clickedMovie = ref(null);
 
-const test = computed(() => store.getters.GET_MOVIES_BY_GENRE);
-console.log(selectedGenre.value);
-console.log(test.value);
+const moviesByGenre = computed(() => store.getters.GET_MOVIES_BY_GENRE);
 
-function onChangeOption(event) {
-  selectedGenre.value = event.target.value;
-  store.dispatch('SET_USER_SELECTED_GENRE', selectedGenre.value);
+function openModal(params) {
+  isMovieModalOpen.value = params.isModalOpen;
+  clickedMovie.value = params.clickedMovie;
+}
+
+function closeModal() {
+  isMovieModalOpen.value = false;
 }
 </script>
 
 <template>
   <ResponsiveNav />
-  <div class="container">
-    <div :class="classes.filter">
-      <h1>Movies</h1>
-      <select
-        :class="classes.select"
-        v-model="selectedGenre"
-        @change="onChangeOption($event)"
-      >
-        <option
-          v-for="movieGenre in movieGenres"
-          :key="movieGenre.index"
-          :value="movieGenre"
-        >
-          {{ movieGenre.charAt(0).toUpperCase() + movieGenre.slice(1) }}
-        </option>
-      </select>
+  <main :class="classes.main">
+    <div class="container">
+      <GenresFilter />
+      <div :class="classes.movieCardsGrid">
+        <MovieCard @onOpenModal="openModal" />
+      </div>
     </div>
-    {{ test }}
-  </div>
+  </main>
+  <MovieModal
+    @onCloseModal="closeModal"
+    v-if="isMovieModalOpen"
+    :clickedMovie="clickedMovie"
+  />
 </template>
 
 <style lang="scss" module="classes">
