@@ -34,6 +34,7 @@
   @include position($pos: absolute, $top: 8rem, $left: 7rem);
   font-size: 1.5rem;
   background-color: rgba(0, 0, 0, 0.9);
+  color: var(--clr-white);
   padding: 5rem;
   border-style: solid;
   border-color: rgba(255, 255, 255, 0.15);
@@ -43,6 +44,7 @@
     @include flex-config($justify: space-around);
     position: initial;
     width: 50%;
+    background-color: transparent;
     padding: 0;
     border: none;
   }
