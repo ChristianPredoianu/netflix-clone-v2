@@ -1,11 +1,19 @@
 @use '@/sass/abstracts' as *;
 
-.filter {
-  @include flex-config($justify: space-around);
-  width: 60%;
-  margin: 10rem auto 0 auto;
+.main {
+  min-height: 100vh;
+  background-color: var(--main-bg-color);
+  color: var(--clr-white);
+}
+
+.movieCardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  grid-gap: 1rem;
+  margin-top: 10rem;
 
   @include respond(sm) {
-    width: 30%;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    grid-gap: 2rem;
   }
 }
