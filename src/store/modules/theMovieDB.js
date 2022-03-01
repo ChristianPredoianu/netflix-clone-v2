@@ -136,7 +136,6 @@ export default {
         );
         const movieTrailer = await response.json();
         commit('SET_MOVIE_TRAILER', movieTrailer);
-        console.log(movieTrailer);
       } catch (err) {
         console.log(err);
       }
