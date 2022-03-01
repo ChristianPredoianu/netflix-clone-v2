@@ -6,10 +6,10 @@ import ModalOverlay from "@/components/ui/movie-modal/ModalOverlay.vue";
 import ModalTrailerOverlay from "@/components/ui/movie-modal/ModalTrailerOverlay.vue";
 
 const isMovieTrailerOverlayOpen = ref(false);
-const emit = defineEmits(["onCloseModal"]);
+const emit = defineEmits(["onCloseModals"]);
 
-function closeModal() {
-  emit("onCloseModal");
+function closeModals() {
+  emit("onCloseModals");
 }
 
 function openMovieTrailerOverlay() {
@@ -27,7 +27,7 @@ const props = defineProps({
 
 <template>
   <teleport to="#backdrop-root">
-    <Backdrop @onCloseModal="closeModal" />
+    <Backdrop @onCloseModals="closeModals" />
   </teleport>
   <teleport to="#overlay-root">
     <ModalOverlay
