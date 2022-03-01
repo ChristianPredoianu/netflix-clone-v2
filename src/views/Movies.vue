@@ -1,10 +1,10 @@
 <script setup>
-import { ref, computed } from 'vue';
-import { useStore } from 'vuex';
-import ResponsiveNav from '@/components/navs/ResponsiveNav.vue';
-import GenresFilter from '@/components/filters/GenresFilter.vue';
-import MovieCard from '@/components/ui/MovieCard.vue';
-import MovieModal from '@/components/ui/movie-modal/MovieModal.vue';
+import { ref, computed } from "vue";
+import { useStore } from "vuex";
+import ResponsiveNav from "@/components/navs/ResponsiveNav.vue";
+import GenresFilter from "@/components/filters/GenresFilter.vue";
+import MovieCard from "@/components/ui/MovieCard.vue";
+import MovieModal from "@/components/ui/movie-modal/MovieModal.vue";
 
 const store = useStore();
 const isMovieModalOpen = ref(false);
