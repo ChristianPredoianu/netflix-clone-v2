@@ -1,21 +1,30 @@
 @use '@/sass/abstracts' as *;
 
 .modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 90%;
+  @include position($pos: fixed, $top: 50%, $left: 50%);
+  width: 100%;
+  height: 100vh;
   transform: translate(-50%, -50%);
   background-color: var(--main-bg-color);
   color: var(--clr-white);
   z-index: 1001;
+  overflow-y: auto;
+
+  @include respond(md) {
+    width: 70%;
+    height: 90vh;
+  }
+
+  @include respond(lg) {
+    width: 50%;
+  }
 }
 
 .modalTopOverlay {
   position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  inset: 0;
   background-color: rgb(11, 11, 12, 0.5);
   z-index: 1002;
 }
@@ -25,20 +34,25 @@
 }
 
 .modalTopCta {
-  position: absolute;
-  bottom: 10%;
-  left: 5%;
+  @include position($pos: absolute, $left: 5%, $bottom: 10%);
   z-index: 1003;
 }
 
 .movieHeading {
-  font-size: clamp(1.3rem, 3vw + 0.1rem, 2.6rem);
+  font-size: clamp(2rem, 3vw + 0.1rem, 4.6rem);
+  padding-right: 2rem;
 }
 
 .playBtn {
   font-size: clamp(1rem, 2vw + 0.1rem, 1.8rem);
   margin-top: 1rem;
-  padding: 0.3rem 1rem;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+
+  @include respond(md) {
+    padding: 1.5rem 3rem;
+  }
 }
 
 .playIcon {
@@ -51,18 +65,40 @@
 }
 
 .modalInfo {
-  @include flex-config($justify: space-around);
+  @include flex-config($justify: space-between);
+  font-size: clamp(1.8rem, 2vw + 0.1rem, 1.8rem);
+  padding: 5rem 5%;
+}
+
+.infoHeading {
+  font-size: clamp(1.6rem, 2vw + 0.1rem, 1.8rem);
 }
 
 .modalInfoLeft {
-  width: 60%;
-  padding: 1rem 0 1rem 2.5rem;
+  width: 50%;
+}
+
+.movieInfo {
+  margin-top: 1rem;
+  color: var(--clr-gray-medium);
 }
 
 .modalInfoRight {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 40%;
-  padding: 1rem 2.5rem 1rem 0;
+  @include flex-config($direction: column, $align: start);
+}
+
+.infoList {
+  &:not(:first-of-type) {
+    margin-top: 1rem;
+  }
+}
+
+.listItem {
+  color: var(--clr-gray-medium);
+  margin-top: 0.5rem;
+}
+
+.ratingHeading {
+  font-size: clamp(1.6rem, 2vw + 0.1rem, 1.8rem);
+  margin: 1rem 0;
 }
