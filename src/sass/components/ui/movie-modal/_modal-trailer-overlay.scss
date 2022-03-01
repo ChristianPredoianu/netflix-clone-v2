@@ -1,0 +1,41 @@
+@use '@/sass/abstracts' as *;
+
+.modal {
+  @include position($pos: fixed, $top: 50%, $left: 50%);
+  @include flex-config($direction: column);
+  width: 90%;
+  transform: translate(-50%, -50%);
+  background-color: var(--main-bg-color);
+  color: var(--clr-white);
+  z-index: 1002;
+  overflow-y: auto;
+
+  @include respond(md) {
+    width: 70%;
+  }
+
+  @include respond(lg) {
+    width: 50%;
+  }
+}
+
+.iconContainer {
+  @include position($pos: absolute, $top: 1.5%, $right: 1%);
+  background-color: var(--clr-black);
+  padding: 1.2rem;
+  border-radius: 50%;
+}
+
+.close {
+  position: absolute;
+  inset: 0;
+  margin: auto auto;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.ytPlayer {
+  aspect-ratio: 16/9;
+  width: 100%;
+  height: auto;
+}
