@@ -1,3 +1,5 @@
+import { url, apiKey } from '../url';
+
 export default {
   state: {
     movieData: {
@@ -14,6 +16,7 @@ export default {
     error: null,
     userSelectedGenre: 'popular',
     movieDetails: null,
+    movieTrailer: null,
   },
 
   getters: {
@@ -50,6 +53,10 @@ export default {
       state.error = payload;
     },
 
+    SET_MOVIE_TRAILER(state, payload) {
+      state.movieTrailer = payload;
+    },
+
     SET_USER_SELECTED_GENRE(state, payload) {
       state.userSelectedGenre = payload;
     },
@@ -59,7 +66,6 @@ export default {
     async FETCH_MOVIES({ commit }) {
       try {
         const categoryUrl = 'https://api.themoviedb.org/3/discover/movie',
-          apiKey = `?api_key=${import.meta.env.VITE_APP_API_KEY}`,
           query =
             '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false';
 
@@ -113,14 +119,24 @@ export default {
       }
     },
 
-    async SET_MOVIE_DETAILS({ commit }, payload) {
+    async FETCH_MOVIE_DETAILS({ commit }, payload) {
       try {
-        const url = 'https://api.themoviedb.org/3/movie/';
-        const apiKey = `?api_key=${import.meta.env.VITE_APP_API_KEY}`;
-
         const response = await fetch(`${url}${payload}${apiKey}`);
         const movieDetails = await response.json();
         commit('SET_MOVIE_DETAILS', movieDetails);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+
+    async FETCH_MOVIE_TRAILER({ commit }, payload) {
+      try {
+        const response = await fetch(
+          `${url}${payload}/videos${apiKey}&language=en-US`
+        );
+        const movieTrailer = await response.json();
+        commit('SET_MOVIE_TRAILER', movieTrailer);
+        console.log(movieTrailer);
       } catch (err) {
         console.log(err);
       }
