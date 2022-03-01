@@ -1,13 +1,13 @@
 <script setup>
-const emit = defineEmits(['onCloseModal']);
+const emit = defineEmits(["onCloseModals"]);
 
-function closeModal() {
-  emit('onCloseModal', false);
+function closeModals() {
+  emit("onCloseModals", false);
 }
 </script>
 
 <template>
-  <div :class="classes.backdrop" @click="closeModal"></div>
+  <div :class="classes.backdrop" @click="closeModals"></div>
 </template>
 
 <style lang="scss" module="classes">
