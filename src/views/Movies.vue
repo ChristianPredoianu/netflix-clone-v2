@@ -17,7 +17,7 @@ function openModal(params) {
   clickedMovie.value = params.clickedMovie;
 }
 
-function closeModal() {
+function closeModals() {
   isMovieModalOpen.value = false;
 }
 </script>
@@ -33,7 +33,7 @@ function closeModal() {
     </div>
   </main>
   <MovieModal
-    @onCloseModal="closeModal"
+    @onCloseModals="closeModals"
     v-if="isMovieModalOpen"
     :clickedMovie="clickedMovie"
   />
