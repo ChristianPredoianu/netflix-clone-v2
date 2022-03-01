@@ -1,12 +1,23 @@
 <script setup>
-import Backdrop from '@/components/ui/movie-modal/Backdrop.vue';
-import ModalOverlayVue from '@/components/ui/movie-modal/ModalOverlay.vue';
-import ModalOverlay from './ModalOverlay.vue';
+import { ref } from "vue";
 
-const emit = defineEmits(['onCloseModal']);
+import Backdrop from "@/components/ui/movie-modal/Backdrop.vue";
+import ModalOverlay from "@/components/ui/movie-modal/ModalOverlay.vue";
+import ModalTrailerOverlay from "@/components/ui/movie-modal/ModalTrailerOverlay.vue";
+
+const isMovieTrailerOverlayOpen = ref(false);
+const emit = defineEmits(["onCloseModal"]);
 
 function closeModal() {
-  emit('onCloseModal');
+  emit("onCloseModal");
+}
+
+function openMovieTrailerOverlay() {
+  isMovieTrailerOverlayOpen.value = true;
+}
+
+function closeMovieTrailerOverlay() {
+  isMovieTrailerOverlayOpen.value = false;
 }
 
 const props = defineProps({
@@ -19,7 +30,12 @@ const props = defineProps({
     <Backdrop @onCloseModal="closeModal" />
   </teleport>
   <teleport to="#overlay-root">
-    <ModalOverlay :clickedMovie="clickedMovie" />
+    <ModalOverlay
+      v-if="!isMovieTrailerOverlayOpen"
+      :clickedMovie="clickedMovie"
+      @onOpenMovieTrailerOverlay="openMovieTrailerOverlay"
+    />
+    <ModalTrailerOverlay v-else @onCloseMovieTrailerOverlay="closeMovieTrailerOverlay" />
   </teleport>
 </template>
 
