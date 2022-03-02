@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
   <button type="submit" :class="classes.continueBtn">
     <slot></slot>
