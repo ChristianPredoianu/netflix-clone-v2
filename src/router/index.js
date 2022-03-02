@@ -48,6 +48,12 @@ const routes = [
     name: 'Movies',
     component: () => import('@/views/Movies.vue'),
   },
+
+  {
+    path: '/popular',
+    name: 'Popular',
+    component: () => import('@/views/Popular.vue'),
+  },
 ];
 const router = createRouter({
   history: createWebHistory(),
