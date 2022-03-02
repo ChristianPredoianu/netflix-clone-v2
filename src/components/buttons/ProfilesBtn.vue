@@ -1,4 +1,3 @@
-<script setup></script>
 <template>
   <button :class="classes.profilesBtn"><slot></slot></button>
 </template>
