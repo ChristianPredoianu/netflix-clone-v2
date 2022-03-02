@@ -1,0 +1,18 @@
+@use '@/sass/abstracts' as *;
+
+.main {
+  background-color: var(--main-bg-color);
+  color: var(--clr-white);
+  padding: 10rem 0;
+}
+
+.movieCardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  grid-gap: 1rem;
+
+  @include respond(sm) {
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    grid-gap: 2rem;
+  }
+}
