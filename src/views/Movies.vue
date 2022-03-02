@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from "vue";
+import { computed } from "vue";
 import { useStore } from "vuex";
 import { useModal } from "@/composables/modal";
 import ResponsiveNav from "@/components/navs/ResponsiveNav.vue";
@@ -19,7 +19,7 @@ const moviesByGenre = computed(() => store.getters.GET_MOVIES_BY_GENRE);
     <div class="container">
       <GenresFilter />
       <div :class="classes.movieCardsGrid">
-        <MovieCard @onOpenModal="openModal" />
+        <MovieCard :movies="moviesByGenre" @onOpenModal="openModal" />
       </div>
     </div>
   </main>
