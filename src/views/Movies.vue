@@ -1,25 +1,16 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useStore } from "vuex";
+import { useModal } from "@/composables/modal";
 import ResponsiveNav from "@/components/navs/ResponsiveNav.vue";
 import GenresFilter from "@/components/filters/GenresFilter.vue";
 import MovieCard from "@/components/ui/MovieCard.vue";
 import MovieModal from "@/components/ui/movie-modal/MovieModal.vue";
 
 const store = useStore();
-const isMovieModalOpen = ref(false);
-const clickedMovie = ref(null);
+const { isMovieModalOpen, clickedMovie, openModal, closeModals } = useModal();
 
 const moviesByGenre = computed(() => store.getters.GET_MOVIES_BY_GENRE);
-
-function openModal(params) {
-  isMovieModalOpen.value = params.isModalOpen;
-  clickedMovie.value = params.clickedMovie;
-}
-
-function closeModals() {
-  isMovieModalOpen.value = false;
-}
 </script>
 
 <template>
