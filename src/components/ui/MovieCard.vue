@@ -8,7 +8,7 @@ const emit = defineEmits(["onOpenModal"]);
 const moviesByGenre = computed(() => store.getters.GET_MOVIES_BY_GENRE);
 
 function openModal(movie) {
-  emit("onOpenModal", { isModalOpen: true, clickedMovie: movie });
+  emit("onOpenModal", movie);
 }
 </script>
 
