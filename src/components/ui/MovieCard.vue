@@ -1,11 +1,8 @@
 <script setup>
-import { computed } from "vue";
-import { useStore } from "vuex";
-
-const store = useStore();
 const emit = defineEmits(["onOpenModal"]);
-
-const moviesByGenre = computed(() => store.getters.GET_MOVIES_BY_GENRE);
+const props = defineProps({
+  movies: Object,
+});
 
 function openModal(movie) {
   emit("onOpenModal", movie);
@@ -13,7 +10,7 @@ function openModal(movie) {
 </script>
 
 <template>
-  <div :class="classes.movieCard" v-for="movie in moviesByGenre" :key="movie.id">
+  <div :class="classes.movieCard" v-for="movie in props.movies" :key="movie.id">
     <img
       :src="`https://image.tmdb.org/t/p/w300${movie.poster_path}`"
       alt="movie poster"
