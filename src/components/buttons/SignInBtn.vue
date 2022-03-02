@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
   <div>
     <button :class="classes.logInBtn">
