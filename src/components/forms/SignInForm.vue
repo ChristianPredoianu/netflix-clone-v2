@@ -1,7 +1,7 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue';
-import { useStore } from 'vuex';
-import ContinueBtn from '@/components//buttons/ContinueBtn.vue';
+import { ref, computed, onMounted } from "vue";
+import { useStore } from "vuex";
+import ContinueBtn from "@/components//buttons/ContinueBtn.vue";
 
 const store = useStore();
 
@@ -11,12 +11,12 @@ const error = computed(() => store.state.auth.error);
 const accountMessage = computed(() => store.state.auth.accountMessage);
 
 onMounted(() => {
-  store.commit('SET_ACCOUNT_MESSAGE', null);
-  store.commit('SET_ERROR', null);
+  store.commit("SET_ACCOUNT_MESSAGE", null);
+  store.commit("SET_ERROR", null);
 });
 
 function signIn() {
-  store.dispatch('SIGN_USER_IN', {
+  store.dispatch("SIGN_USER_IN", {
     email: userEmail.value,
     password: userPassword.value,
   });
