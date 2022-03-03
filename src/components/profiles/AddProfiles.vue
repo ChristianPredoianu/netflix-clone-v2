@@ -1,13 +1,31 @@
 <script setup>
-import UserProfiles from '@/components/profiles/UserProfiles.vue';
-import ContinueBtn from '@/components/buttons/ContinueBtn.vue';
-import ProfilesBtn from '@/components/buttons/ProfilesBtn.vue';
+import { ref, computed, onMounted } from "vue";
+import { useStore } from "vuex";
+import UserProfiles from "@/components/profiles/UserProfiles.vue";
+import ContinueBtn from "@/components/buttons/ContinueBtn.vue";
+import ProfilesBtn from "@/components/buttons/ProfilesBtn.vue";
 
-const emits = defineEmits(['change-component']);
+const store = useStore();
+const emits = defineEmits(["change-component"]);
+
+const profileName = ref(null);
+const maxProfilesMessage = computed(() => store.state.userProfiles.maxProfilesMessage);
+
+function addProfile() {
+  const profile = {
+    name: profileName.value,
+    icon: "smile",
+  };
+  store.dispatch("ADD_PROFILE", profile);
+}
 
 function backToUserProfiles() {
-  emits('change-component', UserProfiles);
+  emits("change-component", UserProfiles);
 }
+
+onMounted(() => {
+  store.dispatch("RESET_MAX_PROFILES_MESSAGE");
+});
 </script>
 
 <template>
@@ -23,12 +41,14 @@ function backToUserProfiles() {
         type="text"
         required
         placeholder="Name"
+        v-model="profileName"
         :class="classes.profileInput"
       />
     </div>
+    <p>{{ maxProfilesMessage }}</p>
     <div :class="classes.ctaWrapper">
       <div :class="classes.continueBtn">
-        <ContinueBtn>Continue</ContinueBtn>
+        <ContinueBtn @click="addProfile">Continue</ContinueBtn>
       </div>
       <ProfilesBtn @click="backToUserProfiles">Back</ProfilesBtn>
     </div>
