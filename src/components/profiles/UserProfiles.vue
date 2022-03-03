@@ -1,33 +1,42 @@
 <script setup>
-import ProfilesBtn from '@/components/buttons/ProfilesBtn.vue';
-import AddProfiles from './AddProfiles.vue';
-import ManageProfiles from './ManageProfiles.vue';
+import { computed } from "vue";
+import { useStore } from "vuex";
+import ProfilesBtn from "@/components/buttons/ProfilesBtn.vue";
+import AddProfiles from "./AddProfiles.vue";
+import ManageProfiles from "./ManageProfiles.vue";
 
-const emits = defineEmits(['change-component']);
+const store = useStore();
+const emits = defineEmits(["change-component"]);
 
-function componentAddProfiles() {
-  emits('change-component', AddProfiles);
-}
+const userProfiles = computed(() => store.state.userProfiles.userProfiles);
 
-function componentManageProfiles() {
-  emits('change-component', ManageProfiles);
+function componentChange(comp) {
+  emits("change-component", comp);
 }
 </script>
 
 <template>
   <div :class="classes.userProfilesWrapper">
     <h1 :class="classes.profilesHeading">Who is watching?</h1>
+    <div :class="classes.profiles">
+      <div
+        :class="classes.profileCard"
+        v-for="profile in userProfiles"
+        :key="userProfiles.id"
+      >
+        <font-awesome-icon :icon="profile.icon" :class="classes.profileIcon" />
+        <p :class="classes.profileName">{{ profile.name }}</p>
+      </div>
+    </div>
     <font-awesome-icon
       icon="plus-square"
       :class="classes.addIcon"
-      @click="componentAddProfiles"
+      @click="componentChange(AddProfiles)"
     />
     <p :class="classes.profileParagraph">Add a profile</p>
-    <!--!!!!!!!!!!!!!! dynamic profiles goes here!!!!!!!!!!!! -->
+
     <div>
-      <ProfilesBtn @click="componentManageProfiles"
-        >Manage profiles</ProfilesBtn
-      >
+      <ProfilesBtn @click="componentChange(ManageProfiles)">Manage profiles</ProfilesBtn>
     </div>
   </div>
 </template>
