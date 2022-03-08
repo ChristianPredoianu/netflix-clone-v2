@@ -8,18 +8,30 @@ import ProfilesBtn from "@/components/buttons/ProfilesBtn.vue";
 const store = useStore();
 const emits = defineEmits(["change-component"]);
 
-const profileName = ref(null);
+const profileName = ref("");
+let addErrorMsg = ref(null);
+
 const maxProfilesMessage = computed(() => store.state.userProfiles.maxProfilesMessage);
+const userProfiles = computed(() => store.state.userProfiles.userProfiles);
 
 function addProfile() {
   const profile = {
     name: profileName.value,
     icon: "smile",
   };
-  store.dispatch("ADD_PROFILE", profile);
+
+  if (!profileName.value) {
+    addErrorMsg.value = "Please enter a user name";
+  } else if (userProfiles.value.length >= 5) {
+    store.dispatch("SET_MAX_PROFILES_MESSAGE");
+  } else {
+    store.dispatch("ADD_PROFILE", profile);
+    store.dispatch("RESET_MAX_PROFILES_MESSAGE");
+    emits("change-component", UserProfiles);
+  }
 }
 
-function backToUserProfiles() {
+function componentChange() {
   emits("change-component", UserProfiles);
 }
 
@@ -39,18 +51,23 @@ onMounted(() => {
       <font-awesome-icon icon="smile" :class="classes.icon" />
       <input
         type="text"
-        required
         placeholder="Name"
         v-model="profileName"
-        :class="classes.profileInput"
+        :class="[
+          profileName.length > 0
+            ? [classes.profileInput, classes.validInput]
+            : classes.profileInput,
+        ]"
       />
     </div>
     <p>{{ maxProfilesMessage }}</p>
+
+    <p v-if="addErrorMsg">{{ addErrorMsg }}</p>
     <div :class="classes.ctaWrapper">
       <div :class="classes.continueBtn">
         <ContinueBtn @click="addProfile">Continue</ContinueBtn>
       </div>
-      <ProfilesBtn @click="backToUserProfiles">Back</ProfilesBtn>
+      <ProfilesBtn @click="componentChange">Back</ProfilesBtn>
     </div>
   </div>
 </template>
