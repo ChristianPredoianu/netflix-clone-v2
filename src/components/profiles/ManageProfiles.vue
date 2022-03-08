@@ -1,21 +1,37 @@
 <script setup>
-import UserProfiles from '@/components/profiles/UserProfiles.vue';
-import ProfilesBtn from '@/components/buttons/ProfilesBtn.vue';
-const emits = defineEmits(['change-component']);
+import { computed } from "vue";
+import { useStore } from "vuex";
 
-function backToUserProfiles() {
-  emits('change-component', UserProfiles);
+import EditProfiles from "@/components/profiles/EditProfiles.vue";
+import UserProfiles from "@/components/profiles/UserProfiles.vue";
+import ProfilesBtn from "@/components/buttons/ProfilesBtn.vue";
+
+const emits = defineEmits(["change-component"]);
+const store = useStore();
+
+const userProfiles = computed(() => store.state.userProfiles.userProfiles);
+
+function componentChange() {
+  emits("change-component", UserProfiles);
 }
 </script>
 
 <template>
-  <div :class="classes.manageProfilesWrapper">
-    <h1>Manage Profiles</h1>
+  <div :class="classes.userProfilesWrapper">
+    <h1 :class="classes.profilesHeading">Manage Profiles</h1>
     <div :class="classes.profiles">
-      <!-- -----------Dynamic loaded profiles goes here--------- -->
+      <div
+        :class="classes.profileCard"
+        v-for="profile in userProfiles"
+        :key="userProfiles.id"
+      >
+        <font-awesome-icon :icon="profile.icon" :class="classes.profileIcon" />
+        <p :class="classes.profileName">{{ profile.name }}</p>
+        <font-awesome-icon icon="edit" :class="classes.editProfileIcon" />
+      </div>
     </div>
-    <div :class="classes.ctaWrapper">
-      <ProfilesBtn @click="backToUserProfiles">Done</ProfilesBtn>
+    <div>
+      <ProfilesBtn @click="componentChange">Back</ProfilesBtn>
     </div>
   </div>
 </template>
