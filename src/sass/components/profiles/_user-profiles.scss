@@ -1,46 +1,14 @@
 @use '@/sass/abstracts' as *;
 
-.userProfilesWrapper {
-  @include flex-config($direction: column, $align: center);
-  padding: 5rem;
-}
-
-.profilesHeading {
-  font-size: var(--size-heading-md);
-}
-
-.profiles {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  grid-gap: 1rem;
-
-  justify-self: center;
-
-  margin: 2rem;
-
-  background-color: red;
-
-  @include respond(lg) {
-    width: 50%;
-  }
-}
-
-.profileCard {
-  background-color: blue;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 5rem 0;
-}
+@include userProfiles;
 
 .addIcon {
   font-size: 4rem;
   margin-bottom: 2rem;
+  color: #0000ff;
 }
 
 .profileParagraph {
   font-size: 1.6rem;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }

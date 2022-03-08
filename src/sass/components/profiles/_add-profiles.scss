@@ -19,8 +19,7 @@
 .profileFormWrapper {
   @include flex-config($justify: center, $align: center);
   background-color: rgba(37, 37, 37, 0.4);
-  margin: 5rem 0;
-  padding: 10rem 3rem;
+  padding: 5rem 3rem;
 
   @include respond(md) {
     padding: 10rem;
@@ -36,7 +35,11 @@
   font-size: 1.5rem;
   margin-left: 1rem;
   padding: 0.3rem 0.5rem;
-  border: none;
+  outline-color: red;
+}
+
+.validInput {
+  outline-color: green;
 }
 
 .ctaWrapper {

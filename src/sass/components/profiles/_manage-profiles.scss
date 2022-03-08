@@ -1,19 +1,8 @@
 @use '@/sass/abstracts' as *;
 
-.manageProfilesWrapper {
-  @include flex-config($direction: column, $align: center);
-  margin-top: 5rem;
-}
+@include userProfiles;
 
-.ctaWrapper {
-  width: 90%;
-  margin-top: 4rem;
-
-  @include respond(md) {
-    width: 50%;
-  }
-
-  @include respond(lg) {
-    width: 35%;
-  }
+.editProfileIcon {
+  @include position($pos: absolute, $top: 1rem, $left: 1rem);
+  font-size: 2rem;
 }
