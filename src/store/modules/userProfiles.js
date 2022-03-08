@@ -30,8 +30,10 @@ export default {
             const id = childSnapshot.key;
             childData.id = id;
 
-            const index = profilesArray.findIndex((x) => x.id === id);
-            if (index === -1) profilesArray.push(childData);
+            const existingProfileIndex = profilesArray.findIndex(
+              (profile) => profile.id === id
+            );
+            if (existingProfileIndex === -1) profilesArray.push(childData);
           });
           commit('SET_USER_PROFILES_FROM_DB', profilesArray);
         });
