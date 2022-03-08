@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import { useStore } from "vuex";
 import ProfilesBtn from "@/components/buttons/ProfilesBtn.vue";
 import AddProfiles from "./AddProfiles.vue";
@@ -13,6 +13,14 @@ const userProfiles = computed(() => store.state.userProfiles.userProfiles);
 function componentChange(comp) {
   emits("change-component", comp);
 }
+
+function goToBrowseWithSelectedProfile(selectedProfile) {
+  console.log(selectedProfile);
+}
+
+onMounted(() => {
+  store.dispatch("SET_USER_PROFILES_FROM_DB");
+});
 </script>
 
 <template>
@@ -23,6 +31,7 @@ function componentChange(comp) {
         :class="classes.profileCard"
         v-for="profile in userProfiles"
         :key="userProfiles.id"
+        @click="goToBrowseWithSelectedProfile(profile)"
       >
         <font-awesome-icon :icon="profile.icon" :class="classes.profileIcon" />
         <p :class="classes.profileName">{{ profile.name }}</p>
