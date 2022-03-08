@@ -11,6 +11,43 @@
   }
 }
 
+@mixin userProfiles {
+  .userProfilesWrapper {
+    @include flex-config($direction: column, $align: center);
+  }
+
+  .profilesHeading {
+    font-size: var(--size-heading-md);
+  }
+
+  .profiles {
+    width: 100%;
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(186px, 1fr));
+    padding: 10rem 0;
+  }
+
+  .profileCard {
+    @include flex-config($direction: column, $align: center);
+    position: relative;
+    width: 60%;
+    padding: 3rem;
+    margin: 0 auto;
+    border: 1px solid var(--clr-white);
+  }
+
+  .profileIcon {
+    color: var(--clr-white);
+    font-size: 3rem;
+  }
+
+  .profileName {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+  }
+}
+
 @mixin flex-config(
   $display: flex,
   $wrap: false,
