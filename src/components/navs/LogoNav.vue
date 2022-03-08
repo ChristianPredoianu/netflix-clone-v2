@@ -1,9 +1,9 @@
 <script setup>
-import NetflixLogo from '@/components/ui/NetflixLogo.vue';
+import NetflixLogo from "@/components/ui/NetflixLogo.vue";
 </script>
 
 <template>
-  <div>
+  <div class="container">
     <header :class="classes.header">
       <nav>
         <NetflixLogo />
