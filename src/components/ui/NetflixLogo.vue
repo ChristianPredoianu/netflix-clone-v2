@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <img
-      src="@/assets/images/netclone.png"
-      :class="classes.netflixLogo"
-      alt="Netclone logo"
-    />
-  </div>
+  <img
+    src="@/assets/images/netclone.png"
+    :class="classes.netflixLogo"
+    alt="Netclone logo"
+  />
 </template>
 
 <style lang="scss" module="classes">
