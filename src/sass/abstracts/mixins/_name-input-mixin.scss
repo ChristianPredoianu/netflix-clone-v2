@@ -1,0 +1,13 @@
+@mixin nameInputMixin {
+  .nameInput {
+    width: 18rem;
+    font-size: 1.5rem;
+    margin-left: 2rem;
+    padding: 0.3rem 0.5rem;
+    outline-color: var(--clr-red);
+  }
+
+  .validNameInput {
+    outline-color: var(--clr-green);
+  }
+}
