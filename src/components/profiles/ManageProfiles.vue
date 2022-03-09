@@ -11,6 +11,11 @@ const store = useStore();
 
 const userProfiles = computed(() => store.state.userProfiles.userProfiles);
 
+function goToEditProfile(profile) {
+  store.dispatch("SET_CLICKED_PROFILE", profile);
+  emits("change-component", EditProfiles);
+}
+
 function componentChange() {
   emits("change-component", UserProfiles);
 }
@@ -24,6 +29,7 @@ function componentChange() {
         :class="classes.profileCard"
         v-for="profile in userProfiles"
         :key="userProfiles.id"
+        @click="goToEditProfile(profile)"
       >
         <font-awesome-icon :icon="profile.icon" :class="classes.profileIcon" />
         <p :class="classes.profileName">{{ profile.name }}</p>
