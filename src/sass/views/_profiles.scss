@@ -1,14 +1,9 @@
 @use '@/sass/abstracts' as *;
 
 .profiles {
+  @include flex-config($justify: center, $align: center);
+  position: relative;
   min-height: 100vh;
   background-color: var(--main-bg-color);
   color: var(--clr-white);
-}
-
-.profilesWrapper {
-  @include flex-config($direction: column, $align: center);
-  margin-top: 5rem;
-  padding: 4rem 0;
-  width: 100%;
 }

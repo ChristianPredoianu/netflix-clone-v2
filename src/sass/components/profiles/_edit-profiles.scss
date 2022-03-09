@@ -1,1 +1,75 @@
 @use '@/sass/abstracts' as *;
+@use '@/sass/abstracts/mixins/name-input-mixin' as *;
+
+.editProfileWrapper {
+  @include flex-config($direction: column, $align: center);
+  padding: 10rem 0;
+  width: 100%;
+  margin: 0 auto;
+
+  @include respond(sm) {
+    width: 80%;
+  }
+
+  @include respond(md) {
+    width: 60%;
+  }
+}
+
+.editProfileHeading {
+  font-size: var(--size-heading-md);
+  padding: 2rem 0;
+}
+
+.profileInfo {
+  @include flex-config($align: center, $justify: center);
+  width: 100%;
+  padding: 5rem 0;
+  border-top: 1px solid var(--clr-gray-medium);
+  border-bottom: 1px solid var(--clr-gray-medium);
+}
+
+.profileIcon {
+  font-size: 5rem;
+}
+
+@include nameInputMixin;
+
+.avatarHeading {
+  font-size: var(--size-heading-sm);
+  text-align: center;
+  padding: 5rem;
+
+  @include respond(sm) {
+    padding: 5rem;
+  }
+}
+
+.newIconsWrapper {
+  @include flex-config($direction: column, $align: center);
+  width: 100%;
+  padding: 5rem 0;
+
+  @include respond(sm) {
+    @include flex-config($direction: row, $justify: space-around);
+  }
+}
+
+.newIcon {
+  font-size: 6rem;
+  margin-top: 2rem;
+  cursor: pointer;
+
+  @include respond(sm) {
+    margin-top: 0;
+  }
+}
+
+.ctaWrapper {
+  width: 100%;
+  padding: 5rem 0;
+}
+
+.cancelBtn {
+  margin-top: 1rem;
+}

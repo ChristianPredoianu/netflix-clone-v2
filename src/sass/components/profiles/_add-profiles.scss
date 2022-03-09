@@ -1,4 +1,5 @@
 @use '@/sass/abstracts' as *;
+@use '@/sass/abstracts/mixins/name-input-mixin' as *;
 
 .addProfilesWrapper {
   @include flex-config($direction: column, $align: center);
@@ -30,17 +31,7 @@
   font-size: 4rem;
 }
 
-.profileInput {
-  width: 18rem;
-  font-size: 1.5rem;
-  margin-left: 1rem;
-  padding: 0.3rem 0.5rem;
-  outline-color: red;
-}
-
-.validInput {
-  outline-color: green;
-}
+@include nameInputMixin;
 
 .ctaWrapper {
   width: 90%;

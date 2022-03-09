@@ -1,4 +1,5 @@
 @use '@/sass/abstracts' as *;
+@use '@/sass/abstracts/mixins/user-profiles-mixin' as *;
 
 @include userProfiles;
 
