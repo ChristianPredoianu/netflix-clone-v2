@@ -46,7 +46,6 @@ onMounted(() => {
     <h2 :class="classes.profileSecondaryHeading">
       Add a profile for another person watching Netclone
     </h2>
-
     <div :class="classes.profileFormWrapper">
       <font-awesome-icon icon="smile" :class="classes.icon" />
       <input
@@ -54,9 +53,9 @@ onMounted(() => {
         placeholder="Name"
         v-model="profileName"
         :class="[
-          profileName.length > 0
-            ? [classes.profileInput, classes.validInput]
-            : classes.profileInput,
+          profileName.length > 1
+            ? [classes.nameInput, classes.validNameInput]
+            : classes.nameInput,
         ]"
       />
     </div>
