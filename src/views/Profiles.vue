@@ -19,9 +19,8 @@ onMounted(() => {
 </script>
 
 <template>
+  <LogoNav />
   <section :class="classes.profiles">
-    <LogoNav />
-
     <div class="container">
       <Transition name="fade" mode="out-in">
         <component :is="currentComponent" @change-component="changeComponent" />
