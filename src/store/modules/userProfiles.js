@@ -5,6 +5,7 @@ export default {
   state: {
     userProfiles: [],
     maxProfilesMessage: null,
+    clickedProfile: null,
   },
 
   mutations: {
@@ -14,6 +15,10 @@ export default {
 
     SET_MAX_PROFILES_MESSAGE(state, payload) {
       state.maxProfilesMessage = payload;
+    },
+
+    SET_CLICKED_PROFILE(state, payload) {
+      state.clickedProfile = payload;
     },
   },
 
@@ -63,6 +68,10 @@ export default {
         'SET_MAX_PROFILES_MESSAGE',
         'You can only have a maximum of 5 profiles'
       );
+    },
+
+    SET_CLICKED_PROFILE({ commit }, payload) {
+      commit('SET_CLICKED_PROFILE', payload);
     },
   },
 };
