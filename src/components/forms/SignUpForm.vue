@@ -1,25 +1,34 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue';
-import { useStore } from 'vuex';
-import ContinueBtn from '@/components/buttons/ContinueBtn.vue';
+import { ref } from "vue";
+import router from "@/router";
+import { useStore } from "vuex";
+import ContinueBtn from "@/components/buttons/ContinueBtn.vue";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
 const store = useStore();
 
 const userEmail = ref(store.state.auth.email);
 const userPassword = ref(null);
-const error = computed(() => store.state.auth.error);
-const accountMessage = computed(() => store.state.auth.accountMessage);
-
-onMounted(() => {
-  store.commit('SET_ACCOUNT_MESSAGE', null);
-  store.commit('SET_ERROR', null);
-});
+const error = ref(null);
+const successMsg = ref(null);
 
 function signUp() {
-  store.dispatch('SIGN_USER_UP', {
-    email: userEmail.value,
-    password: userPassword.value,
-  });
+  firebase
+    .auth()
+    .createUserWithEmailAndPassword(userEmail.value, userPassword.value)
+    .then(() => {
+      error.value = null;
+      successMsg.value = "Account Created. You are being redirected to the sign in page";
+      setTimeout(() => {
+        router.push({ name: "SignIn" });
+      }, 2000);
+    })
+    .catch((err) => {
+      if (err) {
+        error.value = err;
+      }
+    });
 }
 </script>
 
@@ -45,12 +54,12 @@ function signUp() {
         :class="classes.formInput"
         v-model="userPassword"
       />
-      <!--  We could also set a custom message in vuex if error and display the custom message -->
+
       <p v-if="error" :class="classes.error">
         {{ error }}
       </p>
       <p v-else :class="classes.accountCreated">
-        {{ accountMessage }}
+        {{ successMsg }}
       </p>
 
       <ContinueBtn>Continue</ContinueBtn>
