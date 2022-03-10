@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { useStore } from "vuex";
-import router from "../../router";
+import router from "@/router";
 
 import GetStartedBtn from "@/components/buttons/GetStartedBtn.vue";
 
@@ -10,7 +10,7 @@ const email = ref("");
 
 function goToSignupHandler() {
   router.push({ name: "SignupStep1" });
-  store.dispatch("UPDATE_EMAIL", email.value);
+  store.dispatch("SET_SIGN_UP_USER_EMAIL", email.value);
 }
 </script>
 <template>
