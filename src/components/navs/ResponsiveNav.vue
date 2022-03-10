@@ -1,10 +1,15 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
-import NetflixLogo from '@/components/ui/NetflixLogo.vue';
+import { ref, onMounted, onUnmounted } from "vue";
+import { onClickOutside } from "@vueuse/core";
+import NetflixLogo from "@/components/ui/NetflixLogo.vue";
 
 const isNavOpen = ref(true);
 const isSearchOpen = ref(false);
+const isProfilesDropdownOpen = ref(false);
 const mobileView = ref(true);
+
+const searchInputRef = ref(null);
+const profilesDropdownRef = ref(null);
 
 function toggleNavLinks() {
   isNavOpen.value = !isNavOpen.value;
@@ -15,6 +20,9 @@ function toggleSearch() {
   isSearchOpen.value = !isSearchOpen.value;
 }
 
+onClickOutside(searchInputRef, () => (isSearchOpen.value = false));
+onClickOutside(profilesDropdownRef, () => (isProfilesDropdownOpen.value = false));
+
 //if widow width <= 1024px mobileView=true & nav should close else keep nav open
 function handleView() {
   mobileView.value = window.innerWidth <= 1024;
@@ -23,12 +31,12 @@ function handleView() {
 
 onMounted(() => {
   handleView();
-  window.addEventListener('resize', handleView);
+  window.addEventListener("resize", handleView);
 });
 
 //Remove eventlistner when component unmounts
 onUnmounted(() => {
-  window.removeEventListener('resize', handleView);
+  window.removeEventListener("resize", handleView);
 });
 </script>
 
@@ -38,11 +46,7 @@ onUnmounted(() => {
       <div :class="classes.navLeft">
         <NetflixLogo />
 
-        <button
-          :class="classes.browseBtn"
-          @click="toggleNavLinks"
-          v-if="mobileView"
-        >
+        <button :class="classes.browseBtn" @click="toggleNavLinks" v-if="mobileView">
           Browse <span> <font-awesome-icon icon="angle-down" /></span>
         </button>
         <ul :class="classes.navLinks" v-if="isNavOpen">
@@ -52,7 +56,7 @@ onUnmounted(() => {
           <li :class="classes.navLinksItem">My list</li>
         </ul>
       </div>
-      <div :class="classes.navRight">
+      <div :class="classes.navRight" ref="searchInputRef">
         <input
           type="text"
           name="search"
