@@ -8,10 +8,10 @@ import "firebase/compat/auth";
 
 const store = useStore();
 
-const userEmail = ref(store.state.auth.email);
+const userEmail = ref(store.state.userData.signUpUserEmail);
 const userPassword = ref(null);
 const error = ref(null);
-const successMsg = ref(null);
+const signedUpMsg = ref(null);
 
 function signUp() {
   firebase
@@ -19,7 +19,7 @@ function signUp() {
     .createUserWithEmailAndPassword(userEmail.value, userPassword.value)
     .then(() => {
       error.value = null;
-      successMsg.value = "Account Created. You are being redirected to the sign in page";
+      signedUpMsg.value = "Account Created. You are being redirected to the sign in page";
       setTimeout(() => {
         router.push({ name: "SignIn" });
       }, 2000);
@@ -59,7 +59,7 @@ function signUp() {
         {{ error }}
       </p>
       <p v-else :class="classes.accountCreated">
-        {{ successMsg }}
+        {{ signedUpMsg }}
       </p>
 
       <ContinueBtn>Continue</ContinueBtn>
