@@ -74,7 +74,7 @@ function componentChange(comp) {
     <div :class="classes.ctaWrapper">
       <ContinueBtn @click="updateProfile">Save</ContinueBtn>
       <div :class="classes.cancelBtn">
-        <ProfilesBtn>Cancel</ProfilesBtn>
+        <ProfilesBtn @click="componentChange(ManageProfiles)">Cancel</ProfilesBtn>
       </div>
     </div>
   </div>
