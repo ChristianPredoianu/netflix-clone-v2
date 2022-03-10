@@ -1,0 +1,24 @@
+.slide-enter-active,
+.slide-leave-active {
+  transform: translateX(0);
+  transition: all 0.3s linear;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateX(50%);
+}
+
+.slide-down-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-down-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-down-enter-from,
+.slide-down-leave-to {
+  transform: translateY(-20px);
+  opacity: 0;
+}
