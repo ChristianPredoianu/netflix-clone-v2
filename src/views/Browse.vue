@@ -1,13 +1,14 @@
 <script setup>
-import { ref, defineExpose, computed, onMounted } from 'vue';
-import { useStore } from 'vuex';
-import ResponsiveNav from '@/components/navs/ResponsiveNav.vue';
-import BrowseHeroContent from '@/components/hero/BrowseHeroContent.vue';
-import VideoControls from '@/components/ui/VideoControls.vue';
-import Swiper from '@/components/swiper/Swiper.vue';
+import { ref, defineExpose, computed, onMounted } from "vue";
+import { useStore } from "vuex";
+import ResponsiveNav from "@/components/navs/ResponsiveNav.vue";
+import BrowseHeroContent from "@/components/hero/BrowseHeroContent.vue";
+import VideoControls from "@/components/ui/VideoControls.vue";
+import Swiper from "@/components/swiper/Swiper.vue";
 
-const isVideoMuted = ref(true),
-  video = ref(null);
+const isVideoMuted = ref(true);
+const video = ref(null);
+const isNavElementOpen = ref(null);
 
 defineExpose({ video });
 
@@ -17,7 +18,7 @@ const movieData = computed(() => store.state.theMovieDB.movieData),
   isLoadingData = computed(() => store.state.theMovieDB.isLoadingData);
 
 onMounted(() => {
-  store.dispatch('FETCH_MOVIES');
+  store.dispatch("FETCH_MOVIES");
 });
 
 function toggleVideoSound(isMuted, isSoundOn) {
