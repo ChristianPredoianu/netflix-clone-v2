@@ -1,7 +1,8 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useStore } from "vuex";
-
+import firebase from "firebase/compat/app";
+import UserProfiles from "@/components/profiles/UserProfiles.vue";
 import ManageProfiles from "@/components/profiles/ManageProfiles.vue";
 import ContinueBtn from "@/components/buttons/ContinueBtn.vue";
 import ProfilesBtn from "@/components/buttons/ProfilesBtn.vue";
@@ -10,6 +11,8 @@ const emits = defineEmits(["change-component"]);
 const store = useStore();
 
 const clickedProfile = computed(() => store.state.userProfiles.clickedProfile);
+const currentUser = computed(() => store.state.userData.currentUser);
+console.log(currentUser.value);
 
 const icons = ["smile", "flushed", "grin-tongue-wink", "grin-tears"];
 
@@ -18,6 +21,19 @@ const newProfileIcon = ref(clickedProfile.value.icon);
 
 function newUserIcon(icon) {
   newProfileIcon.value = icon;
+}
+
+function updateProfile() {
+  firebase
+    .database()
+    .ref(`users/${currentUser.value.id}`)
+    .child(`profiles/${clickedProfile.value.id}`)
+    .update({
+      name: newProfileName.value,
+      icon: newProfileIcon.value,
+    });
+
+  componentChange(UserProfiles);
 }
 
 function componentChange(comp) {
@@ -56,7 +72,7 @@ function componentChange(comp) {
     </div>
 
     <div :class="classes.ctaWrapper">
-      <ContinueBtn>Save</ContinueBtn>
+      <ContinueBtn @click="updateProfile">Save</ContinueBtn>
       <div :class="classes.cancelBtn">
         <ProfilesBtn>Cancel</ProfilesBtn>
       </div>
