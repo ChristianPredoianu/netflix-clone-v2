@@ -1,25 +1,33 @@
 <script setup>
-import { ref, computed, onMounted } from "vue";
-import { useStore } from "vuex";
+import { ref } from "vue";
+import router from "@/router";
 import ContinueBtn from "@/components//buttons/ContinueBtn.vue";
 
-const store = useStore();
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
 const userEmail = ref(null);
 const userPassword = ref(null);
-const error = computed(() => store.state.auth.error);
-const accountMessage = computed(() => store.state.auth.accountMessage);
-
-onMounted(() => {
-  store.commit("SET_ACCOUNT_MESSAGE", null);
-  store.commit("SET_ERROR", null);
-});
+const error = ref(null);
+const signInSuccessMsg = ref(null);
 
 function signIn() {
-  store.dispatch("SIGN_USER_IN", {
-    email: userEmail.value,
-    password: userPassword.value,
-  });
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(userEmail.value, userPassword.value)
+    .then(() => {
+      error.value = null;
+      signInSuccessMsg.value = "Logging in...";
+
+      setTimeout(() => {
+        router.push({ name: "Profiles" });
+      }, 2000);
+    })
+    .catch((err) => {
+      if (err) {
+        error.value = err.message;
+      }
+    });
 }
 </script>
 
@@ -58,7 +66,7 @@ function signIn() {
             {{ error }}
           </p>
           <p v-else :class="classes.signedIn">
-            {{ accountMessage }}
+            {{ signInSuccessMsg }}
           </p>
         </div>
       </div>
