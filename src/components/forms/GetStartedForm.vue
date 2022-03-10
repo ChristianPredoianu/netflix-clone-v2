@@ -9,8 +9,8 @@ const store = useStore();
 const email = ref("");
 
 function goToSignupHandler() {
-  router.push({ name: "SignupStep1" });
   store.dispatch("SET_SIGN_UP_USER_EMAIL", email.value);
+  router.push({ name: "SignupStep1" });
 }
 </script>
 <template>
