@@ -41,18 +41,27 @@ const routes = [
     path: '/profiles',
     name: 'Profiles',
     component: () => import('@/views/Profiles.vue'),
+    meta: {
+      requiresAuth: true,
+    },
   },
 
   {
     path: '/movies',
     name: 'Movies',
     component: () => import('@/views/Movies.vue'),
+    meta: {
+      requiresAuth: true,
+    },
   },
 
   {
     path: '/popular',
     name: 'Popular',
     component: () => import('@/views/Popular.vue'),
+    meta: {
+      requiresAuth: true,
+    },
   },
 ];
 const router = createRouter({
