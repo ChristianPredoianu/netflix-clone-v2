@@ -1,5 +1,6 @@
 <script setup>
 import { computed, onMounted } from "vue";
+import router from "@/router";
 import { useStore } from "vuex";
 import ProfilesBtn from "@/components/buttons/ProfilesBtn.vue";
 import AddProfiles from "./AddProfiles.vue";
@@ -15,7 +16,8 @@ function componentChange(comp) {
 }
 
 function goToBrowseWithSelectedProfile(selectedProfile) {
-  console.log(selectedProfile);
+  store.dispatch("SET_CLICKED_PROFILE", selectedProfile);
+  router.push({ name: "Browse" });
 }
 
 onMounted(() => {
