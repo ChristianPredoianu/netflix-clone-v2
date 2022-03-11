@@ -12,7 +12,6 @@ const store = useStore();
 
 const clickedProfile = computed(() => store.state.userProfiles.clickedProfile);
 const currentUser = computed(() => store.state.userData.currentUser);
-console.log(currentUser.value);
 
 const icons = ["smile", "flushed", "grin-tongue-wink", "grin-tears"];
 
@@ -32,6 +31,16 @@ function updateProfile() {
       name: newProfileName.value,
       icon: newProfileIcon.value,
     });
+
+  componentChange(UserProfiles);
+}
+
+function deleteProfile() {
+  firebase
+    .database()
+    .ref(`users/${currentUser.value.id}`)
+    .child(`profiles/${clickedProfile.value.id}`)
+    .remove();
 
   componentChange(UserProfiles);
 }
@@ -72,7 +81,8 @@ function componentChange(comp) {
     </div>
 
     <div :class="classes.ctaWrapper">
-      <ContinueBtn @click="updateProfile">Save</ContinueBtn>
+      <ContinueBtn @click="updateProfile">Save Profile</ContinueBtn>
+      <ContinueBtn @click="deleteProfile">Delete Profile</ContinueBtn>
       <div :class="classes.cancelBtn">
         <ProfilesBtn @click="componentChange(ManageProfiles)">Cancel</ProfilesBtn>
       </div>
