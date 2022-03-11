@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from "vue";
-
 import Backdrop from "@/components/ui/movie-modal/Backdrop.vue";
 import ModalOverlay from "@/components/ui/movie-modal/ModalOverlay.vue";
 import ModalTrailerOverlay from "@/components/ui/movie-modal/ModalTrailerOverlay.vue";
@@ -8,8 +7,6 @@ import ModalTrailerOverlay from "@/components/ui/movie-modal/ModalTrailerOverlay
 const props = defineProps({
   clickedMovie: Object,
 });
-
-console.log(props.clickedMovie);
 
 const isMovieTrailerOverlayOpen = ref(false);
 const emit = defineEmits(["onCloseModals"]);
