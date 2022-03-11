@@ -7,7 +7,6 @@ const store = useStore();
 const emit = defineEmits(["onCloseMovieTrailerOverlay"]);
 
 const movieTrailer = computed(() => store.state.theMovieDB.movieTrailer);
-console.log(movieTrailer.value);
 
 function closeTrailerOverlay() {
   emit("onCloseMovieTrailerOverlay");
@@ -24,13 +23,16 @@ function closeTrailerOverlay() {
       />
     </div>
 
-    <iframe
-      :class="classes.ytPlayer"
-      type="text/html"
-      :src="`https://www.youtube.com/embed/${movieTrailer.results[0].key}`"
-      frameborder="0"
-      allow="autoplay; fullscreen; picture-in-picture"
-    ></iframe>
+    <div v-if="movieTrailer.results[0] !== undefined">
+      <iframe
+        :class="classes.ytPlayer"
+        type="text/html"
+        :src="`https://www.youtube.com/embed/${movieTrailer.results[0].key}`"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+      ></iframe>
+    </div>
+    <p v-else>No data</p>
   </div>
 </template>
 
