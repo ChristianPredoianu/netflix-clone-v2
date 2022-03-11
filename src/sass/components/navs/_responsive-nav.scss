@@ -4,7 +4,7 @@
   @include position($pos: fixed, $top: 0);
   width: 100%;
   background-image: linear-gradient(rgb(0, 0, 0) 10%, rgba(0, 0, 0, 0.5));
-  z-index: 10;
+  z-index: 500;
 }
 
 .nav {
