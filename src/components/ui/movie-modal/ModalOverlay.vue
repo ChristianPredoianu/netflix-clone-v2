@@ -5,6 +5,7 @@ import { useStore } from "vuex";
 const props = defineProps({
   clickedMovie: Object,
 });
+
 const emit = defineEmits(["onOpenMovieTrailerOverlay"]);
 const store = useStore();
 
