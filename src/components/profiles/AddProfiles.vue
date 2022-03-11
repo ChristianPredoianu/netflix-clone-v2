@@ -1,6 +1,7 @@
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed } from "vue";
 import { useStore } from "vuex";
+import firebase from "firebase/compat/app";
 import UserProfiles from "@/components/profiles/UserProfiles.vue";
 import ContinueBtn from "@/components/buttons/ContinueBtn.vue";
 import ProfilesBtn from "@/components/buttons/ProfilesBtn.vue";
@@ -9,9 +10,10 @@ const store = useStore();
 const emits = defineEmits(["change-component"]);
 
 const profileName = ref("");
-let addErrorMsg = ref(null);
+const nameInputErrorMsg = ref(null);
+const maxProfilesMsg = ref(null);
 
-const maxProfilesMessage = computed(() => store.state.userProfiles.maxProfilesMessage);
+const currentUserId = computed(() => store.state.userData.currentUser.id);
 const userProfiles = computed(() => store.state.userProfiles.userProfiles);
 
 function addProfile() {
@@ -21,12 +23,23 @@ function addProfile() {
   };
 
   if (!profileName.value) {
-    addErrorMsg.value = "Please enter a user name";
+    nameInputErrorMsg.value = "Please enter a user name";
   } else if (userProfiles.value.length >= 5) {
-    store.dispatch("SET_MAX_PROFILES_MESSAGE");
+    maxProfilesMsg.value = "You can only have a maximum of 5 Profiles.";
   } else {
-    store.dispatch("ADD_PROFILE", profile);
-    store.dispatch("RESET_MAX_PROFILES_MESSAGE");
+    firebase
+      .database()
+      .ref(`users/${currentUserId.value}/profiles`)
+      .once("value", (snapshot) => {
+        if (snapshot.numChildren() < 5) {
+          firebase
+            .database()
+            .ref("users/" + currentUserId.value)
+            .child("profiles")
+            .push(profile);
+        }
+      });
+
     emits("change-component", UserProfiles);
   }
 }
@@ -34,10 +47,6 @@ function addProfile() {
 function componentChange() {
   emits("change-component", UserProfiles);
 }
-
-onMounted(() => {
-  store.dispatch("RESET_MAX_PROFILES_MESSAGE");
-});
 </script>
 
 <template>
@@ -59,9 +68,9 @@ onMounted(() => {
         ]"
       />
     </div>
-    <p>{{ maxProfilesMessage }}</p>
+    <p>{{ maxProfilesMsg }}</p>
 
-    <p v-if="addErrorMsg">{{ addErrorMsg }}</p>
+    <p v-if="nameInputErrorMsg">{{ nameInputErrorMsg }}</p>
     <div :class="classes.ctaWrapper">
       <div :class="classes.continueBtn">
         <ContinueBtn @click="addProfile">Continue</ContinueBtn>
