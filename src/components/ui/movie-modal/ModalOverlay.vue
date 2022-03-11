@@ -9,7 +9,7 @@ const props = defineProps({
 const emit = defineEmits(["onOpenMovieTrailerOverlay"]);
 const store = useStore();
 
-/* const releaseYear = props.clickedMovie.release_date.slice(0, 4); */
+const releaseYear = props.clickedMovie.release_date.slice(0, 4);
 const clickedMovieDetails = computed(() => store.state.theMovieDB.movieDetails);
 
 function openTrailerOverlay() {
