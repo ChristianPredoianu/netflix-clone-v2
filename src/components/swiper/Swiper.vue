@@ -1,13 +1,16 @@
 <script>
+import { useModal } from "@/composables/modal";
+import MovieModal from "@/components/ui/movie-modal/MovieModal.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
+import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation } from "swiper";
 
 export default {
   components: {
     Swiper,
     SwiperSlide,
+    MovieModal,
   },
 
   props: {
@@ -15,18 +18,16 @@ export default {
     heading: String,
   },
 
-  emits: ["onOpenModal"],
-
-  setup(props, context) {
-    function openModal(movie) {
-      console.log(movie);
-      context.emit("onOpenModal", movie);
-    }
+  setup(props) {
+    const { isMovieModalOpen, clickedMovie, openModal, closeModals } = useModal();
 
     return {
       modules: [Navigation],
       props,
       openModal,
+      isMovieModalOpen,
+      clickedMovie,
+      closeModals,
     };
   },
 };
@@ -69,6 +70,11 @@ export default {
       </swiper-slide>
     </swiper>
   </div>
+  <MovieModal
+    @onCloseModals="closeModals"
+    v-if="isMovieModalOpen"
+    :clickedMovie="clickedMovie"
+  />
 </template>
 
 <style lang="scss" module="classes">
