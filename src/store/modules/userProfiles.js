@@ -1,20 +1,14 @@
 import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
 
 export default {
   state: {
     userProfiles: [],
-    maxProfilesMessage: null,
     clickedProfile: null,
   },
 
   mutations: {
     SET_USER_PROFILES_FROM_DB(state, payload) {
       state.userProfiles = payload;
-    },
-
-    SET_MAX_PROFILES_MESSAGE(state, payload) {
-      state.maxProfilesMessage = payload;
     },
 
     SET_CLICKED_PROFILE(state, payload) {
@@ -42,32 +36,6 @@ export default {
           });
           commit('SET_USER_PROFILES_FROM_DB', profilesArray);
         });
-    },
-
-    ADD_PROFILE({ commit, rootState, state }, payload) {
-      firebase
-        .database()
-        .ref(`users/${rootState.userData.currentUser.id}/profiles`)
-        .once('value', (snapshot) => {
-          if (snapshot.numChildren() < 5) {
-            firebase
-              .database()
-              .ref('users/' + rootState.userData.currentUser.id)
-              .child('profiles')
-              .push(payload);
-          }
-        });
-    },
-
-    RESET_MAX_PROFILES_MESSAGE({ commit }) {
-      commit('SET_MAX_PROFILES_MESSAGE', null);
-    },
-
-    SET_MAX_PROFILES_MESSAGE({ commit }) {
-      commit(
-        'SET_MAX_PROFILES_MESSAGE',
-        'You can only have a maximum of 5 profiles'
-      );
     },
 
     SET_CLICKED_PROFILE({ commit }, payload) {
