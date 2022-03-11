@@ -65,8 +65,9 @@
 .navRight {
   @include flex-config($justify: flex-end, $align: center);
   position: relative;
-  font-size: 1.8rem;
   width: 50%;
+  font-size: 1.8rem;
+  color: var(--clr-white);
 }
 
 .searchInput {
