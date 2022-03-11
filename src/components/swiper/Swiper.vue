@@ -1,8 +1,8 @@
 <script>
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import { Navigation } from 'swiper';
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Navigation } from "swiper";
 
 export default {
   components: {
@@ -15,10 +15,18 @@ export default {
     heading: String,
   },
 
-  setup(props) {
+  emits: ["onOpenModal"],
+
+  setup(props, context) {
+    function openModal(movie) {
+      console.log(movie);
+      context.emit("onOpenModal", movie);
+    }
+
     return {
       modules: [Navigation],
       props,
+      openModal,
     };
   },
 };
@@ -55,7 +63,7 @@ export default {
           <div :class="classes.overlayIcons">
             <font-awesome-icon icon="play" />
             <font-awesome-icon icon="plus-square" />
-            <font-awesome-icon icon="info-circle" />
+            <font-awesome-icon icon="info-circle" @click="openModal(movie)" />
           </div>
         </div>
       </swiper-slide>
