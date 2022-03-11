@@ -1,15 +1,12 @@
 <script setup>
 import { ref, defineExpose, computed, onMounted } from "vue";
 import { useStore } from "vuex";
-import { useModal } from "@/composables/modal";
 import ResponsiveNav from "@/components/navs/ResponsiveNav.vue";
 import BrowseHeroContent from "@/components/hero/BrowseHeroContent.vue";
 import VideoControls from "@/components/ui/VideoControls.vue";
 import Swiper from "@/components/swiper/Swiper.vue";
-import MovieModal from "@/components/ui/movie-modal/MovieModal.vue";
 
 const store = useStore();
-const { isMovieModalOpen, clickedMovie, openModal, closeModals } = useModal();
 
 const isVideoMuted = ref(true);
 const video = ref(null);
@@ -52,54 +49,17 @@ function replayVideo() {
     </div>
     <div class="container">
       <div :class="classes.swiperContainer">
-        <Swiper
-          :movieData="movieData.popular"
-          heading="Popular Movies"
-          @onOpenModal="openModal"
-        />
-        <Swiper
-          :movieData="movieData.action"
-          heading="Action Movies"
-          @onOpenModal="openModal"
-        />
-        <Swiper
-          :movieData="movieData.comedy"
-          heading="Comedy Movies"
-          @onOpenModal="openModal"
-        />
-        <Swiper
-          :movieData="movieData.animation"
-          heading="Animation Movies"
-          @onOpenModal="openModal"
-        />
-        <Swiper
-          :movieData="movieData.crime"
-          heading="Crime Movies"
-          @onOpenModal="openModal"
-        />
-        <Swiper
-          :movieData="movieData.drama"
-          heading="Drama Movies"
-          @onOpenModal="openModal"
-        />
-        <Swiper
-          :movieData="movieData.horror"
-          heading="Horror Movies"
-          @onOpenModal="openModal"
-        />
-        <Swiper
-          :movieData="movieData.sciFi"
-          heading="Sci Fi Movies"
-          @onOpenModal="openModal"
-        />
+        <Swiper :movieData="movieData.popular" heading="Popular Movies" />
+        <Swiper :movieData="movieData.action" heading="Action Movies" />
+        <Swiper :movieData="movieData.comedy" heading="Comedy Movies" />
+        <Swiper :movieData="movieData.animation" heading="Animation Movies" />
+        <Swiper :movieData="movieData.crime" heading="Crime Movies" />
+        <Swiper :movieData="movieData.drama" heading="Drama Movies" />
+        <Swiper :movieData="movieData.horror" heading="Horror Movies" />
+        <Swiper :movieData="movieData.sciFi" heading="Sci Fi Movies" />
       </div>
     </div>
   </div>
-  <MovieModal
-    @onCloseModals="closeModals"
-    v-if="isMovieModalOpen"
-    :clickedMovie="clickedMovie"
-  />
 </template>
 
 <style lang="scss" module="classes">
