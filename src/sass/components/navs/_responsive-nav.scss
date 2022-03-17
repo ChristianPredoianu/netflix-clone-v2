@@ -34,7 +34,6 @@
   @include position($pos: absolute, $top: 8rem, $left: 7rem);
   font-size: 1.5rem;
   background-color: rgba(0, 0, 0, 0.9);
-  color: var(--clr-white);
   padding: 5rem;
   border-style: solid;
   border-color: rgba(255, 255, 255, 0.15);
@@ -51,6 +50,8 @@
 }
 
 .navLinksItem {
+  color: var(--clr-white);
+
   &:not(:first-child) {
     margin-top: 4rem;
   }
@@ -60,6 +61,10 @@
       margin-top: 0;
     }
   }
+}
+
+.active {
+  font-weight: 700;
 }
 
 .navRight {
@@ -127,4 +132,8 @@
 .dropdownProfileName {
   margin-left: 1rem;
   padding-right: 5rem;
+}
+
+.signOut {
+  padding: 2rem 0 1rem 0;
 }
