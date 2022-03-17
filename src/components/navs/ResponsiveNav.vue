@@ -31,6 +31,12 @@ function toggleProfilesDropdown() {
   isProfilesDropdownOpen.value = !isProfilesDropdownOpen.value;
 }
 
+function goToBrowseWithSelectedProfile(selectedProfile) {
+  console.log(selectedProfile);
+  store.dispatch("SET_CLICKED_PROFILE", selectedProfile);
+  router.push({ name: "Browse" });
+}
+
 function signOut() {
   firebase
     .auth()
@@ -127,6 +133,7 @@ onUnmounted(() => {
               :class="classes.dropdownProfile"
               v-for="profile in userProfiles"
               :key="profile.id"
+              @click="goToBrowseWithSelectedProfile(profile)"
             >
               <font-awesome-icon
                 :icon="profile.icon"
