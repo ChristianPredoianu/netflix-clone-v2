@@ -1,10 +1,14 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from "vue";
+import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { onClickOutside } from "@vueuse/core";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 import NetflixLogo from "@/components/ui/NetflixLogo.vue";
 
-const store = useStore();
+const store = useStore(),
+  router = useRouter();
 
 const userProfiles = computed(() => store.state.userProfiles.userProfiles),
   currentProfile = computed(() => store.state.userProfiles.clickedProfile);
@@ -13,7 +17,7 @@ const isNavOpen = ref(true),
   isSearchOpen = ref(false),
   isProfilesDropdownOpen = ref(false),
   mobileView = ref(true),
-  searchInputRef = ref(null);
+  clickOutsideRef = ref(null);
 
 function toggleNavLinks() {
   isNavOpen.value = !isNavOpen.value;
@@ -27,11 +31,20 @@ function toggleProfilesDropdown() {
   isProfilesDropdownOpen.value = !isProfilesDropdownOpen.value;
 }
 
-function closeProfilesDropdown() {
-  isProfilesDropdownOpen.value = false;
+function signOut() {
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      router.push({ name: "SignIn" });
+      store.dispatch("RESET_CURRENT_USER");
+    });
 }
 
-onClickOutside(searchInputRef, () => (isSearchOpen.value = false));
+onClickOutside(clickOutsideRef, () => {
+  isSearchOpen.value = false;
+  isProfilesDropdownOpen.value = false;
+});
 
 //if widow width <= 1024px mobileView=true & nav should close else keep nav open
 function handleView() {
@@ -60,14 +73,34 @@ onUnmounted(() => {
         </button>
         <Transition name="slide-down" mode="out-in">
           <ul :class="classes.navLinks" v-if="isNavOpen">
-            <li :class="classes.navLinksItem">Home</li>
-            <li :class="classes.navLinksItem">Movies</li>
-            <li :class="classes.navLinksItem">Popular</li>
-            <li :class="classes.navLinksItem">My list</li>
+            <router-link
+              :to="{ name: 'Browse' }"
+              :active-class="classes.active"
+              :class="classes.navLinksItem"
+              >Home</router-link
+            >
+            <router-link
+              :to="{ name: 'Movies' }"
+              :active-class="classes.active"
+              :class="classes.navLinksItem"
+              >Movies</router-link
+            >
+            <router-link
+              :to="{ name: 'Popular' }"
+              :active-class="classes.active"
+              :class="classes.navLinksItem"
+              >Popular</router-link
+            >
+            <router-link
+              :to="{ name: 'MyList' }"
+              :active-class="classes.active"
+              :class="classes.navLinksItem"
+              >My list</router-link
+            >
           </ul>
         </Transition>
       </div>
-      <div :class="classes.navRight" ref="searchInputRef">
+      <div :class="classes.navRight" ref="clickOutsideRef">
         <Transition name="slide" mode="out-in">
           <input
             type="text"
@@ -86,15 +119,9 @@ onUnmounted(() => {
           :icon="currentProfile.icon"
           :class="classes.navRightIcon"
           @click="toggleProfilesDropdown"
-          @mouseenter="toggleProfilesDropdown"
-          @mouseleave="closeProfilesDropdown"
         />
         <Transition name="slide-down" mode="out-in">
-          <div
-            :class="classes.profilesDropdown"
-            v-if="isProfilesDropdownOpen"
-            @mouseenter="() => (isProfilesDropdownOpen = true)"
-          >
+          <div :class="classes.profilesDropdown" v-if="isProfilesDropdownOpen">
             <p>Profiles</p>
             <div
               :class="classes.dropdownProfile"
@@ -107,6 +134,7 @@ onUnmounted(() => {
               />
               <p :class="classes.dropdownProfileName">{{ profile.name }}</p>
             </div>
+            <p :class="classes.signOut" @click="signOut">Sign Out</p>
           </div>
         </Transition>
       </div>
