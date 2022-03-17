@@ -72,6 +72,15 @@ const routes = [
       requiresAuth: true,
     },
   },
+
+  {
+    path: '/loading-profile',
+    name: 'LoadingProfile',
+    component: () => import('@/views/LoadingProfile.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
 ];
 const router = createRouter({
   history: createWebHistory(),
