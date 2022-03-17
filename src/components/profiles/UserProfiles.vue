@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted } from "vue";
+import { computed } from "vue";
 import router from "@/router";
 import { useStore } from "vuex";
 import ProfilesBtn from "@/components/buttons/ProfilesBtn.vue";
