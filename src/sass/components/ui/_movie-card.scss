@@ -1,3 +1,13 @@
+@use '@/sass/abstracts' as *;
+
 .movieCard {
+  position: relative;
   cursor: pointer;
+}
+
+.movieCardIcons {
+  @include position($pos: absolute, $bottom: 1rem, $left: 10%);
+  @include flex-config($justify: space-around);
+  width: 80%;
+  font-size: 2rem;
 }
