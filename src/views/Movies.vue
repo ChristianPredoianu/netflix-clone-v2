@@ -1,7 +1,6 @@
 <script setup>
 import { computed } from "vue";
 import { useStore } from "vuex";
-
 import ResponsiveNav from "@/components/navs/ResponsiveNav.vue";
 import GenresFilter from "@/components/filters/GenresFilter.vue";
 import MovieCard from "@/components/ui/MovieCard.vue";
