@@ -33,8 +33,8 @@ export default {
               (profile) => profile.id === id
             );
             if (existingProfileIndex === -1) profilesArray.push(childData);
+            commit('SET_USER_PROFILES_FROM_DB', profilesArray);
           });
-          commit('SET_USER_PROFILES_FROM_DB', profilesArray);
         });
     },
 
