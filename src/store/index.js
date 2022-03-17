@@ -1,7 +1,8 @@
 import { createStore } from 'vuex';
 import theMovieDB from '@/store/modules/theMovieDB';
-import userProfiles from './modules/userProfiles';
-import userData from './modules/userData';
+import userProfiles from '@/store/modules/userProfiles';
+import userData from '@/store/modules/userData';
+import userMovieList from '@/store/modules/userMovieList';
 
 import createPersistedState from 'vuex-persistedstate';
 
@@ -10,6 +11,7 @@ export default createStore({
     theMovieDB,
     userData,
     userProfiles,
+    userMovieList,
   },
   plugins: [createPersistedState()],
 });
