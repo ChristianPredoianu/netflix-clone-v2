@@ -9,10 +9,14 @@ export function useProfileMovieList() {
     () => store.state.userProfiles.clickedProfile
   );
 
-  function addToProfileList(movie) {
-    const databaseRef = `users/${currentUser.value.id}`;
-    const child = `profiles/${clickedProfile.value.id}/moviesList`;
+  const userMoviesList = computed(
+    () => store.state.userMovieList.userMovieList
+  );
 
+  const databaseRef = `users/${currentUser.value.id}`;
+  const child = `profiles/${clickedProfile.value.id}/moviesList`;
+
+  function addToProfileList(movie) {
     firebase
       .database()
       .ref(databaseRef)
@@ -24,7 +28,30 @@ export function useProfileMovieList() {
           firebase.database().ref(databaseRef).child(child).push(movie);
         }
       });
+    store.dispatch('SET_USER_MOVIE_LIST_FROM_DB');
   }
 
-  return { addToProfileList };
+  function deleteFromProfileList(movie) {
+    firebase
+      .database()
+      .ref(databaseRef)
+      .child(child)
+      .orderByChild('id')
+      .equalTo(movie.id)
+      .once('child_added', (snapshot) => {
+        snapshot.ref.remove();
+      });
+    store.dispatch('SET_USER_MOVIE_LIST_FROM_DB');
+  }
+
+  function isMovieInUserList(movie) {
+    if (userMoviesList.value) {
+      const isInMovieList = userMoviesList.value.find(
+        (mov) => mov.id === movie.id
+      );
+      if (isInMovieList) return true;
+    }
+  }
+
+  return { addToProfileList, deleteFromProfileList, isMovieInUserList };
 }
