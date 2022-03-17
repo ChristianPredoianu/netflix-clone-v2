@@ -63,6 +63,15 @@ const routes = [
       requiresAuth: true,
     },
   },
+
+  {
+    path: '/mylist',
+    name: 'MyList',
+    component: () => import('@/views/MyList.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
 ];
 const router = createRouter({
   history: createWebHistory(),
