@@ -13,12 +13,13 @@ const video = ref(null);
 
 defineExpose({ video });
 
-const movieData = computed(() => store.state.theMovieDB.movieData),
-  isLoadingData = computed(() => store.state.theMovieDB.isLoadingData);
-
 onMounted(() => {
   store.dispatch("FETCH_MOVIES");
+  store.dispatch("SET_USER_MOVIE_LIST_FROM_DB");
 });
+
+const movieData = computed(() => store.state.theMovieDB.movieData),
+  isLoadingData = computed(() => store.state.theMovieDB.isLoadingData);
 
 function toggleVideoSound(isMuted, isSoundOn) {
   isVideoMuted.value = isMuted;
