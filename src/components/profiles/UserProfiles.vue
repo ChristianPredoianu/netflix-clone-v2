@@ -19,10 +19,6 @@ function goToBrowseWithSelectedProfile(selectedProfile) {
   store.dispatch("SET_CLICKED_PROFILE", selectedProfile);
   router.push({ name: "Browse" });
 }
-
-onMounted(() => {
-  store.dispatch("SET_USER_PROFILES_FROM_DB");
-});
 </script>
 
 <template>
