@@ -1,7 +1,7 @@
 <script>
-import { ref } from "vue";
-import { useStore } from "vuex";
+import { onMounted } from "vue";
 import { useModal } from "@/composables/modal";
+import { useMovieTrailer } from "@/composables/movieTrailer";
 import { useProfileMovieList } from "@/composables/profileMovieList";
 import MovieModal from "@/components/ui/movie-modal/MovieModal.vue";
 import MovieTrailerOverlay from "@/components/ui/movie-modal/ModalTrailerOverlay.vue";
@@ -26,34 +26,29 @@ export default {
   },
 
   setup(props) {
-    const store = useStore();
-
     const { isMovieModalOpen, clickedMovie, openModal, closeModals } = useModal();
-    const { addToProfileList } = useProfileMovieList();
-
-    const isBackdropOpen = ref(false);
-    const isMovieTrailerOpen = ref(false);
-
-    function openMovieTrailer(movie) {
-      store.dispatch("FETCH_MOVIE_TRAILER", movie.id);
-      isBackdropOpen.value = true;
-      isMovieTrailerOpen.value = true;
-    }
-
-    function closeTrailerModal(bool) {
-      isBackdropOpen.value = bool;
-      isMovieTrailerOpen.value = bool;
-    }
+    const {
+      openMovieTrailerModal,
+      closeMovieTrailerModal,
+      isBackdropOpen,
+    } = useMovieTrailer();
+    const {
+      addToProfileList,
+      deleteFromProfileList,
+      isMovieInUserList,
+    } = useProfileMovieList();
 
     return {
       modules: [Navigation],
       props,
       addToProfileList,
+      deleteFromProfileList,
+      isMovieInUserList,
       openModal,
       isMovieModalOpen,
       clickedMovie,
-      closeTrailerModal,
-      openMovieTrailer,
+      openMovieTrailerModal,
+      closeMovieTrailerModal,
       isBackdropOpen,
       closeModals,
     };
@@ -90,8 +85,17 @@ export default {
           <h4 :class="classes.movieHeading">{{ movie.original_title }}</h4>
           <h5>Release: {{ movie.release_date }}</h5>
           <div :class="classes.overlayIcons">
-            <font-awesome-icon icon="play" @click="openMovieTrailer(movie)" />
-            <font-awesome-icon icon="plus-square" @click="addToProfileList(movie)" />
+            <font-awesome-icon icon="play" @click="openMovieTrailerModal(movie)" />
+            <font-awesome-icon
+              icon="plus-square"
+              @click="addToProfileList(movie)"
+              v-if="!isMovieInUserList(movie)"
+            />
+            <font-awesome-icon
+              icon="times-circle"
+              v-else
+              @click="deleteFromProfileList(movie)"
+            />
             <font-awesome-icon icon="info-circle" @click="openModal(movie)" />
           </div>
         </div>
@@ -103,10 +107,10 @@ export default {
     v-if="isMovieModalOpen"
     :clickedMovie="clickedMovie"
   />
-  <Backdrop v-if="isBackdropOpen" @onCloseModals="closeTrailerModal" />
+  <Backdrop v-if="isBackdropOpen" @onCloseModals="closeMovieTrailerModal" />
   <MovieTrailerOverlay
     v-if="isBackdropOpen"
-    @onCloseMovieTrailerOverlay="closeTrailerModal"
+    @onCloseMovieTrailerOverlay="closeMovieTrailerModal"
   />
 </template>
 
