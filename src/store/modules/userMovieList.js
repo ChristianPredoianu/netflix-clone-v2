@@ -14,7 +14,7 @@ export default {
   actions: {
     SET_USER_MOVIE_LIST_FROM_DB({ commit, rootState }) {
       const moviesList = [];
-      console.log(rootState.userProfiles.clickedProfile.id);
+
       firebase
         .database()
         .ref(`users/${rootState.userData.currentUser.id}`)
