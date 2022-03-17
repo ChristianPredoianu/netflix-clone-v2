@@ -15,6 +15,7 @@ function changeComponent(comp) {
 
 onMounted(() => {
   store.dispatch("SET_CURRENT_USER");
+  store.dispatch("SET_USER_PROFILES_FROM_DB");
 });
 </script>
 
