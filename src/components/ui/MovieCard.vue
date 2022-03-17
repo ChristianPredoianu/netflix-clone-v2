@@ -17,7 +17,11 @@ const {
   isBackdropOpen,
 } = useMovieTrailer();
 
-const { addToProfileList, isMovieInUserList } = useProfileMovieList();
+const {
+  addToProfileList,
+  deleteFromProfileList,
+  isMovieInUserList,
+} = useProfileMovieList();
 </script>
 
 <template>
@@ -35,7 +39,11 @@ const { addToProfileList, isMovieInUserList } = useProfileMovieList();
         v-if="!isMovieInUserList(movie)"
       />
 
-      <font-awesome-icon icon="times-circle" v-else />
+      <font-awesome-icon
+        icon="times-circle"
+        v-else
+        @click="deleteFromProfileList(movie)"
+      />
       <font-awesome-icon icon="info-circle" @click="openModal(movie)" />
     </div>
   </div>
