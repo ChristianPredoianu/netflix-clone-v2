@@ -12,16 +12,17 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/vue-fontawesome": "^3.0.0-5",
-    "@vueuse/core": "^7.6.2",
-    "firebase": "^9.6.6",
-    "swiper": "^8.0.3",
-    "vue": "^3.2.25",
-    "vue-router": "^4.0.12",
+    "@vueuse/core": "^7.7.1",
+    "firebase": "^9.6.9",
+    "swiper": "^8.0.7",
+    "vue": "^3.2.31",
+    "vue-router": "^4.0.14",
     "vuex": "^4.0.2",
     "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^2.0.0",
-    "vite": "^2.7.2"
+    "@vitejs/plugin-vue": "^2.2.4",
+    "sass": "^1.49.9",
+    "vite": "^2.8.6"
   }
 }
