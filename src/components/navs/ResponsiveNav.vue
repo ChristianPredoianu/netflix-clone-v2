@@ -32,9 +32,8 @@ function toggleProfilesDropdown() {
 }
 
 function goToBrowseWithSelectedProfile(selectedProfile) {
-  console.log(selectedProfile);
   store.dispatch("SET_CLICKED_PROFILE", selectedProfile);
-  router.push({ name: "Browse" });
+  router.push({ name: "LoadingProfile" });
 }
 
 function signOut() {
