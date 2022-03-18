@@ -31,9 +31,9 @@ export default {
             );
 
             if (existingProfileIndex === -1) moviesList.push(childData);
-            commit('SET_USER_MOVIE_LIST_FROM_DB', moviesList);
           });
         });
+      commit('SET_USER_MOVIE_LIST_FROM_DB', moviesList);
     },
   },
 };
