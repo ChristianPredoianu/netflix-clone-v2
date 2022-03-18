@@ -1,1 +1,12 @@
-@use '@/sass/abstracts' as *;
+@use '@/sass/abstracts/mixins/movie-card-grid' as *;
+
+.main {
+  min-height: 100vh;
+  background-color: var(--main-bg-color);
+  color: var(--clr-white);
+  padding: 15rem 0;
+}
+
+.movieCardsGrid {
+  @include movieCardGrid;
+}
