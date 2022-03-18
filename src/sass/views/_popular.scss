@@ -1,4 +1,4 @@
-@use '@/sass/abstracts' as *;
+@use '@/sass/abstracts/mixins/movie-card-grid' as *;
 
 .main {
   min-height: 100vh;
@@ -8,12 +8,5 @@
 }
 
 .movieCardsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
-  grid-gap: 1rem;
-
-  @include respond(sm) {
-    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-    grid-gap: 2rem;
-  }
+  @include movieCardGrid;
 }
