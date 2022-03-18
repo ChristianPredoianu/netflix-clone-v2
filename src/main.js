@@ -10,9 +10,6 @@ import '@/sass/main.scss';
 
 addIcons();
 
-//This is how to use font awesome
-/* <font-awesome-icon icon="laptop" /> */
-
 let app;
 firebase.auth().onAuthStateChanged(() => {
   if (!app) {
