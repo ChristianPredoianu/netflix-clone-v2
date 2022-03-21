@@ -8,7 +8,8 @@ import "firebase/compat/auth";
 import NetflixLogo from "@/components/ui/NetflixLogo.vue";
 
 const store = useStore(),
-  router = useRouter();
+  router = useRouter(),
+  emit = defineEmits(["search"]);
 
 const userProfiles = computed(() => store.state.userProfiles.userProfiles),
   currentProfile = computed(() => store.state.userProfiles.clickedProfile);
@@ -17,7 +18,8 @@ const isNavOpen = ref(true),
   isSearchOpen = ref(false),
   isProfilesDropdownOpen = ref(false),
   mobileView = ref(true),
-  clickOutsideRef = ref(null);
+  clickOutsideRef = ref(null),
+  searchTerm = ref(null);
 
 function toggleNavLinks() {
   isNavOpen.value = !isNavOpen.value;
@@ -25,6 +27,12 @@ function toggleNavLinks() {
 
 function toggleSearch() {
   isSearchOpen.value = !isSearchOpen.value;
+  searchTerm.value = null;
+  emit("search", searchTerm.value);
+}
+
+function emitSearch() {
+  emit("search", searchTerm.value);
 }
 
 function toggleProfilesDropdown() {
@@ -49,6 +57,8 @@ function signOut() {
 onClickOutside(clickOutsideRef, () => {
   isSearchOpen.value = false;
   isProfilesDropdownOpen.value = false;
+  searchTerm.value = null;
+  emit("search", searchTerm.value);
 });
 
 //if widow width <= 1024px mobileView=true & nav should close else keep nav open
@@ -114,6 +124,8 @@ onUnmounted(() => {
             size="10"
             :class="classes.searchInput"
             v-if="isSearchOpen"
+            v-model="searchTerm"
+            @keyup="emitSearch"
         /></Transition>
         <font-awesome-icon
           icon="search"
