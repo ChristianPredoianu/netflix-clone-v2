@@ -32,6 +32,7 @@
 
 .navLinks {
   @include position($pos: absolute, $top: 8rem, $left: 7rem);
+  @include flex-config($direction: column);
   font-size: 1.5rem;
   background-color: rgba(0, 0, 0, 0.9);
   padding: 5rem;
@@ -40,9 +41,9 @@
   border-width: 0.5rem 0.1rem 0.1rem;
 
   @include respond(md) {
-    @include flex-config($justify: space-around);
-    position: initial;
+    @include flex-config($direction: row, $justify: space-around);
     width: 50%;
+    position: initial;
     background-color: transparent;
     padding: 0;
     border: none;
