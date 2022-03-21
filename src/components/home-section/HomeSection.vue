@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
   <section :class="classes.homeSection">
     <div class="container">
