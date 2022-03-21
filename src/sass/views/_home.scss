@@ -50,19 +50,6 @@
   object-fit: cover;
 }
 
-.homeWrapper {
-  @include flex-config($direction: column, $align: center);
-  text-align: center;
-
-  @include respond(md) {
-    @include flex-config(
-      $direction: row,
-      $justify: space-around,
-      $align: center
-    );
-  }
-}
-
 .phoneOutside {
   position: relative;
   width: 80%;

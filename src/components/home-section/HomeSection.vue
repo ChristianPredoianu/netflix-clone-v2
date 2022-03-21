@@ -2,7 +2,11 @@
 
 <template>
   <section :class="classes.homeSection">
-    <slot></slot>
+    <div class="container">
+      <div :class="classes.homeWrapper">
+        <slot></slot>
+      </div>
+    </div>
   </section>
 </template>
 
