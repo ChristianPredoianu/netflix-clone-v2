@@ -81,6 +81,12 @@ const routes = [
       requiresAuth: true,
     },
   },
+
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'PageNotFound',
+    component: () => import('@/views/PageNotFound.vue'),
+  },
 ];
 
 const router = createRouter({
