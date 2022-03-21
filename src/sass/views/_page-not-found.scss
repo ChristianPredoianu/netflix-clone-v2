@@ -1,0 +1,43 @@
+@use '@/sass/abstracts' as *;
+
+.main {
+  @include flex-config($justify: center, $align: center);
+  position: relative;
+  min-height: 100vh;
+  color: var(--clr-white);
+  background-image: url('@/assets/images/cinema.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgb(0, 0, 0, 0.5);
+}
+
+.infoWrapper {
+  @include flex-config($direction: column, $align: center);
+  position: relative;
+  padding: 0 5rem;
+  z-index: 10;
+  text-align: center;
+}
+
+.primaryHeading {
+  font-size: var(--size-heading-lg);
+}
+
+.secondaryHeading {
+  font-size: var(--size-heading-sm);
+  padding: 2rem 0;
+}
+
+.backBtn {
+  font-size: 1.2rem;
+  padding: 0.7rem 2.4rem;
+  border-radius: 0.4rem;
+  border: none;
+  cursor: pointer;
+}
