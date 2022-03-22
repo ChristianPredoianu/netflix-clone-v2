@@ -77,11 +77,12 @@
 }
 
 .accordionHeading {
-  font-size: 4rem;
+  font-size: 3rem;
   margin-bottom: 2rem;
 }
 
 .faqWrapper {
+  width: 90%;
   @include flex-config($direction: column, $align: center, $justify: center);
 }
 
@@ -90,6 +91,6 @@
   margin: 3rem;
 }
 
-.credit {
-  text-align: center;
+.faqFormWrapper {
+  width: 90%;
 }
