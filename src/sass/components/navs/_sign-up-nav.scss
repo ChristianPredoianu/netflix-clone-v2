@@ -2,7 +2,7 @@
 
 .signUpNav {
   @include flex-config($justify: space-between, $align: center);
-  padding: 2rem 4rem;
+  padding: 2rem 0;
 }
 
 .border {
