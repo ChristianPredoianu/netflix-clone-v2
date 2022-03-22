@@ -1,9 +1,15 @@
-<script setup></script>
+<script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+function goToSignIn() {
+  router.push({ name: 'SignIn' });
+}
+</script>
 
 <template>
-  <div>
-    <p :class="classes.signInBtn">Sign In</p>
-  </div>
+  <p :class="classes.signInBtn" @click="goToSignIn">Sign In</p>
 </template>
 
 <style lang="scss" module="classes">
