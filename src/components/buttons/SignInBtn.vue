@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <button :class="classes.logInBtn">
-      <slot></slot>
-    </button>
-  </div>
+  <button :class="classes.logInBtn">
+    <slot></slot>
+  </button>
 </template>
 
 <style lang="scss" module="classes">
