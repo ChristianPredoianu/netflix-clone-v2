@@ -5,6 +5,7 @@ import GetStartedForm from "@/components/forms/GetStartedForm.vue";
 import HomeSection from "@/components/home-section/HomeSection.vue";
 import HomeSectionHeadings from "@/components/home-section/HomeSectionHeadings.vue";
 import BaseAccordion from "@/components/ui/accordion/BaseAccordion.vue";
+import Footer from "@/components/footer/Footer.vue";
 </script>
 
 <template>
@@ -86,16 +87,7 @@ import BaseAccordion from "@/components/ui/accordion/BaseAccordion.vue";
       </div>
     </HomeSection>
     <HomeSection>
-      <h4 :class="classes.credit">
-        Png:s on this site are from
-        <a
-          href="https://www.freepnglogos.com/pics/tv"
-          class="footer__attribution"
-          target="_blank"
-          rel="noopener"
-          >Freepnglogos</a
-        >
-      </h4>
+      <Footer />
     </HomeSection>
   </div>
 </template>
