@@ -1,10 +1,12 @@
 <script setup>
-import SignUpNav from "@/components/navs/SignUpNav.vue";
-import ContinueBtn from "@/components/buttons/ContinueBtn.vue";
-import router from "../../router";
+import { useRouter } from 'vue-router';
+import SignUpNav from '@/components/navs/SignUpNav.vue';
+import ContinueBtn from '@/components/buttons/ContinueBtn.vue';
+
+const router = useRouter();
 
 function goToStepTwoHandler() {
-  router.push({ name: "SignupStep2" });
+  router.push({ name: 'SignupStep2' });
 }
 </script>
 
@@ -24,8 +26,8 @@ function goToStepTwoHandler() {
         </p>
         <h1 :class="classes.infoHeading">Finish setting up your account</h1>
         <h2 :class="classes.infoHeadingSecondary">
-          Netflix is personalised for you. Create a password to watch Netflix on any
-          device at any time.
+          Netflix is personalised for you. Create a password to watch Netflix on
+          any device at any time.
         </h2>
 
         <ContinueBtn @click="goToStepTwoHandler">Continue</ContinueBtn>
