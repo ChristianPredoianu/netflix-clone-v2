@@ -75,11 +75,10 @@ import Footer from "@/components/footer/Footer.vue";
     </HomeSection>
     <HomeSection>
       <div :class="classes.faqWrapper">
-        <h2 :class="classes.accordionHeading">FAQ</h2>
+        <h3 :class="classes.accordionHeading">FAQ</h3>
         <BaseAccordion />
         <h3 :class="classes.formHeading">
-          Stream unlimited movies and series on mobile, tablet, pc and tv without paying
-          extra.
+          Ready to start watching? Fill in your e-mail to create an account.
         </h3>
         <div :class="classes.faqFormWrapper">
           <GetStartedForm />
