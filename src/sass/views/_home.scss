@@ -4,7 +4,6 @@
 
 .hero {
   @include flex-config($direction: column, $justify: center);
-  position: relative;
   background-image: url('@/assets/images/netflix-background.jpg');
   background-position: 50%;
   background-repeat: no-repeat;
