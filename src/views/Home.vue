@@ -10,12 +10,12 @@ import Footer from "@/components/footer/Footer.vue";
 
 <template>
   <div>
-    <div :class="classes.hero">
+    <section :class="classes.hero">
       <div class="container">
         <HomeNav />
         <HeroContent />
       </div>
-    </div>
+    </section>
     <HomeSection>
       <HomeSectionHeadings
         heading="Watch on your tv"
