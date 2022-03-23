@@ -2,6 +2,12 @@
   color: var(--clr-gray-medium);
 }
 
+.footerWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .footerImg {
   width: 15rem;
   margin: 0 auto;
