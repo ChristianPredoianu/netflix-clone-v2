@@ -21,7 +21,7 @@
   .profileCard {
     @include flex-config($direction: column, $align: center);
     position: relative;
-    width: 60%;
+    width: 20rem;
     padding: 3rem;
     margin: 0 auto;
     border: 1px solid var(--clr-white);
