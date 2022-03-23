@@ -6,6 +6,9 @@ import ResponsiveNav from "@/components/navs/ResponsiveNav.vue";
 import GenresFilter from "@/components/filters/GenresFilter.vue";
 import MovieCard from "@/components/ui/MovieCard.vue";
 import MovieModal from "@/components/ui/movie-modal/MovieModal.vue";
+import HomeSection from "@/components/home-section/HomeSection.vue";
+import NetflixBorder from "@/components/ui/NetflixBorder.vue";
+import Footer from "@/components/footer/Footer.vue";
 
 const store = useStore();
 
@@ -23,6 +26,8 @@ const { searchTerm, setSearchTerm, searchMovie } = useSearchMovie();
         <MovieCard :movies="!searchTerm ? moviesByGenre : searchMovie(moviesByGenre)" />
       </div>
     </div>
+    <NetflixBorder />
+    <HomeSection><Footer /></HomeSection>
   </main>
 </template>
 

@@ -6,6 +6,9 @@ import ResponsiveNav from "@/components/navs/ResponsiveNav.vue";
 import BrowseHeroContent from "@/components/hero/BrowseHeroContent.vue";
 import VideoControls from "@/components/ui/VideoControls.vue";
 import Swiper from "@/components/swiper/Swiper.vue";
+import HomeSection from "@/components/home-section/HomeSection.vue";
+import NetflixBorder from "@/components/ui/NetflixBorder.vue";
+import Footer from "@/components/footer/Footer.vue";
 
 const store = useStore();
 
@@ -36,7 +39,7 @@ function replayVideo() {
 
 <template>
   <div :class="classes.browse">
-    <div :class="classes.hero">
+    <section :class="classes.hero">
       <ResponsiveNav @search="setSearchTerm" />
       <video :class="classes.video" ref="video" muted autoplay>
         <source src="@/assets/videos/showcase.mp4" type="video/mp4" />
@@ -50,9 +53,9 @@ function replayVideo() {
           :isVideoMuted="isVideoMuted"
         />
       </div>
-    </div>
+    </section>
     <div class="container">
-      <div :class="classes.swiperContainer">
+      <section>
         <Swiper
           :movieData="!searchTerm ? movieData.popular : searchMovie(movieData.popular)"
           :heading="
@@ -119,8 +122,10 @@ function replayVideo() {
               : `${searchMovie(movieData.sciFi).length} movies found in SciFi`
           "
         />
-      </div>
+      </section>
     </div>
+    <NetflixBorder />
+    <HomeSection><Footer /></HomeSection>
   </div>
 </template>
 
