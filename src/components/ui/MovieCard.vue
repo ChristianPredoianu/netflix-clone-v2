@@ -11,6 +11,7 @@ const props = defineProps({
 });
 
 const { isMovieModalOpen, clickedMovie, openModal, closeModals } = useModal();
+
 const {
   openMovieTrailerModal,
   closeMovieTrailerModal,
