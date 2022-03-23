@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import router from "@/router";
 import { useStore } from "vuex";
 import ProfilesBtn from "@/components/buttons/ProfilesBtn.vue";
@@ -14,6 +14,8 @@ const userProfiles = computed(() => store.state.userProfiles.userProfiles);
 function componentChange(comp) {
   emits("change-component", comp);
 }
+
+onMounted(() => store.dispatch("SET_USER_PROFILES_FROM_DB"));
 
 function goToBrowseWithSelectedProfile(selectedProfile) {
   store.dispatch("SET_CLICKED_PROFILE", selectedProfile);
