@@ -1,7 +1,6 @@
 <script setup>
 import { computed } from "vue";
 import { useStore } from "vuex";
-
 import EditProfiles from "@/components/profiles/EditProfiles.vue";
 import UserProfiles from "@/components/profiles/UserProfiles.vue";
 import ProfilesBtn from "@/components/buttons/ProfilesBtn.vue";
