@@ -6,15 +6,15 @@ import UserProfiles from "@/components/profiles/UserProfiles.vue";
 import ContinueBtn from "@/components/buttons/ContinueBtn.vue";
 import ProfilesBtn from "@/components/buttons/ProfilesBtn.vue";
 
-const store = useStore();
-const emits = defineEmits(["change-component"]);
+const store = useStore(),
+  emits = defineEmits(["change-component"]);
 
-const profileName = ref("");
-const nameInputErrorMsg = ref(null);
-const maxProfilesMsg = ref(null);
+const profileName = ref(""),
+  nameInputErrorMsg = ref(null),
+  maxProfilesMsg = ref(null);
 
-const currentUserId = computed(() => store.state.userData.currentUser.id);
-const userProfiles = computed(() => store.state.userProfiles.userProfiles);
+const currentUserId = computed(() => store.state.userData.currentUser.id),
+  userProfiles = computed(() => store.state.userProfiles.userProfiles);
 
 function addProfile() {
   const profile = {
