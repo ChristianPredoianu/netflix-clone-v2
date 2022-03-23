@@ -1,6 +1,9 @@
 @use '@/sass/abstracts' as *;
 
 .swiper {
+  width: 100%;
+  height: 100%;
+
   @include respond(sm) {
     position: relative;
     z-index: 20;
@@ -15,11 +18,6 @@
   font-size: var(--size-heading-sm);
   color: var(--clr-white);
   padding: 2rem 0;
-}
-
-.swiper {
-  width: 100%;
-  height: 100%;
 }
 
 .swiper-slide {
@@ -40,7 +38,7 @@
 .swiperOverlay {
   @include flex-config($direction: column, $align: center);
   position: absolute;
-  width: 100%;
+  width: auto;
   height: 100%;
   inset: 0;
   background-color: rgba(53, 53, 53, 0.5);
@@ -57,6 +55,6 @@
 .overlayIcons {
   @include flex-config($justify: space-around);
   @include position($pos: absolute, $bottom: 5%);
-  width: 50%;
+  width: 60%;
   font-size: 2rem;
 }
