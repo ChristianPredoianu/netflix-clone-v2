@@ -3,10 +3,7 @@
 .setUpAccount {
   @include flex-config($direction: column, $align: center);
   margin: 10rem auto;
-
-  @include respond(md) {
-    width: 80%;
-  }
+  width: 80%;
 
   @include respond(lg) {
     width: 50%;

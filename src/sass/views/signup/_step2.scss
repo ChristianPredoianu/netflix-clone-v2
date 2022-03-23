@@ -2,10 +2,7 @@
 
 .setUpAccount {
   margin: 10rem auto;
-
-  @include respond(md) {
-    width: 80%;
-  }
+  width: 80%;
 
   @include respond(lg) {
     width: 50%;
@@ -34,5 +31,5 @@
 .signUpForm {
   @include flex-config($display: flex, $direction: column);
   width: 100%;
-  margin-top: 2rem;
+  margin: 2rem auto;
 }
