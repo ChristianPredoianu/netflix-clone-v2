@@ -1,8 +1,7 @@
 @use '@/sass/abstracts' as *;
 
 .setUpAccount {
-  @include flex-config($direction: column, $align: center);
-  margin: 3rem auto;
+  margin: 10rem auto;
 
   @include respond(md) {
     width: 80%;
