@@ -70,7 +70,7 @@ export default {
       :breakpoints="{
         '630': {
           slidesPerView: 3,
-          spaceBetween: 40,
+          spaceBetween: 50,
         },
 
         '1280': {
