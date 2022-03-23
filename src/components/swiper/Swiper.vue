@@ -27,11 +27,13 @@ export default {
 
   setup(props) {
     const { isMovieModalOpen, clickedMovie, openModal, closeModals } = useModal();
+
     const {
       openMovieTrailerModal,
       closeMovieTrailerModal,
       isBackdropOpen,
     } = useMovieTrailer();
+
     const {
       addToProfileList,
       deleteFromProfileList,
@@ -66,10 +68,11 @@ export default {
       :slidesPerView="2"
       :space-between="20"
       :breakpoints="{
-        '900': {
+        '630': {
           slidesPerView: 3,
           spaceBetween: 40,
         },
+
         '1280': {
           slidesPerView: 5,
           spaceBetween: 50,
