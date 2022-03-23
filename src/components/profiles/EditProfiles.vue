@@ -7,16 +7,16 @@ import ManageProfiles from "@/components/profiles/ManageProfiles.vue";
 import ContinueBtn from "@/components/buttons/ContinueBtn.vue";
 import ProfilesBtn from "@/components/buttons/ProfilesBtn.vue";
 
-const emits = defineEmits(["change-component"]);
-const store = useStore();
+const emits = defineEmits(["change-component"]),
+  store = useStore();
 
-const clickedProfile = computed(() => store.state.userProfiles.clickedProfile);
-const currentUser = computed(() => store.state.userData.currentUser);
+const clickedProfile = computed(() => store.state.userProfiles.clickedProfile),
+  currentUser = computed(() => store.state.userData.currentUser);
 
 const icons = ["smile", "flushed", "grin-tongue-wink", "grin-tears"];
 
-const newProfileName = ref(clickedProfile.value.name);
-const newProfileIcon = ref(clickedProfile.value.icon);
+const newProfileName = ref(clickedProfile.value.name),
+  newProfileIcon = ref(clickedProfile.value.icon);
 
 function newUserIcon(icon) {
   newProfileIcon.value = icon;
