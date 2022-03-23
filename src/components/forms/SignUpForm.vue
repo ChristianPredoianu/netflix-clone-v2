@@ -1,17 +1,17 @@
 <script setup>
-import { ref } from "vue";
-import router from "@/router";
-import { useStore } from "vuex";
-import ContinueBtn from "@/components/buttons/ContinueBtn.vue";
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
+import { ref } from 'vue';
+import router from '@/router';
+import { useStore } from 'vuex';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import ContinueBtn from '@/components/buttons/ContinueBtn.vue';
 
 const store = useStore();
 
-const userEmail = ref(store.state.userData.signUpUserEmail);
-const userPassword = ref(null);
-const error = ref(null);
-const signedUpMsg = ref(null);
+const userEmail = ref(store.state.userData.signUpUserEmail),
+  userPassword = ref(null),
+  error = ref(null),
+  signedUpMsg = ref(null);
 
 function signUp() {
   firebase
@@ -19,9 +19,10 @@ function signUp() {
     .createUserWithEmailAndPassword(userEmail.value, userPassword.value)
     .then(() => {
       error.value = null;
-      signedUpMsg.value = "Account Created. You are being redirected to the sign in page";
+      signedUpMsg.value =
+        'Account Created. You are being redirected to the sign in page';
       setTimeout(() => {
-        router.push({ name: "SignIn" });
+        router.push({ name: 'SignIn' });
       }, 2000);
     })
     .catch((err) => {
@@ -33,38 +34,35 @@ function signUp() {
 </script>
 
 <template>
-  <div>
-    <label for="Email">Email:</label>
-    <form @submit.prevent="signUp">
-      <input
-        type="email"
-        placeholder="E-mail"
-        required
-        :class="classes.formInput"
-        v-model="userEmail"
-      />
-      {{ userEmail }}
-      <label for="Email">Password:</label>
-      <input
-        type="password"
-        placeholder="Password"
-        minlength="6"
-        maxlength="60"
-        required
-        :class="classes.formInput"
-        v-model="userPassword"
-      />
+  <label for="Email">Email:</label>
+  <form @submit.prevent="signUp">
+    <input
+      type="email"
+      placeholder="E-mail"
+      required
+      :class="classes.formInput"
+      v-model="userEmail"
+    />
+    <label for="Email">Password:</label>
+    <input
+      type="password"
+      placeholder="Password"
+      minlength="6"
+      maxlength="60"
+      required
+      :class="classes.formInput"
+      v-model="userPassword"
+    />
 
-      <p v-if="error" :class="classes.error">
-        {{ error }}
-      </p>
-      <p v-else :class="classes.accountCreated">
-        {{ signedUpMsg }}
-      </p>
+    <p v-if="error" :class="classes.error">
+      {{ error }}
+    </p>
+    <p v-else :class="classes.accountCreated">
+      {{ signedUpMsg }}
+    </p>
 
-      <ContinueBtn>Continue</ContinueBtn>
-    </form>
-  </div>
+    <ContinueBtn>Continue</ContinueBtn>
+  </form>
 </template>
 
 <style lang="scss" module="classes">
