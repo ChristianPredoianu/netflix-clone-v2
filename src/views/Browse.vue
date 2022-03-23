@@ -14,8 +14,8 @@ const movieData = computed(() => store.state.theMovieDB.movieData),
 
 const { searchTerm, setSearchTerm, searchMovie } = useSearchMovie();
 
-const isVideoMuted = ref(true);
-const video = ref(null);
+const isVideoMuted = ref(true),
+  video = ref(null);
 
 defineExpose({ video });
 
