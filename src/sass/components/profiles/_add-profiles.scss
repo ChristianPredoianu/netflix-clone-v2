@@ -3,7 +3,7 @@
 
 .addProfilesWrapper {
   @include flex-config($direction: column, $align: center);
-  margin-top: 5rem;
+  padding: 10rem 0;
 }
 
 .profileHeading {
