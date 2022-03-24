@@ -84,9 +84,8 @@ import Footer from "@/components/footer/Footer.vue";
       </div>
     </div>
   </HomeSection>
-  <HomeSection>
-    <Footer />
-  </HomeSection>
+
+  <Footer />
 </template>
 
 <style lang="scss" module="classes">

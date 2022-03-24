@@ -6,7 +6,6 @@ import ResponsiveNav from "@/components/navs/ResponsiveNav.vue";
 import BrowseHeroContent from "@/components/hero/BrowseHeroContent.vue";
 import VideoControls from "@/components/ui/VideoControls.vue";
 import Swiper from "@/components/swiper/Swiper.vue";
-import HomeSection from "@/components/home-section/HomeSection.vue";
 import NetflixBorder from "@/components/ui/NetflixBorder.vue";
 import Footer from "@/components/footer/Footer.vue";
 
@@ -124,9 +123,9 @@ function replayVideo() {
         />
       </section>
     </div>
-    <NetflixBorder />
-    <HomeSection><Footer /></HomeSection>
   </div>
+  <NetflixBorder />
+  <Footer />
 </template>
 
 <style lang="scss" module="classes">
