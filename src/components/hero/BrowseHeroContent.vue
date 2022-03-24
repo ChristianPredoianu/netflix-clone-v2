@@ -18,8 +18,6 @@ const {
 } = useMovieTrailer();
 
 const showcaseMovie = computed(() => store.state.theMovieDB.movieData.horror[0]);
-
-console.log(showcaseMovie.value);
 </script>
 
 <template>
