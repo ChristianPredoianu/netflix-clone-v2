@@ -1,0 +1,19 @@
+@use '@/sass/abstracts' as *;
+
+.navLinksItem {
+  color: var(--clr-white);
+
+  &:not(:first-child) {
+    margin-top: 4rem;
+  }
+
+  @include respond(md) {
+    &:not(:first-child) {
+      margin-top: 0;
+    }
+  }
+}
+
+.active {
+  font-weight: 700;
+}
