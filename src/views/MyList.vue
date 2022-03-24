@@ -18,6 +18,9 @@ const userMovieList = computed(() => store.state.userMovieList.userMovieList);
   <ResponsiveNav @search="setSearchTerm" />
   <main :class="classes.main">
     <div class="container">
+      <h1 v-if="userMovieList.length === 0">
+        You don't have any movies in your list. Add some movies to your list.
+      </h1>
       <div :class="classes.movieCardsGrid">
         <MovieCard :movies="!searchTerm ? userMovieList : searchMovie(userMovieList)" />
       </div>
