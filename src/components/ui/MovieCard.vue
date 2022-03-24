@@ -27,6 +27,7 @@ const {
 
 <template>
   <div :class="classes.movieCard" v-for="movie in props.movies" :key="movie.id">
+    <div :class="classes.movieCardOverlay"></div>
     <img
       :src="`https://image.tmdb.org/t/p/w300${movie.poster_path}`"
       alt="movie poster"
