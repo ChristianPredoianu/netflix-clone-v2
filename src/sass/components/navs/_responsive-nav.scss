@@ -50,24 +50,6 @@
   }
 }
 
-.navLinksItem {
-  color: var(--clr-white);
-
-  &:not(:first-child) {
-    margin-top: 4rem;
-  }
-
-  @include respond(md) {
-    &:not(:first-child) {
-      margin-top: 0;
-    }
-  }
-}
-
-.active {
-  font-weight: 700;
-}
-
 .navRight {
   @include flex-config($justify: flex-end, $align: center);
   position: relative;

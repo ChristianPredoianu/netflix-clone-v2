@@ -6,6 +6,7 @@ import { onClickOutside } from "@vueuse/core";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import NetflixLogo from "@/components/ui/NetflixLogo.vue";
+import ResponsiveNavLinks from "@/components/navs/ResponsiveNavLinks.vue";
 
 const store = useStore(),
   router = useRouter(),
@@ -25,8 +26,12 @@ function toggleNavLinks() {
   isNavOpen.value = !isNavOpen.value;
 }
 
-function toggleSearch() {
-  isSearchOpen.value = !isSearchOpen.value;
+function openSearch() {
+  isSearchOpen.value = true;
+}
+
+function closeSearch() {
+  isSearchOpen.value = false;
   searchTerm.value = null;
   emit("search", searchTerm.value);
 }
@@ -55,9 +60,8 @@ function signOut() {
 }
 
 onClickOutside(clickOutsideRef, () => {
-  isSearchOpen.value = false;
   isProfilesDropdownOpen.value = false;
-  searchTerm.value = null;
+
   emit("search", searchTerm.value);
 });
 
@@ -88,30 +92,7 @@ onUnmounted(() => {
         </button>
         <Transition name="slide-down" mode="out-in">
           <ul :class="classes.navLinks" v-if="isNavOpen">
-            <router-link
-              :to="{ name: 'Browse' }"
-              :active-class="classes.active"
-              :class="classes.navLinksItem"
-              >Home</router-link
-            >
-            <router-link
-              :to="{ name: 'Movies' }"
-              :active-class="classes.active"
-              :class="classes.navLinksItem"
-              >Movies</router-link
-            >
-            <router-link
-              :to="{ name: 'Popular' }"
-              :active-class="classes.active"
-              :class="classes.navLinksItem"
-              >Popular</router-link
-            >
-            <router-link
-              :to="{ name: 'MyList' }"
-              :active-class="classes.active"
-              :class="classes.navLinksItem"
-              >My list</router-link
-            >
+            <ResponsiveNavLinks />
           </ul>
         </Transition>
       </div>
@@ -128,9 +109,16 @@ onUnmounted(() => {
             @keyup="emitSearch"
         /></Transition>
         <font-awesome-icon
+          v-if="!isSearchOpen"
           icon="search"
           :class="classes.navRightIconSearch"
-          @click="toggleSearch"
+          @click="openSearch"
+        />
+        <font-awesome-icon
+          v-if="isSearchOpen"
+          icon="times"
+          :class="classes.navRightIconSearch"
+          @click="closeSearch"
         />
         <font-awesome-icon
           :icon="currentProfile.icon"
