@@ -1,13 +1,13 @@
 <script setup>
-import LogoNav from '@/components/navs/LogoNav.vue';
-import SignInForm from '@/components/forms/SignInForm.vue';
+import LogoNav from "@/components/navs/LogoNav.vue";
+import SignInForm from "@/components/forms/SignInForm.vue";
 </script>
 
 <template>
+  <LogoNav />
   <div :class="classes.signIn">
     <div :class="classes.overlay"></div>
     <div class="container">
-      <LogoNav />
       <main :class="classes.main">
         <div :class="classes.signInForm">
           <SignInForm />
