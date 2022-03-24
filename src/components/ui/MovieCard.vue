@@ -55,11 +55,15 @@ const {
     v-if="isMovieModalOpen"
     :clickedMovie="clickedMovie"
   />
-  <Backdrop v-if="isBackdropOpen" @onCloseModals="closeMovieTrailerModal" />
-  <MovieTrailerOverlay
-    v-if="isBackdropOpen"
-    @onCloseMovieTrailerOverlay="closeMovieTrailerModal"
-  />
+  <teleport to="#backdrop-root">
+    <Backdrop v-if="isBackdropOpen" @onCloseModals="closeMovieTrailerModal" />
+  </teleport>
+  <teleport to="#overlay-root">
+    <MovieTrailerOverlay
+      v-if="isBackdropOpen"
+      @onCloseMovieTrailerOverlay="closeMovieTrailerModal"
+    />
+  </teleport>
 </template>
 
 <style lang="scss" module="classes">
