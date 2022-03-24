@@ -4,7 +4,6 @@
 
   @include respond(md) {
     max-width: 102.4rem;
-    padding: 0;
   }
 
   @include respond(lg) {
