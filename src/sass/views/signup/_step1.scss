@@ -13,14 +13,10 @@
 
 .icons {
   @include flex-config($justify: space-around);
-  width: 70%;
+  width: 100%;
 
-  @include respond(md) {
-    width: 60%;
-  }
-
-  @include respond(lg) {
-    width: 100%;
+  @include respond(sm) {
+    width: 80%;
   }
 }
 
