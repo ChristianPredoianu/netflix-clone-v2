@@ -6,15 +6,20 @@ const props = defineProps({
   clickedMovie: Object,
 });
 
-const emit = defineEmits(["onOpenMovieTrailerOverlay"]);
+const emit = defineEmits(["onOpenMovieTrailerOverlay", "onCloseModals"]);
 const store = useStore();
 
 const releaseYear = props.clickedMovie.release_date.slice(0, 4);
+//Additional info like spoken languages & genres that props.clickedMovie doe's not contain
 const clickedMovieDetails = computed(() => store.state.theMovieDB.movieDetails);
 
 function openTrailerOverlay() {
   emit("onOpenMovieTrailerOverlay");
   store.dispatch("FETCH_MOVIE_TRAILER", props.clickedMovie.id);
+}
+
+function closeModal() {
+  emit("onCloseModals");
 }
 
 onMounted(() => {
@@ -24,6 +29,7 @@ onMounted(() => {
 
 <template>
   <div :class="classes.modal">
+    <font-awesome-icon icon="times" :class="classes.close" @click="closeModal" />
     <div :class="classes.modalTop">
       <div :class="classes.modalTopOverlay"></div>
       <img
@@ -39,14 +45,18 @@ onMounted(() => {
       </div>
     </div>
 
-    <div :class="classes.modalInfo">
-      <div :class="classes.modalInfoLeft">
-        <h3 :class="classes.infoHeading">{{ releaseYear }}</h3>
-        <p :class="classes.movieInfo">{{ props.clickedMovie.overview }}</p>
+    <div :class="classes.movieInfo">
+      <div :class="classes.movieInfoLeft">
+        <div :class="classes.infoLists">
+          <h2 :class="classes.releaseYear">{{ releaseYear }}</h2>
+          <p :class="classes.overview">{{ props.clickedMovie.overview }}</p>
+          <h3 :class="classes.infoHeading">Runtime</h3>
+          <p :class="classes.listItem">{{ clickedMovieDetails.runtime }} minutes</p>
+        </div>
       </div>
-      <div :class="classes.modalInfoRight">
-        <div :class="classes.infoList">
-          <h2 :class="classes.infoHeading">Genres</h2>
+      <div :class="classes.movieInfoRight">
+        <div :class="classes.infoLists">
+          <h3 :class="classes.infoHeading">Genres</h3>
           <ul>
             <li
               v-for="genre in clickedMovieDetails.genres"
@@ -56,9 +66,7 @@ onMounted(() => {
               {{ genre.name }}
             </li>
           </ul>
-        </div>
-        <div :class="classes.infoList">
-          <h2 :class="classes.infoHeading">Languages</h2>
+          <h3 :class="classes.infoHeading">Spoken languages</h3>
           <ul>
             <li
               v-for="language in clickedMovieDetails.spoken_languages"
@@ -68,9 +76,11 @@ onMounted(() => {
               {{ language.name }}
             </li>
           </ul>
+          <h3 :class="classes.infoHeading">IMDB rating:</h3>
+          <p :class="classes.listItem">
+            {{ clickedMovieDetails.vote_average }}
+          </p>
         </div>
-        <h2 :class="classes.ratingHeading">Rating</h2>
-        <p :class="classes.rating">{{ clickedMovieDetails.vote_average }}</p>
       </div>
     </div>
   </div>
