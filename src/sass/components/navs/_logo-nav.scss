@@ -2,7 +2,7 @@
 
 .header {
   @include nav-container;
-  @include position($pos: absolute, $left: 50%);
+  @include position($pos: absolute, $top: 0, $left: 50%);
   transform: translate(-50%, 0);
   z-index: 10;
 }
