@@ -33,6 +33,7 @@ function closeMovieTrailerOverlay() {
       v-if="!isMovieTrailerOverlayOpen"
       :clickedMovie="clickedMovie"
       @onOpenMovieTrailerOverlay="openMovieTrailerOverlay"
+      @onCloseModals="closeModals"
     />
     <ModalTrailerOverlay v-else @onCloseMovieTrailerOverlay="closeMovieTrailerOverlay" />
   </teleport>
