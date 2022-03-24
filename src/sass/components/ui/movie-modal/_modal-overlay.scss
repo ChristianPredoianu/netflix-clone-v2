@@ -2,13 +2,13 @@
 
 .modal {
   @include position($pos: fixed, $top: 50%, $left: 50%);
-  width: 100%;
+  width: 95%;
   height: 100vh;
   transform: translate(-50%, -50%);
   background-color: var(--main-bg-color);
   color: var(--clr-white);
   z-index: 1001;
-  overflow-y: auto;
+  overflow-y: scroll;
 
   @include respond(md) {
     width: 70%;
@@ -18,6 +18,13 @@
   @include respond(lg) {
     width: 50%;
   }
+}
+
+.close {
+  @include position($pos: absolute, $top: 2rem, $right: 2rem);
+  font-size: 2rem;
+  z-index: 2000;
+  cursor: pointer;
 }
 
 .modalTopOverlay {
@@ -64,41 +71,39 @@
   background-size: cover;
 }
 
-.modalInfo {
-  @include flex-config($justify: space-between);
-  font-size: clamp(1.8rem, 2vw + 0.1rem, 1.8rem);
+.movieInfo {
+  display: flex;
   padding: 5rem 5%;
 }
 
-.infoHeading {
-  font-size: clamp(1.6rem, 2vw + 0.1rem, 1.8rem);
+.movieInfoLeft {
+  flex: 1;
 }
 
-.modalInfoLeft {
-  width: 50%;
+.movieInfoRight {
+  flex: 1;
+  text-align: right;
 }
 
-.movieInfo {
+.infoLists {
+  @include flex-config($direction: column);
+}
+
+.releaseYear {
+  font-size: 2rem;
+}
+
+.overview {
+  font-size: 1.5rem;
   margin-top: 1rem;
-  color: var(--clr-gray-medium);
 }
 
-.modalInfoRight {
-  @include flex-config($direction: column, $align: start);
-}
-
-.infoList {
-  &:not(:first-of-type) {
-    margin-top: 1rem;
-  }
+.infoHeading {
+  font-size: 1.6rem;
+  margin-top: 1rem;
 }
 
 .listItem {
-  color: var(--clr-gray-medium);
-  margin-top: 0.5rem;
-}
-
-.ratingHeading {
-  font-size: clamp(1.6rem, 2vw + 0.1rem, 1.8rem);
-  margin: 1rem 0;
+  font-size: 1.3rem;
+  margin-top: 0.3rem;
 }
