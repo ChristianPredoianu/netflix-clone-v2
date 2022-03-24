@@ -1,6 +1,7 @@
 @use '@/sass/abstracts' as *;
 
 .signIn {
+  @include flex-config($align: center, $justify: center);
   position: relative;
   min-height: 100vh;
   background-image: url('@/assets/images/netflix-background2.jpg');
@@ -8,10 +9,6 @@
   background-position: center;
   background-repeat: no-repeat;
   padding-bottom: 5rem;
-
-  @include respond(md) {
-    padding-bottom: 0;
-  }
 }
 
 .overlay {
@@ -24,13 +21,13 @@
 .main {
   @include flex-config($justify: center, $align: center);
   width: 100%;
-  min-height: calc(100vh - 8rem);
 }
 
 .signInForm {
   position: relative;
   width: 100%;
   background-color: rgb(0, 0, 0, 0.6);
+  margin: 10rem;
   padding: 5rem;
   z-index: 5;
 
