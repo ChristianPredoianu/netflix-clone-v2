@@ -34,19 +34,29 @@ const {
     />
 
     <div :class="classes.movieCardIcons">
-      <font-awesome-icon icon="play" @click="openMovieTrailerModal(movie)" />
+      <font-awesome-icon
+        icon="play"
+        :class="classes.cardIcon"
+        @click="openMovieTrailerModal(movie)"
+      />
       <font-awesome-icon
         icon="plus-square"
-        @click="addToProfileList(movie)"
+        :class="classes.cardIcon"
         v-if="!isMovieInUserList(movie)"
+        @click="addToProfileList(movie)"
       />
 
       <font-awesome-icon
         icon="times-circle"
+        :class="classes.cardIcon"
         v-else
         @click="deleteFromProfileList(movie)"
       />
-      <font-awesome-icon icon="info-circle" @click="openModal(movie)" />
+      <font-awesome-icon
+        icon="info-circle"
+        :class="classes.cardIcon"
+        @click="openModal(movie)"
+      />
     </div>
   </div>
 
