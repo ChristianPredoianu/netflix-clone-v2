@@ -6,8 +6,8 @@ import UserProfiles from "@/components/profiles/UserProfiles.vue";
 import ContinueBtn from "@/components/buttons/ContinueBtn.vue";
 import ProfilesBtn from "@/components/buttons/ProfilesBtn.vue";
 
-const store = useStore(),
-  emits = defineEmits(["change-component"]);
+const emits = defineEmits(["change-component"]),
+  store = useStore();
 
 const profileName = ref(""),
   nameInputErrorMsg = ref(null),
