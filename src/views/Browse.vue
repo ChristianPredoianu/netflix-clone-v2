@@ -11,13 +11,12 @@ import Footer from "@/components/footer/Footer.vue";
 
 const store = useStore();
 
-const movieData = computed(() => store.state.theMovieDB.movieData),
-  isLoadingData = computed(() => store.state.theMovieDB.isLoadingData);
-
-const { searchTerm, setSearchTerm, searchMovie } = useSearchMovie();
-
 const isVideoMuted = ref(true),
   video = ref(null);
+
+const movieData = computed(() => store.state.theMovieDB.movieData);
+
+const { searchTerm, setSearchTerm, searchMovie } = useSearchMovie();
 
 defineExpose({ video });
 
