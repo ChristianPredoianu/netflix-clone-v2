@@ -88,18 +88,28 @@ export default {
           <h4 :class="classes.movieHeading">{{ movie.original_title }}</h4>
           <h5>Release: {{ movie.release_date }}</h5>
           <div :class="classes.overlayIcons">
-            <font-awesome-icon icon="play" @click="openMovieTrailerModal(movie)" />
+            <font-awesome-icon
+              icon="play"
+              :class="classes.swiperIcon"
+              @click="openMovieTrailerModal(movie)"
+            />
             <font-awesome-icon
               icon="plus-square"
-              @click="addToProfileList(movie)"
+              :class="classes.swiperIcon"
               v-if="!isMovieInUserList(movie)"
+              @click="addToProfileList(movie)"
             />
             <font-awesome-icon
               icon="times-circle"
+              :class="classes.swiperIcon"
               v-else
               @click="deleteFromProfileList(movie)"
             />
-            <font-awesome-icon icon="info-circle" @click="openModal(movie)" />
+            <font-awesome-icon
+              icon="info-circle"
+              :class="classes.swiperIcon"
+              @click="openModal(movie)"
+            />
           </div>
         </div>
       </swiper-slide>
