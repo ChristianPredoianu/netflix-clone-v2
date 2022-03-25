@@ -1,17 +1,16 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import ContinueBtn from "@/components//buttons/ContinueBtn.vue";
-
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
+import ContinueBtn from "@/components//buttons/ContinueBtn.vue";
 
 const router = useRouter();
 
-const userEmail = ref(null);
-const userPassword = ref(null);
-const error = ref(null);
-const signInSuccessMsg = ref(null);
+const userEmail = ref(null),
+  userPassword = ref(null),
+  error = ref(null),
+  signInSuccessMsg = ref(null);
 
 function signIn() {
   firebase
