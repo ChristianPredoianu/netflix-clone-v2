@@ -9,9 +9,9 @@ import Footer from "@/components/footer/Footer.vue";
 
 const store = useStore();
 
-const { searchTerm, setSearchTerm, searchMovie } = useSearchMovie();
-
 const userMovieList = computed(() => store.state.userMovieList.userMovieList);
+
+const { searchTerm, setSearchTerm, searchMovie } = useSearchMovie();
 </script>
 
 <template>
