@@ -1,7 +1,3 @@
-<script setup>
-import router from '../../router';
-</script>
-
 <template>
   <div>
     <input type="submit" value="Get started" :class="classes.getStartedBtn" />
