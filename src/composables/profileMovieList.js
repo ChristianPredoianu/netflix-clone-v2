@@ -4,17 +4,13 @@ import firebase from 'firebase/compat/app';
 
 export function useProfileMovieList() {
   const store = useStore();
-  const currentUser = computed(() => store.state.userData.currentUser);
-  const clickedProfile = computed(
-    () => store.state.userProfiles.clickedProfile
-  );
 
-  const userMoviesList = computed(
-    () => store.state.userMovieList.userMovieList
-  );
+  const currentUser = computed(() => store.state.userData.currentUser),
+    clickedProfile = computed(() => store.state.userProfiles.clickedProfile),
+    userMoviesList = computed(() => store.state.userMovieList.userMovieList);
 
-  const databaseRef = `users/${currentUser.value.id}`;
-  const child = `profiles/${clickedProfile.value.id}/moviesList`;
+  const databaseRef = `users/${currentUser.value.id}`,
+    child = `profiles/${clickedProfile.value.id}/moviesList`;
 
   function addToProfileList(movie) {
     firebase
