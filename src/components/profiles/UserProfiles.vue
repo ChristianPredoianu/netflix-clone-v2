@@ -1,12 +1,14 @@
 <script setup>
 import { computed, onMounted } from "vue";
-import router from "@/router";
+import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import ProfilesBtn from "@/components/buttons/ProfilesBtn.vue";
 import AddProfiles from "./AddProfiles.vue";
 import ManageProfiles from "./ManageProfiles.vue";
 
 const store = useStore();
+const router = useRouter();
+
 const emits = defineEmits(["change-component"]);
 
 const userProfiles = computed(() => store.state.userProfiles.userProfiles);

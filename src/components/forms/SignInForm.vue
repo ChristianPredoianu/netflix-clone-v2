@@ -1,10 +1,12 @@
 <script setup>
 import { ref } from "vue";
-import router from "@/router";
+import { useRouter } from "vue-router";
 import ContinueBtn from "@/components//buttons/ContinueBtn.vue";
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
+
+const router = useRouter();
 
 const userEmail = ref(null);
 const userPassword = ref(null);
