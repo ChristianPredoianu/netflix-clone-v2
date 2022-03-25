@@ -3,8 +3,8 @@ import { computed } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 
-const router = useRouter();
-const store = useStore();
+const router = useRouter(),
+  store = useStore();
 
 const currentUser = computed(() => store.state.userData.currentUser);
 
