@@ -15,7 +15,6 @@ const userProfiles = computed(() => store.state.userProfiles.userProfiles);
 function goToBrowseWithSelectedProfile(selectedProfile) {
   store.dispatch("SET_CLICKED_PROFILE", selectedProfile);
   router.push({ name: "Browse" });
-  console.log("clicked");
 
   function componentChange(comp) {
     emits("change-component", comp);
