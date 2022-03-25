@@ -1,11 +1,12 @@
 <script setup>
 import { ref } from "vue";
 import { useStore } from "vuex";
-import router from "@/router";
+import { useRouter } from "vue-router";
 
 import GetStartedBtn from "@/components/buttons/GetStartedBtn.vue";
 
 const store = useStore();
+const router = useRouter();
 const email = ref("");
 
 function goToSignupHandler() {
