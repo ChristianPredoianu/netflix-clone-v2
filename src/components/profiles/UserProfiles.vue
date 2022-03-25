@@ -6,23 +6,22 @@ import ProfilesBtn from "@/components/buttons/ProfilesBtn.vue";
 import AddProfiles from "./AddProfiles.vue";
 import ManageProfiles from "./ManageProfiles.vue";
 
-const store = useStore();
-const router = useRouter();
-
-const emits = defineEmits(["change-component"]);
+const emits = defineEmits(["change-component"]),
+  router = useRouter(),
+  store = useStore();
 
 const userProfiles = computed(() => store.state.userProfiles.userProfiles);
-
-function componentChange(comp) {
-  emits("change-component", comp);
-}
-
-onMounted(() => store.dispatch("SET_USER_PROFILES_FROM_DB"));
 
 function goToBrowseWithSelectedProfile(selectedProfile) {
   store.dispatch("SET_CLICKED_PROFILE", selectedProfile);
   router.push({ name: "Browse" });
   console.log("clicked");
+
+  function componentChange(comp) {
+    emits("change-component", comp);
+  }
+
+  onMounted(() => store.dispatch("SET_USER_PROFILES_FROM_DB"));
 }
 </script>
 
