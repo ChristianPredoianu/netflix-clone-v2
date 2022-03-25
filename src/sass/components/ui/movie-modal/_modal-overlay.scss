@@ -56,6 +56,7 @@
   padding: 0.8rem 1.5rem;
   border: none;
   border-radius: 0.5rem;
+  cursor: pointer;
 
   @include respond(md) {
     padding: 1.5rem 3rem;
