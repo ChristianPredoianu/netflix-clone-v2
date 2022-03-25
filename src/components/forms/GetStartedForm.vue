@@ -24,8 +24,6 @@ function goToSignupHandler() {
         v-model="email"
       />
       <GetStartedBtn />
-
-      {{ email }}
     </form>
   </div>
 </template>
