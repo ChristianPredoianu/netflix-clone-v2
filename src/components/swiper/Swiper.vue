@@ -1,15 +1,14 @@
 <script>
-import { onMounted } from "vue";
 import { useModal } from "@/composables/modal";
 import { useMovieTrailer } from "@/composables/movieTrailer";
 import { useProfileMovieList } from "@/composables/profileMovieList";
-import MovieModal from "@/components/ui/movie-modal/MovieModal.vue";
-import MovieTrailerOverlay from "@/components/ui/movie-modal/ModalTrailerOverlay.vue";
-import Backdrop from "@/components/ui/movie-modal/Backdrop.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
+import MovieModal from "@/components/ui/movie-modal/MovieModal.vue";
+import MovieTrailerOverlay from "@/components/ui/movie-modal/ModalTrailerOverlay.vue";
+import Backdrop from "@/components/ui/movie-modal/Backdrop.vue";
 
 export default {
   components: {
