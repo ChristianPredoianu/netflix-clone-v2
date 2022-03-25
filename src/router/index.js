@@ -17,15 +17,6 @@ const routes = [
   },
 
   {
-    path: '/browse',
-    name: 'Browse',
-    component: () => import('@/views/Browse.vue'),
-    meta: {
-      requiresAuth: true,
-    },
-  },
-
-  {
     path: '/signup/step1',
     name: 'SignupStep1',
     component: () => import('@/views/signup/Step1.vue'),
@@ -41,6 +32,15 @@ const routes = [
     path: '/profiles',
     name: 'Profiles',
     component: () => import('@/views/Profiles.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+
+  {
+    path: '/browse',
+    name: 'Browse',
+    component: () => import('@/views/Browse.vue'),
     meta: {
       requiresAuth: true,
     },
