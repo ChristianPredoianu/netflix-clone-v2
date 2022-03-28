@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useStore } from "vuex";
-import firebase from "firebase/compat/app";
+import { getDatabase, ref as storageRef, set, push, onValue } from "firebase/database";
 import UserProfiles from "@/components/profiles/UserProfiles.vue";
 import ContinueBtn from "@/components/buttons/ContinueBtn.vue";
 import ProfilesBtn from "@/components/buttons/ProfilesBtn.vue";
@@ -27,18 +27,17 @@ function addProfile() {
   } else if (userProfiles.value.length >= 5) {
     maxProfilesMsg.value = "You can only have a maximum of 5 Profiles.";
   } else {
-    firebase
-      .database()
-      .ref(`users/${currentUserId.value}/profiles`)
-      .once("value", (snapshot) => {
-        if (snapshot.numChildren() < 5) {
-          firebase
-            .database()
-            .ref("users/" + currentUserId.value)
-            .child("profiles")
-            .push(profile);
-        }
-      });
+    const db = getDatabase();
+    const profilesRef = storageRef(db, `users/${currentUserId.value}/profiles`);
+    const newProfilesRef = push(profilesRef);
+    onValue(profilesRef, (snapshot) => {
+      if (
+        Object.keys(snapshot.val()).length < 5 ||
+        Object.keys(snapshot.val()).length === 0
+      ) {
+        set(newProfilesRef, profile);
+      }
+    });
 
     emits("change-component", UserProfiles);
   }

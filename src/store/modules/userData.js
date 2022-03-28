@@ -1,6 +1,4 @@
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-
+import { getAuth } from 'firebase/auth';
 export default {
   state: {
     signUpUserEmail: null,
@@ -16,7 +14,7 @@ export default {
     },
 
     SET_CURRENT_USER(state) {
-      const currUser = firebase.auth().currentUser;
+      const currUser = getAuth().currentUser;
       state.currentUser.email = currUser.email;
       state.currentUser.id = currUser.uid;
     },

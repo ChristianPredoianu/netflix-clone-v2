@@ -1,4 +1,4 @@
-import firebase from 'firebase/compat/app';
+import { getDatabase, ref, onValue } from 'firebase/database';
 
 export default {
   state: {
@@ -19,23 +19,24 @@ export default {
   actions: {
     SET_USER_PROFILES_FROM_DB({ commit, rootState }) {
       const profilesArray = [];
-      firebase
-        .database()
-        .ref(`users/${rootState.userData.currentUser.id}`)
-        .child('profiles')
-        .on('value', (snapshot) => {
-          snapshot.forEach((childSnapshot) => {
-            const childData = childSnapshot.val();
-            const id = childSnapshot.key;
-            childData.id = id;
+      const db = getDatabase();
 
-            const existingProfileIndex = profilesArray.findIndex(
-              (profile) => profile.id === id
-            );
-            if (existingProfileIndex === -1) profilesArray.push(childData);
-          });
-          commit('SET_USER_PROFILES_FROM_DB', profilesArray);
+      const profilesRef = ref(
+        db,
+        `users/${rootState.userData.currentUser.id}/profiles`
+      );
+      onValue(profilesRef, (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+          const childData = childSnapshot.val();
+          const id = childSnapshot.key;
+
+          const existingProfileIndex = profilesArray.findIndex(
+            (profile) => profile.id === id
+          );
+          if (existingProfileIndex === -1) profilesArray.push(childData);
         });
+        commit('SET_USER_PROFILES_FROM_DB', profilesArray);
+      });
     },
 
     SET_CLICKED_PROFILE({ commit }, payload) {
