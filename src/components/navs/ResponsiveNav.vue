@@ -3,8 +3,7 @@ import { ref, computed, onMounted, onUnmounted } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { onClickOutside } from "@vueuse/core";
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
+import { getAuth, signOut } from "firebase/auth";
 import NetflixLogo from "@/components/ui/NetflixLogo.vue";
 import ResponsiveNavLinks from "@/components/navs/ResponsiveNavLinks.vue";
 
@@ -49,14 +48,12 @@ function goToBrowseWithSelectedProfile(selectedProfile) {
   router.push({ name: "LoadingProfile" });
 }
 
-function signOut() {
-  firebase
-    .auth()
-    .signOut()
-    .then(() => {
-      router.push({ name: "SignIn" });
-      store.dispatch("RESET_CURRENT_USER");
-    });
+function signOutHandler() {
+  const auth = getAuth();
+  signOut(auth).then(() => {
+    router.push({ name: "SignIn" });
+    store.dispatch("RESET_CURRENT_USER");
+  });
 }
 
 onClickOutside(clickOutsideRef, () => {
@@ -140,7 +137,7 @@ onUnmounted(() => {
               />
               <p :class="classes.dropdownProfileName">{{ profile.name }}</p>
             </div>
-            <p :class="classes.signOut" @click="signOut">Sign Out</p>
+            <p :class="classes.signOut" @click="signOutHandler">Sign Out</p>
           </div>
         </Transition>
       </div>
