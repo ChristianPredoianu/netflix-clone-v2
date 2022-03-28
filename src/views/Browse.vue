@@ -20,11 +20,6 @@ const { searchTerm, setSearchTerm, searchMovie } = useSearchMovie();
 
 defineExpose({ video });
 
-onMounted(() => {
-  store.dispatch("FETCH_MOVIES");
-  store.dispatch("SET_USER_MOVIE_LIST_FROM_DB");
-});
-
 function toggleVideoSound(isMuted, isSoundOn) {
   isVideoMuted.value = isMuted;
   video.value.muted = isSoundOn;
@@ -33,6 +28,11 @@ function toggleVideoSound(isMuted, isSoundOn) {
 function replayVideo() {
   if (video.value.ended) video.value.play();
 }
+
+onMounted(() => {
+  store.dispatch("FETCH_MOVIES");
+  store.dispatch("SET_USER_MOVIE_LIST_FROM_DB");
+});
 </script>
 
 <template>
