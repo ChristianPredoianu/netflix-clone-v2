@@ -1,8 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import ContinueBtn from "@/components//buttons/ContinueBtn.vue";
 
 const router = useRouter();
@@ -13,9 +12,8 @@ const userEmail = ref(null),
   signInSuccessMsg = ref(null);
 
 function signIn() {
-  firebase
-    .auth()
-    .signInWithEmailAndPassword(userEmail.value, userPassword.value)
+  const auth = getAuth();
+  signInWithEmailAndPassword(auth, userEmail.value, userPassword.value)
     .then(() => {
       error.value = null;
       signInSuccessMsg.value = "Logging in...";
