@@ -4,18 +4,17 @@ import { useStore } from "vuex";
 import LogoNav from "@/components/navs/LogoNav.vue";
 import UserProfiles from "@/components/profiles/UserProfiles.vue";
 
-let currentComponent = shallowRef(UserProfiles);
+onMounted(() => {
+  store.dispatch("SET_CURRENT_USER");
+  store.dispatch("SET_USER_PROFILES_FROM_DB");
+});
 
+let currentComponent = shallowRef(UserProfiles);
 const store = useStore();
 
 function changeComponent(comp) {
   currentComponent.value = comp;
 }
-
-onMounted(() => {
-  store.dispatch("SET_CURRENT_USER");
-  store.dispatch("SET_USER_PROFILES_FROM_DB");
-});
 </script>
 
 <template>
@@ -38,7 +37,6 @@ onMounted(() => {
 .fade-leave-active {
   transition: opacity 0.5s ease;
 }
-
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
