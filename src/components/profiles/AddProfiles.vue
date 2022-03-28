@@ -17,30 +17,29 @@ const currentUserId = computed(() => store.state.userData.currentUser.id),
   userProfiles = computed(() => store.state.userProfiles.userProfiles);
 
 function addProfile() {
-  const profile = {
-    name: profileName.value,
-    icon: "smile",
-  };
-
   if (!profileName.value) {
     nameInputErrorMsg.value = "Please enter a user name";
   } else if (userProfiles.value.length >= 5) {
     maxProfilesMsg.value = "You can only have a maximum of 5 Profiles.";
   } else {
-    const db = getDatabase();
-    const profilesRef = storageRef(db, `users/${currentUserId.value}/profiles`);
-    const newProfilesRef = push(profilesRef);
-    onValue(profilesRef, (snapshot) => {
-      if (
-        Object.keys(snapshot.val()).length < 5 ||
-        Object.keys(snapshot.val()).length === 0
-      ) {
-        set(newProfilesRef, profile);
-      }
-    });
-
+    addProfileToDb();
     emits("change-component", UserProfiles);
   }
+}
+
+function addProfileToDb() {
+  const profile = {
+    name: profileName.value,
+    icon: "smile",
+  };
+
+  const db = getDatabase();
+  const profilesRef = storageRef(db, `users/${currentUserId.value}/profiles`);
+  const newProfilesRef = push(profilesRef);
+
+  onValue(profilesRef, (snapshot) => {
+    if (snapshot.size === 0 || snapshot.size <= 5) set(newProfilesRef, profile);
+  });
 }
 
 function componentChange() {
