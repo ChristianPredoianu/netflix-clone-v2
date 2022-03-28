@@ -13,6 +13,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/vue-fontawesome": "^3.0.0-5",
     "@vueuse/core": "^7.7.1",
+    "esbuild": "^0.13.4",
     "firebase": "^9.6.9",
     "swiper": "^8.0.7",
     "vue": "^3.2.31",
