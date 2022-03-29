@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useStore } from "vuex";
-import firebase from "firebase/compat/app";
+import { update, ref as storageRef, getDatabase } from "firebase/database";
 import UserProfiles from "@/components/profiles/UserProfiles.vue";
 import ManageProfiles from "@/components/profiles/ManageProfiles.vue";
 import ContinueBtn from "@/components/buttons/ContinueBtn.vue";
@@ -23,14 +23,14 @@ function newUserIcon(icon) {
 }
 
 function updateProfile() {
-  firebase
-    .database()
-    .ref(`users/${currentUser.value.id}`)
-    .child(`profiles/${clickedProfile.value.id}`)
-    .update({
-      name: newProfileName.value,
-      icon: newProfileIcon.value,
-    });
+  const newProfile = { name: newProfileName.value, icon: newProfileIcon.value };
+  const db = getDatabase();
+  const updateRef = storageRef(
+    db,
+    `users/${currentUser.value.id}/profiles/${clickedProfile.value.id}`
+  );
+
+  update(updateRef, newProfile);
 
   componentChange(UserProfiles);
 }
