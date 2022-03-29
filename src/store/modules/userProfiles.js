@@ -29,6 +29,7 @@ export default {
         snapshot.forEach((childSnapshot) => {
           const childData = childSnapshot.val();
           const id = childSnapshot.key;
+          childData.id = id;
 
           const existingProfileIndex = profilesArray.findIndex(
             (profile) => profile.id === id
