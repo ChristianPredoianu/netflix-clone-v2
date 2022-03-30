@@ -25,7 +25,6 @@ const { searchTerm, setSearchTerm, searchMovie } = useSearchMovie();
         <MovieCard :movies="!searchTerm ? userMovieList : searchMovie(userMovieList)" />
       </div>
     </div>
-    <!--Need this div to place the footer on bottom of page if too little content -->
   </main>
   <NetflixBorder />
   <Footer />
