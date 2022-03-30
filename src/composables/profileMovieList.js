@@ -25,7 +25,7 @@ export function useProfileMovieList() {
       `users/${currentUser.value.id}/profiles/${clickedProfile.value.id}/moviesList`
     );
 
-  async function addToProfileList(movie) {
+  function addToProfileList(movie) {
     const queryMovie = query(dbRef, orderByChild('id'), equalTo(movie.id));
     const newMoviesRef = push(dbRef);
 
