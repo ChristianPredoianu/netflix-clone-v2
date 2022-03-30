@@ -33,9 +33,8 @@ export function useProfileMovieList() {
       if (snapshot.exists() === false) set(newMoviesRef, movie);
     });
 
-    store.dispatch('SET_USER_MOVIE_LIST_FROM_DB');
-
     unsubscribe();
+    store.dispatch('SET_USER_MOVIE_LIST_FROM_DB');
   }
 
   function deleteFromProfileList(movie) {
@@ -62,7 +61,6 @@ export function useProfileMovieList() {
       });
 
       unsubscribe();
-
       store.dispatch('SET_USER_MOVIE_LIST_FROM_DB');
     }
   }
