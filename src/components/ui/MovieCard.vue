@@ -41,8 +41,8 @@ const {
       />
       <font-awesome-icon
         icon="plus-square"
-        :class="classes.cardIcon"
         v-if="!isMovieInUserList(movie)"
+        :class="classes.cardIcon"
         @click="addToProfileList(movie)"
       />
 
