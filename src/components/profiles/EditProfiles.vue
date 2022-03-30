@@ -18,30 +18,25 @@ const icons = ["smile", "flushed", "grin-tongue-wink", "grin-tears"];
 const newProfileName = ref(clickedProfile.value.name),
   newProfileIcon = ref(clickedProfile.value.icon);
 
+const db = getDatabase(),
+  dbRef = storageRef(
+    db,
+    `users/${currentUser.value.id}/profiles/${clickedProfile.value.id}`
+  );
+
 function newUserIcon(icon) {
   newProfileIcon.value = icon;
 }
 
 function updateProfile() {
   const newProfile = { name: newProfileName.value, icon: newProfileIcon.value };
-  const db = getDatabase();
-  const updateRef = storageRef(
-    db,
-    `users/${currentUser.value.id}/profiles/${clickedProfile.value.id}`
-  );
-  update(updateRef, newProfile);
 
+  update(dbRef, newProfile);
   componentChange(UserProfiles);
 }
 
 function deleteProfile() {
-  const db = getDatabase();
-  const deleteRef = storageRef(
-    db,
-    `users/${currentUser.value.id}/profiles/${clickedProfile.value.id}`
-  );
-  remove(deleteRef);
-
+  remove(dbRef);
   componentChange(UserProfiles);
 }
 
