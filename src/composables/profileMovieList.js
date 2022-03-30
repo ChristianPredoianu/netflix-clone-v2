@@ -1,6 +1,16 @@
 import { computed } from 'vue';
 import { useStore } from 'vuex';
-import firebase from 'firebase/compat/app';
+import {
+  getDatabase,
+  ref as storageRef,
+  set,
+  remove,
+  query,
+  push,
+  orderByChild,
+  equalTo,
+  onValue,
+} from 'firebase/database';
 
 export function useProfileMovieList() {
   const store = useStore();
@@ -9,35 +19,52 @@ export function useProfileMovieList() {
     clickedProfile = computed(() => store.state.userProfiles.clickedProfile),
     userMoviesList = computed(() => store.state.userMovieList.userMovieList);
 
-  const databaseRef = `users/${currentUser.value.id}`,
-    child = `profiles/${clickedProfile.value.id}/moviesList`;
+  const db = getDatabase(),
+    dbRef = storageRef(
+      db,
+      `users/${currentUser.value.id}/profiles/${clickedProfile.value.id}/moviesList`
+    );
 
-  function addToProfileList(movie) {
-    firebase
-      .database()
-      .ref(databaseRef)
-      .child(child)
-      .orderByChild('id')
-      .equalTo(movie.id)
-      .once('value', (snapshot) => {
-        if (!snapshot.exists()) {
-          firebase.database().ref(databaseRef).child(child).push(movie);
-        }
-      });
+  async function addToProfileList(movie) {
+    const queryMovie = query(dbRef, orderByChild('id'), equalTo(movie.id));
+    const newMoviesRef = push(dbRef);
+
+    const unsubscribe = onValue(queryMovie, (snapshot) => {
+      if (snapshot.exists() === false) set(newMoviesRef, movie);
+    });
+
     store.dispatch('SET_USER_MOVIE_LIST_FROM_DB');
+
+    unsubscribe();
   }
 
   function deleteFromProfileList(movie) {
-    firebase
-      .database()
-      .ref(databaseRef)
-      .child(child)
-      .orderByChild('id')
-      .equalTo(movie.id)
-      .once('child_added', (snapshot) => {
-        snapshot.ref.remove();
+    const movieToDeleteFromList = userMoviesList.value.find(
+      (mov) => mov.id === movie.id
+    );
+
+    if (movieToDeleteFromList !== undefined) {
+      const movieSnapshot = query(
+        dbRef,
+        orderByChild('id'),
+        equalTo(movieToDeleteFromList.id)
+      );
+
+      const unsubscribe = onValue(movieSnapshot, (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+          remove(
+            storageRef(
+              db,
+              `users/${currentUser.value.id}/profiles/${clickedProfile.value.id}/moviesList/${childSnapshot.key}`
+            )
+          );
+        });
       });
-    store.dispatch('SET_USER_MOVIE_LIST_FROM_DB');
+
+      unsubscribe();
+
+      store.dispatch('SET_USER_MOVIE_LIST_FROM_DB');
+    }
   }
 
   function isMovieInUserList(movie) {
