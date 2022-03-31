@@ -17,7 +17,7 @@ import Footer from "@/components/footer/Footer.vue";
   </section>
   <HomeSection>
     <HomeSectionHeadings
-      heading="Watch on your tv"
+      heading="Watch on your tvd"
       subHeading=" Watch on smart-tv:s, Playstation, Xbox, Chromecast, Apple TV,
               Blu-ray-players and many more."
     />
