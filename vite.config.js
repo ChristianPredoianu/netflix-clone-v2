@@ -4,9 +4,9 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  /*   define: {
+  define: {
     'process.env': {},
-  }, */
+  },
 
   plugins: [vue()],
 
