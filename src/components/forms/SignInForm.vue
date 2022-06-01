@@ -6,10 +6,10 @@ import ContinueBtn from '@/components//buttons/ContinueBtn.vue';
 
 const router = useRouter();
 
-const userEmail = ref(null),
-  userPassword = ref(null),
-  error = ref(null),
-  signInSuccessMsg = ref(null);
+const userEmail = ref(null);
+const userPassword = ref(null);
+const error = ref(null);
+const signInSuccessMsg = ref(null);
 
 function signIn() {
   const auth = getAuth();
@@ -33,8 +33,8 @@ function signIn() {
 
 <template>
   <div>
+    <h1 :class="classes.signInHeading">Sign In</h1>
     <form :class="classes.signInForm" @submit.prevent="signIn">
-      <h1 :class="classes.signInHeading">Sign In</h1>
       <label for="email" :class="classes.label">Email:</label>
       <input
         type="email"
