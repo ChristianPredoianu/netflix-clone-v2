@@ -1,11 +1,11 @@
 <script setup>
-import HomeNav from "@/components/navs/HomeNav.vue";
-import HeroContent from "@/components/hero/HeroContent.vue";
-import GetStartedForm from "@/components/forms/GetStartedForm.vue";
-import HomeSection from "@/components/home-section/HomeSection.vue";
-import HomeSectionHeadings from "@/components/home-section/HomeSectionHeadings.vue";
-import BaseAccordion from "@/components/ui/accordion/BaseAccordion.vue";
-import Footer from "@/components/footer/Footer.vue";
+import HomeNav from '@/components/navs/HomeNav.vue';
+import HeroContent from '@/components/hero/HeroContent.vue';
+import GetStartedForm from '@/components/forms/GetStartedForm.vue';
+import HomeSection from '@/components/home-section/HomeSection.vue';
+import HomeSectionHeadings from '@/components/home-section/HomeSectionHeadings.vue';
+import BaseAccordion from '@/components/ui/accordion/BaseAccordion.vue';
+import Footer from '@/components/footer/Footer.vue';
 </script>
 
 <template>
@@ -35,7 +35,11 @@ import Footer from "@/components/footer/Footer.vue";
   </HomeSection>
   <HomeSection>
     <div :class="classes.imgContainer">
-      <img src="@/assets/images/phone.png" alt="tv" :class="classes.phoneOutside" />
+      <img
+        src="@/assets/images/phone.png"
+        alt="tv"
+        :class="classes.phoneOutside"
+      />
       <img
         src="@/assets/images/netflix-phone.jpg"
         playsinline
@@ -56,7 +60,11 @@ import Footer from "@/components/footer/Footer.vue";
       subHeading="Stream unlimited movies and series on mobile, tablet, pc and tv without paying extra."
     />
     <div :class="classes.imgContainer">
-      <img src="@/assets/images/imac.png" alt="tv" :class="classes.outsideImg" />
+      <img
+        src="@/assets/images/imac.png"
+        alt="tv"
+        :class="classes.outsideImg"
+      />
       <video
         src="@/assets/videos/video2.mp4"
         playsinline
@@ -84,7 +92,6 @@ import Footer from "@/components/footer/Footer.vue";
       </div>
     </div>
   </HomeSection>
-
   <Footer />
 </template>
 
