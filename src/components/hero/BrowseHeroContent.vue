@@ -1,23 +1,22 @@
 <script setup>
-import { computed } from "vue";
-import { useStore } from "vuex";
-import { useModal } from "@/composables/modal";
-import { useMovieTrailer } from "@/composables/movieTrailer";
-import MovieModal from "@/components/ui/movie-modal/MovieModal.vue";
-import MovieTrailerOverlay from "@/components/ui/movie-modal/ModalTrailerOverlay.vue";
-import Backdrop from "@/components/ui/movie-modal/Backdrop.vue";
+import { computed } from 'vue';
+import { useStore } from 'vuex';
+import { useModal } from '@/composables/modal';
+import { useMovieTrailer } from '@/composables/movieTrailer';
+import MovieModal from '@/components/ui/movie-modal/MovieModal.vue';
+import MovieTrailerOverlay from '@/components/ui/movie-modal/ModalTrailerOverlay.vue';
+import Backdrop from '@/components/ui/movie-modal/Backdrop.vue';
 
 const store = useStore();
 
 const { isMovieModalOpen, clickedMovie, openModal, closeModals } = useModal();
 
-const {
-  openMovieTrailerModal,
-  closeMovieTrailerModal,
-  isBackdropOpen,
-} = useMovieTrailer();
+const { openMovieTrailerModal, closeMovieTrailerModal, isBackdropOpen } =
+  useMovieTrailer();
 
-const showcaseMovie = computed(() => store.state.theMovieDB.movieData.horror[0]);
+const showcaseMovie = computed(
+  () => store.state.theMovieDB.movieData.horror[0]
+);
 </script>
 
 <template>
@@ -35,14 +34,16 @@ const showcaseMovie = computed(() => store.state.theMovieDB.movieData.horror[0])
         :class="[classes['btn'], classes['btn--play']]"
         @click="openMovieTrailerModal(showcaseMovie)"
       >
-        <span :class="classes.btnSpan"><font-awesome-icon icon="play" /></span>Play
+        <span :class="classes.btnSpan"><font-awesome-icon icon="play" /></span
+        >Play
       </button>
       <button
         :class="[classes['btn'], classes['btn--info']]"
         @click="openModal(showcaseMovie)"
       >
-        <span :class="classes.btnSpan"><font-awesome-icon icon="info-circle" /></span>More
-        Info
+        <span :class="classes.btnSpan"
+          ><font-awesome-icon icon="info-circle" /></span
+        >More Info
       </button>
     </div>
   </div>
