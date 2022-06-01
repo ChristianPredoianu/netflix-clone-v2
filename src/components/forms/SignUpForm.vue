@@ -1,12 +1,13 @@
 <script setup>
-import { ref } from "vue";
-import { useStore } from "vuex";
-import { useRouter } from "vue-router";
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-import ContinueBtn from "@/components/buttons/ContinueBtn.vue";
+import { ref } from 'vue';
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import 'firebase/compat/auth';
+import ContinueBtn from '@/components/buttons/ContinueBtn.vue';
 
 const store = useStore();
+
 const router = useRouter();
 
 const userEmail = ref(store.state.userData.signUpUserEmail),
@@ -15,14 +16,16 @@ const userEmail = ref(store.state.userData.signUpUserEmail),
   signedUpMsg = ref(null);
 
 function signUp() {
-  firebase
-    .auth()
-    .createUserWithEmailAndPassword(userEmail.value, userPassword.value)
+  const auth = getAuth();
+
+  createUserWithEmailAndPassword(auth, userEmail.value, userPassword.value)
     .then(() => {
       error.value = null;
-      signedUpMsg.value = "Account Created. You are being redirected to the sign in page";
+      signedUpMsg.value =
+        'Account Created. You are being redirected to the sign in page';
+
       setTimeout(() => {
-        router.push({ name: "SignIn" });
+        router.push({ name: 'SignIn' });
       }, 2000);
     })
     .catch((err) => {
