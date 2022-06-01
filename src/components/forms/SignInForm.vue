@@ -1,8 +1,8 @@
 <script setup>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import ContinueBtn from "@/components//buttons/ContinueBtn.vue";
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import ContinueBtn from '@/components//buttons/ContinueBtn.vue';
 
 const router = useRouter();
 
@@ -13,13 +13,14 @@ const userEmail = ref(null),
 
 function signIn() {
   const auth = getAuth();
+
   signInWithEmailAndPassword(auth, userEmail.value, userPassword.value)
     .then(() => {
       error.value = null;
-      signInSuccessMsg.value = "Logging in...";
+      signInSuccessMsg.value = 'Logging in...';
 
       setTimeout(() => {
-        router.push({ name: "Profiles" });
+        router.push({ name: 'Profiles' });
       }, 2000);
     })
     .catch((err) => {
