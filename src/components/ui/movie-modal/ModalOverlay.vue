@@ -1,12 +1,12 @@
 <script setup>
-import { onMounted, computed } from "vue";
-import { useStore } from "vuex";
+import { onMounted, computed } from 'vue';
+import { useStore } from 'vuex';
 
 const props = defineProps({
   clickedMovie: Object,
 });
 
-const emit = defineEmits(["onOpenMovieTrailerOverlay", "onCloseModals"]);
+const emit = defineEmits(['onOpenMovieTrailerOverlay', 'onCloseModals']);
 const store = useStore();
 
 const releaseYear = props.clickedMovie.release_date.slice(0, 4);
@@ -14,22 +14,26 @@ const releaseYear = props.clickedMovie.release_date.slice(0, 4);
 const clickedMovieDetails = computed(() => store.state.theMovieDB.movieDetails);
 
 function openTrailerOverlay() {
-  emit("onOpenMovieTrailerOverlay");
-  store.dispatch("FETCH_MOVIE_TRAILER", props.clickedMovie.id);
+  emit('onOpenMovieTrailerOverlay');
+  store.dispatch('FETCH_MOVIE_TRAILER', props.clickedMovie.id);
 }
 
 function closeModal() {
-  emit("onCloseModals");
+  emit('onCloseModals');
 }
 
 onMounted(() => {
-  store.dispatch("FETCH_MOVIE_DETAILS", props.clickedMovie.id);
+  store.dispatch('FETCH_MOVIE_DETAILS', props.clickedMovie.id);
 });
 </script>
 
 <template>
   <div :class="classes.modal">
-    <font-awesome-icon icon="times" :class="classes.close" @click="closeModal" />
+    <font-awesome-icon
+      icon="times"
+      :class="classes.close"
+      @click="closeModal"
+    />
     <div :class="classes.modalTop">
       <div :class="classes.modalTopOverlay"></div>
       <img
@@ -40,18 +44,25 @@ onMounted(() => {
       <div :class="classes.modalTopCta">
         <h1 :class="classes.movieHeading">{{ props.clickedMovie.title }}</h1>
         <button :class="classes.playBtn" @click="openTrailerOverlay">
-          <span><font-awesome-icon icon="play" :class="classes.playIcon" />Play</span>
+          <span
+            ><font-awesome-icon
+              icon="play"
+              :class="classes.playIcon"
+            />Play</span
+          >
         </button>
       </div>
     </div>
 
-    <div :class="classes.movieInfo">
+    <div v-if="clickedMovieDetails" :class="classes.movieInfo">
       <div :class="classes.movieInfoLeft">
         <div :class="classes.infoLists">
           <h2 :class="classes.releaseYear">{{ releaseYear }}</h2>
           <p :class="classes.overview">{{ props.clickedMovie.overview }}</p>
           <h3 :class="classes.infoHeading">Runtime</h3>
-          <p :class="classes.listItem">{{ clickedMovieDetails.runtime }} minutes</p>
+          <p :class="classes.listItem">
+            {{ clickedMovieDetails.runtime }} minutes
+          </p>
         </div>
       </div>
       <div :class="classes.movieInfoRight">
