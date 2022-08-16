@@ -11,8 +11,9 @@ import Footer from '@/components/footer/Footer.vue';
 
 const store = useStore();
 
-const isVideoMuted = ref(true),
-  video = ref(null);
+const isVideoMuted = ref(true);
+
+const video = ref(null);
 
 const movieData = computed(() => store.state.theMovieDB.movieData);
 
@@ -55,88 +56,16 @@ onMounted(() => {
     <div class="container">
       <section>
         <Swiper
-          :movieData="
-            !searchTerm ? movieData.popular : searchMovie(movieData.popular)
-          "
+          v-for="item in movieData"
+          :movieData="!searchTerm ? item.movies : searchMovie(item.movies)"
           :heading="
             !searchTerm
-              ? `Popular Movies`
-              : `${
-                  searchMovie(movieData.popular).length
-                } movies found in popular`
+              ? item.category
+              : `${searchMovie(item.movies).length} movies found in ${
+                  item.category
+                }`
           "
-        />
-        <Swiper
-          :movieData="
-            !searchTerm ? movieData.action : searchMovie(movieData.action)
-          "
-          :heading="
-            !searchTerm
-              ? `Action Movies`
-              : `${searchMovie(movieData.action).length} movies found in action`
-          "
-        />
-        <Swiper
-          :movieData="
-            !searchTerm ? movieData.comedy : searchMovie(movieData.comedy)
-          "
-          :heading="
-            !searchTerm
-              ? `Action Movies`
-              : `${searchMovie(movieData.comedy).length} movies found in comedy`
-          "
-        />
-        <Swiper
-          :movieData="
-            !searchTerm ? movieData.animation : searchMovie(movieData.animation)
-          "
-          :heading="
-            !searchTerm
-              ? `Animation Movies`
-              : `${
-                  searchMovie(movieData.animation).length
-                } movies found in animation`
-          "
-        />
-        <Swiper
-          :movieData="
-            !searchTerm ? movieData.crime : searchMovie(movieData.crime)
-          "
-          :heading="
-            !searchTerm
-              ? `Crime Movies`
-              : `${searchMovie(movieData.crime).length} movies found in crime`
-          "
-        />
-        <Swiper
-          :movieData="
-            !searchTerm ? movieData.drama : searchMovie(movieData.drama)
-          "
-          :heading="
-            !searchTerm
-              ? `Drama Movies`
-              : `${searchMovie(movieData.drama).length} movies found in drama`
-          "
-        />
-        <Swiper
-          :movieData="
-            !searchTerm ? movieData.horror : searchMovie(movieData.horror)
-          "
-          :heading="
-            !searchTerm
-              ? `Horror Movies`
-              : `${searchMovie(movieData.horror).length} movies found in horror`
-          "
-        />
-        <Swiper
-          :movieData="
-            !searchTerm ? movieData.sciFi : searchMovie(movieData.sciFi)
-          "
-          :heading="
-            !searchTerm
-              ? `SciFi Movies`
-              : `${searchMovie(movieData.sciFi).length} movies found in SciFi`
-          "
+          :key="item.category"
         />
       </section>
     </div>

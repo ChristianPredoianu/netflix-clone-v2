@@ -1,14 +1,14 @@
 <script>
-import { useModal } from "@/composables/modal";
-import { useMovieTrailer } from "@/composables/movieTrailer";
-import { useProfileMovieList } from "@/composables/profileMovieList";
-import { Swiper, SwiperSlide } from "swiper/vue";
-import { Navigation } from "swiper";
-import "swiper/css";
-import "swiper/css/navigation";
-import MovieModal from "@/components/ui/movie-modal/MovieModal.vue";
-import MovieTrailerOverlay from "@/components/ui/movie-modal/ModalTrailerOverlay.vue";
-import Backdrop from "@/components/ui/movie-modal/Backdrop.vue";
+import { useModal } from '@/composables/modal';
+import { useMovieTrailer } from '@/composables/movieTrailer';
+import { useProfileMovieList } from '@/composables/profileMovieList';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Navigation } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import MovieModal from '@/components/ui/movie-modal/MovieModal.vue';
+import MovieTrailerOverlay from '@/components/ui/movie-modal/ModalTrailerOverlay.vue';
+import Backdrop from '@/components/ui/movie-modal/Backdrop.vue';
 
 export default {
   components: {
@@ -25,19 +25,14 @@ export default {
   },
 
   setup(props) {
-    const { isMovieModalOpen, clickedMovie, openModal, closeModals } = useModal();
+    const { isMovieModalOpen, clickedMovie, openModal, closeModals } =
+      useModal();
 
-    const {
-      openMovieTrailerModal,
-      closeMovieTrailerModal,
-      isBackdropOpen,
-    } = useMovieTrailer();
+    const { openMovieTrailerModal, closeMovieTrailerModal, isBackdropOpen } =
+      useMovieTrailer();
 
-    const {
-      addToProfileList,
-      deleteFromProfileList,
-      isMovieInUserList,
-    } = useProfileMovieList();
+    const { addToProfileList, deleteFromProfileList, isMovieInUserList } =
+      useProfileMovieList();
 
     return {
       modules: [Navigation],
@@ -59,7 +54,9 @@ export default {
 
 <template>
   <div :class="classes.swiper">
-    <h3 :class="classes.swiperHeading">{{ props.heading }}</h3>
+    <div>
+      <h3 :class="classes.swiperHeading">{{ props.heading }}</h3>
+    </div>
     <swiper
       :navigation="true"
       :modules="modules"
