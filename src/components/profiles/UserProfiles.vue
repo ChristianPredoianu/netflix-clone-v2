@@ -1,26 +1,27 @@
 <script setup>
-import { computed, onMounted } from "vue";
-import { useRouter } from "vue-router";
-import { useStore } from "vuex";
-import ProfilesBtn from "@/components/buttons/ProfilesBtn.vue";
-import AddProfiles from "./AddProfiles.vue";
-import ManageProfiles from "./ManageProfiles.vue";
+import { computed, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
+import ProfilesBtn from '@/components/buttons/ProfilesBtn.vue';
+import AddProfiles from '@/components/profiles/AddProfiles.vue';
+import ManageProfiles from '@/components/profiles/ManageProfiles.vue';
+import ProfileCard from '@/components/cards/ProfileCard.vue';
 
-onMounted(() => store.dispatch("SET_USER_PROFILES_FROM_DB"));
+onMounted(() => store.dispatch('SET_USER_PROFILES_FROM_DB'));
 
-const emits = defineEmits(["change-component"]),
+const emits = defineEmits(['change-component']),
   router = useRouter(),
   store = useStore();
 
 const userProfiles = computed(() => store.state.userProfiles.userProfiles);
 
 function componentChange(comp) {
-  emits("change-component", comp);
+  emits('change-component', comp);
 }
 
 function goToBrowseWithSelectedProfile(selectedProfile) {
-  store.dispatch("SET_CLICKED_PROFILE", selectedProfile);
-  router.push({ name: "Browse" });
+  store.dispatch('SET_CLICKED_PROFILE', selectedProfile);
+  router.push({ name: 'Browse' });
 }
 </script>
 
@@ -28,15 +29,12 @@ function goToBrowseWithSelectedProfile(selectedProfile) {
   <div :class="classes.userProfilesWrapper">
     <h1 :class="classes.profilesHeading">Who is watching?</h1>
     <div :class="classes.profiles">
-      <div
-        :class="classes.profileCard"
+      <ProfileCard
         v-for="profile in userProfiles"
-        :key="userProfiles.id"
-        @click="goToBrowseWithSelectedProfile(profile)"
-      >
-        <font-awesome-icon :icon="profile.icon" :class="classes.profileIcon" />
-        <p :class="classes.profileName">{{ profile.name }}</p>
-      </div>
+        :key="profile.id"
+        :profile="profile"
+        @goToBrowse="goToBrowseWithSelectedProfile"
+      />
     </div>
     <font-awesome-icon
       icon="plus-square"
@@ -46,7 +44,9 @@ function goToBrowseWithSelectedProfile(selectedProfile) {
     <p :class="classes.profileParagraph">Add a profile</p>
 
     <div>
-      <ProfilesBtn @click="componentChange(ManageProfiles)">Manage profiles</ProfilesBtn>
+      <ProfilesBtn @click="componentChange(ManageProfiles)"
+        >Manage profiles</ProfilesBtn
+      >
     </div>
   </div>
 </template>

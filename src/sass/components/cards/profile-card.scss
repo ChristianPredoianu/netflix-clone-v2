@@ -1,0 +1,21 @@
+@use '@/sass/abstracts' as *;
+
+.profileCard {
+  @include flex-config($direction: column, $align: center);
+  position: relative;
+  width: 20rem;
+  padding: 3rem;
+  margin: 0 auto;
+  border: 1px solid var(--clr-white);
+  cursor: pointer;
+}
+
+.profileIcon {
+  color: var(--clr-white);
+  font-size: 3rem;
+}
+
+.profileName {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+}

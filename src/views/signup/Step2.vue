@@ -17,7 +17,6 @@ import SignUpForm from '@/components/forms/SignUpForm.vue';
         Netflix is personalised for you. Create a password to watch Netflix on
         any device at any time.
       </h2>
-
       <div :class="classes.signUpForm">
         <SignUpForm />
       </div>
