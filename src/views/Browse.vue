@@ -29,7 +29,7 @@ function toggleVideoSound(isMuted, isSoundOn) {
 function replayVideo() {
   if (video.value.ended) video.value.play();
 }
-
+console.log(movieData.value);
 onMounted(() => {
   store.dispatch('FETCH_MOVIES');
   store.dispatch('SET_USER_MOVIE_LIST_FROM_DB');
@@ -56,16 +56,18 @@ onMounted(() => {
     <div class="container">
       <section>
         <Swiper
-          v-for="item in movieData"
-          :movieData="!searchTerm ? item.movies : searchMovie(item.movies)"
+          v-for="category in movieData"
+          :key="category.category"
+          :movieData="
+            !searchTerm ? category.movies : searchMovie(category.movies)
+          "
           :heading="
             !searchTerm
-              ? item.category
-              : `${searchMovie(item.movies).length} movies found in ${
-                  item.category
+              ? category.category
+              : `${searchMovie(category.movies).length} movies found in ${
+                  category.category
                 }`
           "
-          :key="item.category"
         />
       </section>
     </div>
