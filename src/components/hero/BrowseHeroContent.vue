@@ -15,12 +15,14 @@ const { openMovieTrailerModal, closeMovieTrailerModal, isBackdropOpen } =
   useMovieTrailer();
 
 const showcaseMovie = computed(
-  () => store.state.theMovieDB.movieData.horror[0]
+  () => store.state.theMovieDB.movieData.horror.movies[0]
 );
+
+console.log(showcaseMovie.value);
 </script>
 
 <template>
-  <div :class="classes.heroContent">
+  <div v-if="showcaseMovie" :class="classes.heroContent">
     <div :class="classes.heroHeadings">
       <h1 :class="classes.heroPrimaryHeading">
         {{ showcaseMovie.original_title }}
