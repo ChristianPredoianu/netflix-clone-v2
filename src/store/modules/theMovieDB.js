@@ -1,4 +1,4 @@
-import { url, apiKey } from '../url';
+import { url, apiKey, categoryUrl, query } from '@/store/url';
 
 export default {
   state: {
@@ -65,10 +65,6 @@ export default {
   actions: {
     async FETCH_MOVIES({ commit }) {
       try {
-        const categoryUrl = 'https://api.themoviedb.org/3/discover/movie',
-          query =
-            '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false';
-
         const [
           popularResponse,
           actionResponse,
