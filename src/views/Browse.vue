@@ -1,13 +1,13 @@
 <script setup>
-import { ref, defineExpose, computed, onMounted } from "vue";
-import { useStore } from "vuex";
-import { useSearchMovie } from "@/composables/searchMovie";
-import ResponsiveNav from "@/components/navs/ResponsiveNav.vue";
-import BrowseHeroContent from "@/components/hero/BrowseHeroContent.vue";
-import VideoControls from "@/components/ui/VideoControls.vue";
-import Swiper from "@/components/swiper/Swiper.vue";
-import NetflixBorder from "@/components/ui/NetflixBorder.vue";
-import Footer from "@/components/footer/Footer.vue";
+import { ref, defineExpose, computed, onMounted } from 'vue';
+import { useStore } from 'vuex';
+import { useSearchMovie } from '@/composables/searchMovie';
+import ResponsiveNav from '@/components/navs/ResponsiveNav.vue';
+import BrowseHeroContent from '@/components/hero/BrowseHeroContent.vue';
+import VideoControls from '@/components/ui/VideoControls.vue';
+import Swiper from '@/components/swiper/Swiper.vue';
+import NetflixBorder from '@/components/ui/NetflixBorder.vue';
+import Footer from '@/components/footer/Footer.vue';
 
 const store = useStore();
 
@@ -30,8 +30,8 @@ function replayVideo() {
 }
 
 onMounted(() => {
-  store.dispatch("FETCH_MOVIES");
-  store.dispatch("SET_USER_MOVIE_LIST_FROM_DB");
+  store.dispatch('FETCH_MOVIES');
+  store.dispatch('SET_USER_MOVIE_LIST_FROM_DB');
 });
 </script>
 
@@ -55,15 +55,21 @@ onMounted(() => {
     <div class="container">
       <section>
         <Swiper
-          :movieData="!searchTerm ? movieData.popular : searchMovie(movieData.popular)"
+          :movieData="
+            !searchTerm ? movieData.popular : searchMovie(movieData.popular)
+          "
           :heading="
             !searchTerm
               ? `Popular Movies`
-              : `${searchMovie(movieData.popular).length} movies found in popular`
+              : `${
+                  searchMovie(movieData.popular).length
+                } movies found in popular`
           "
         />
         <Swiper
-          :movieData="!searchTerm ? movieData.action : searchMovie(movieData.action)"
+          :movieData="
+            !searchTerm ? movieData.action : searchMovie(movieData.action)
+          "
           :heading="
             !searchTerm
               ? `Action Movies`
@@ -71,7 +77,9 @@ onMounted(() => {
           "
         />
         <Swiper
-          :movieData="!searchTerm ? movieData.comedy : searchMovie(movieData.comedy)"
+          :movieData="
+            !searchTerm ? movieData.comedy : searchMovie(movieData.comedy)
+          "
           :heading="
             !searchTerm
               ? `Action Movies`
@@ -85,11 +93,15 @@ onMounted(() => {
           :heading="
             !searchTerm
               ? `Animation Movies`
-              : `${searchMovie(movieData.animation).length} movies found in animation`
+              : `${
+                  searchMovie(movieData.animation).length
+                } movies found in animation`
           "
         />
         <Swiper
-          :movieData="!searchTerm ? movieData.crime : searchMovie(movieData.crime)"
+          :movieData="
+            !searchTerm ? movieData.crime : searchMovie(movieData.crime)
+          "
           :heading="
             !searchTerm
               ? `Crime Movies`
@@ -97,7 +109,9 @@ onMounted(() => {
           "
         />
         <Swiper
-          :movieData="!searchTerm ? movieData.drama : searchMovie(movieData.drama)"
+          :movieData="
+            !searchTerm ? movieData.drama : searchMovie(movieData.drama)
+          "
           :heading="
             !searchTerm
               ? `Drama Movies`
@@ -105,7 +119,9 @@ onMounted(() => {
           "
         />
         <Swiper
-          :movieData="!searchTerm ? movieData.horror : searchMovie(movieData.horror)"
+          :movieData="
+            !searchTerm ? movieData.horror : searchMovie(movieData.horror)
+          "
           :heading="
             !searchTerm
               ? `Horror Movies`
@@ -113,7 +129,9 @@ onMounted(() => {
           "
         />
         <Swiper
-          :movieData="!searchTerm ? movieData.sciFi : searchMovie(movieData.sciFi)"
+          :movieData="
+            !searchTerm ? movieData.sciFi : searchMovie(movieData.sciFi)
+          "
           :heading="
             !searchTerm
               ? `SciFi Movies`
