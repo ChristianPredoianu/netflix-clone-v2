@@ -5,8 +5,6 @@ const props = defineProps({
 
 const emit = defineEmits(['goToBrowse']);
 
-console.log(props.profile);
-
 function goToBrowseHandler(profile) {
   emit('goToBrowse', profile);
 }
