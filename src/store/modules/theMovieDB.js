@@ -3,14 +3,14 @@ import { url, apiKey, categoryUrl, query } from '@/store/url';
 export default {
   state: {
     movieData: {
-      popular: [],
-      action: [],
-      comedy: [],
-      crime: [],
-      animation: [],
-      drama: [],
-      horror: [],
-      sciFi: [],
+      popular: { category: 'Popular', movies: [] },
+      action: { category: 'Action', movies: [] },
+      comedy: { category: 'Comedy', movies: [] },
+      crime: { category: 'Crime', movies: [] },
+      animation: { category: 'Animation', movies: [] },
+      drama: { category: 'Drama', movies: [] },
+      horror: { category: 'Horror', movies: [] },
+      sciFi: { category: 'SciFi', movies: [] },
     },
     loadingData: true,
     error: null,
@@ -35,14 +35,14 @@ export default {
     },
 
     SET_MOVIE_DATA(state, payload) {
-      state.movieData.popular = payload.popular.results;
-      state.movieData.action = payload.action.results;
-      state.movieData.comedy = payload.comedy.results;
-      state.movieData.crime = payload.crime.results;
-      state.movieData.animation = payload.animation.results;
-      state.movieData.drama = payload.drama.results;
-      state.movieData.horror = payload.horror.results;
-      state.movieData.sciFi = payload.sciFi.results;
+      state.movieData.popular.movies = payload.popular.results;
+      state.movieData.action.movies = payload.action.results;
+      state.movieData.comedy.movies = payload.comedy.results;
+      state.movieData.crime.movies = payload.crime.results;
+      state.movieData.animation.movies = payload.animation.results;
+      state.movieData.drama.movies = payload.drama.results;
+      state.movieData.horror.movies = payload.horror.results;
+      state.movieData.sciFi.movies = payload.sciFi.results;
     },
 
     SET_MOVIE_DETAILS(state, payload) {
