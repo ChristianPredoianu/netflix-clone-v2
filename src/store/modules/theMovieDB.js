@@ -25,7 +25,7 @@ export default {
     },
 
     GET_MOVIES_BY_GENRE(state) {
-      return state.movieData[state.userSelectedGenre];
+      return state.movieData[state.userSelectedGenre].movies;
     },
   },
 
