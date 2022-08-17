@@ -10,10 +10,10 @@ const store = useStore();
 
 const router = useRouter();
 
-const userEmail = ref(store.state.userData.signUpUserEmail),
-  userPassword = ref(null),
-  error = ref(null),
-  signedUpMsg = ref(null);
+const userEmail = ref(store.state.userData.signUpUserEmail);
+const userPassword = ref(null);
+const error = ref(null);
+const signedUpMsg = ref(null);
 
 function signUp() {
   const auth = getAuth();
