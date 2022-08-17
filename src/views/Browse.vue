@@ -29,7 +29,7 @@ function toggleVideoSound(isMuted, isSoundOn) {
 function replayVideo() {
   if (video.value.ended) video.value.play();
 }
-console.log(movieData.value);
+
 onMounted(() => {
   store.dispatch('FETCH_MOVIES');
   store.dispatch('SET_USER_MOVIE_LIST_FROM_DB');

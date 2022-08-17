@@ -17,8 +17,6 @@ const { openMovieTrailerModal, closeMovieTrailerModal, isBackdropOpen } =
 const showcaseMovie = computed(
   () => store.state.theMovieDB.movieData.horror.movies[0]
 );
-
-console.log(showcaseMovie.value);
 </script>
 
 <template>
