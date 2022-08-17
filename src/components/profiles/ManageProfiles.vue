@@ -1,22 +1,22 @@
 <script setup>
-import { computed } from "vue";
-import { useStore } from "vuex";
-import EditProfiles from "@/components/profiles/EditProfiles.vue";
-import UserProfiles from "@/components/profiles/UserProfiles.vue";
-import ProfilesBtn from "@/components/buttons/ProfilesBtn.vue";
+import { computed } from 'vue';
+import { useStore } from 'vuex';
+import EditProfiles from '@/components/profiles/EditProfiles.vue';
+import UserProfiles from '@/components/profiles/UserProfiles.vue';
+import ProfilesBtn from '@/components/buttons/ProfilesBtn.vue';
 
-const emits = defineEmits(["change-component"]),
+const emits = defineEmits(['change-component']),
   store = useStore();
 
 const userProfiles = computed(() => store.state.userProfiles.userProfiles);
 
 function goToEditProfile(profile) {
-  store.dispatch("SET_CLICKED_PROFILE", profile);
-  emits("change-component", EditProfiles);
+  store.dispatch('SET_CLICKED_PROFILE', profile);
+  emits('change-component', EditProfiles);
 }
 
 function componentChange() {
-  emits("change-component", UserProfiles);
+  emits('change-component', UserProfiles);
 }
 </script>
 
@@ -27,7 +27,7 @@ function componentChange() {
       <div
         :class="classes.profileCard"
         v-for="profile in userProfiles"
-        :key="userProfiles.id"
+        :key="profile.id"
         @click="goToEditProfile(profile)"
       >
         <font-awesome-icon :icon="profile.icon" :class="classes.profileIcon" />
