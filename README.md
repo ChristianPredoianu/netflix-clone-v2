@@ -10,21 +10,21 @@ This template should help get you started developing with Vue 3 in Vite. The tem
  <!-- PROJECT LOGO -->   
 <br />
 <p align="center">
-  <a href="https://github.com/ChristianPredoianu/portfolio-v2">
+  <a href="https://github.com/ChristianPredoianu/netflix-clone-v2">
     <img src="src/assets/images/netclone.png" alt="Logo" width="200" height="160">
   </a> 
 
-  <h3 align="center">Portfolio Christian Predoianu</h3>
+  <h3 align="center">Netflix clone</h3>
    
   <p align="center">
-   My portfolio
+   Netflix Clone
     <br />
-    <a href="https://github.com/ChristianPredoianu/portfolio-v2"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/ChristianPredoianu/netflix-clone-v2"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://christianpredoianu.com/">View Demo</a>
     ·
-    <a href="https://github.com/ChristianPredoianu/portfolio-v2/issues">Report Bug</a>
+    <a href="https://github.com/ChristianPredoianu/netflix-clone-v2/issues">Report Bug</a>
     ·  
    
   </p>
@@ -61,19 +61,18 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-My front end portfolio.
+A Netflix clone made with Vue 3 + Vite + Firebase to mimic Netflix functionality.
 
 ### Built With
 
+* [Vue.js](https://vuejs.org/)
+* [Vite](https://vitejs.dev/)
+* [Vuex](https://vuex.vuejs.org/)
+* [Vue Router](https://router.vuejs.org/)
 * [HTML5](https://developer.mozilla.org/en-US/docs/Glossary/HTML5)
 * [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS)
-* [Vanilla Js](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 * [Sass](https://sass-lang.com/)
-* [Parcel](https://parceljs.org/)
-* [Gsap](https://greensock.com/)
-* [BEM](http://getbem.com/)
-* [Local Storage + Session Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
-
+* [Firebase](https://firebase.google.com/?gclid=CjwKCAjwo_KXBhAaEiwA2RZ8hI3FPK5630oR5OFUcmh5Y0_KPSDC28YPeujdLrVpk85-YyXq9Z4HLRoCE3AQAvD_BwE&gclsrc=aw.ds)
 
 
 <!-- GETTING STARTED -->
@@ -92,7 +91,7 @@ To get a local copy up and running follow these simple steps.
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/ChristianPredoianu/portfolio-v2.git
+   git clone https://github.com/ChristianPredoianu/netflix-clone-v2
    ```
 2. Install NPM packages
    ```sh
@@ -120,8 +119,13 @@ To get a local copy up and running follow these simple steps.
 
 
 
-1. Choose prefered color mode. Light mode or dark mode.
-2. Navigate.
+To start using Netclone you have two options:
+
+1.1 Sign in to Netclone with an existing account for demo purposes https://netclonevue.netlify.app/signIn:
+Username: test@test.com
+Password: testingnetclone => choose an existing profile
+
+1.2 Signup to Netclone with a dummy email made up by you. E.g (john@whatever.com) It doesn't need to be a valid email. And choose a password. => Add a profile and continue with the selected profile.
 
  
 
@@ -137,7 +141,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Christian Predoianu - [@linkedin](https://se.linkedin.com/in/christian-predoianu-369218157) - christianpredoianu@yahoo.com
 
-Project Link: [https://github.com/ChristianPredoianu/portfolio-v2](https://github.com/ChristianPredoianu/portfolio-v2)
+Project Link: [https://github.com/ChristianPredoianu/netflix-clone-v2](https://github.com/ChristianPredoianu/netflix-clone-v2)
 
 
 
@@ -146,9 +150,6 @@ Project Link: [https://github.com/ChristianPredoianu/portfolio-v2](https://githu
 * [Google Fonts](https://fonts.google.com/)
 * [Swiper.js](https://swiperjs.com/)
 * [Font-Awesome](https://fontawesome.com/)
-* [Typed.js](https://github.com/mattboldt/typed.js/)
-
-
 
 
 
