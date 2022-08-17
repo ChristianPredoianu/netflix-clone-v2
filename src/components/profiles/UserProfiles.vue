@@ -9,9 +9,9 @@ import ProfileCard from '@/components/cards/ProfileCard.vue';
 
 onMounted(() => store.dispatch('SET_USER_PROFILES_FROM_DB'));
 
-const emits = defineEmits(['change-component']),
-  router = useRouter(),
-  store = useStore();
+const emits = defineEmits(['change-component']);
+const router = useRouter();
+const store = useStore();
 
 const userProfiles = computed(() => store.state.userProfiles.userProfiles);
 
