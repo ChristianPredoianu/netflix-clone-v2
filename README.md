@@ -11,7 +11,7 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 <br />
 <p align="center">
   <a href="https://github.com/ChristianPredoianu/portfolio-v2">
-    <img src="src/assets/images/briefcase.jpg" alt="Logo" width="200" height="160">
+    <img src="src/assets/images/netclone.png" alt="Logo" width="200" height="160">
   </a> 
 
   <h3 align="center">Portfolio Christian Predoianu</h3>
