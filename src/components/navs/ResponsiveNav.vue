@@ -1,25 +1,26 @@
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from "vue";
-import { useRouter } from "vue-router";
-import { useStore } from "vuex";
-import { onClickOutside } from "@vueuse/core";
-import { getAuth, signOut } from "firebase/auth";
-import NetflixLogo from "@/components/ui/NetflixLogo.vue";
-import ResponsiveNavLinks from "@/components/navs/ResponsiveNavLinks.vue";
+import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
+import { onClickOutside } from '@vueuse/core';
+import { getAuth, signOut } from 'firebase/auth';
+import NetflixLogo from '@/components/ui/NetflixLogo.vue';
+import ResponsiveNavLinks from '@/components/navs/ResponsiveNavLinks.vue';
 
-const store = useStore(),
-  router = useRouter(),
-  emit = defineEmits(["search"]);
+const store = useStore();
+const router = useRouter();
 
-const userProfiles = computed(() => store.state.userProfiles.userProfiles),
-  currentProfile = computed(() => store.state.userProfiles.clickedProfile);
+const emit = defineEmits(['search']);
 
-const isNavOpen = ref(true),
-  isSearchOpen = ref(false),
-  isProfilesDropdownOpen = ref(false),
-  mobileView = ref(true),
-  clickOutsideRef = ref(null),
-  searchTerm = ref(null);
+const userProfiles = computed(() => store.state.userProfiles.userProfiles);
+const currentProfile = computed(() => store.state.userProfiles.clickedProfile);
+
+const isNavOpen = ref(true);
+const isSearchOpen = ref(false);
+const isProfilesDropdownOpen = ref(false);
+const mobileView = ref(true);
+const clickOutsideRef = ref(null);
+const searchTerm = ref(null);
 
 function toggleNavLinks() {
   isNavOpen.value = !isNavOpen.value;
@@ -32,11 +33,11 @@ function openSearch() {
 function closeSearch() {
   isSearchOpen.value = false;
   searchTerm.value = null;
-  emit("search", searchTerm.value);
+  emit('search', searchTerm.value);
 }
 
 function emitSearch() {
-  emit("search", searchTerm.value);
+  emit('search', searchTerm.value);
 }
 
 function toggleProfilesDropdown() {
@@ -44,22 +45,22 @@ function toggleProfilesDropdown() {
 }
 
 function goToBrowseWithSelectedProfile(selectedProfile) {
-  store.dispatch("SET_CLICKED_PROFILE", selectedProfile);
-  router.push({ name: "LoadingProfile" });
+  store.dispatch('SET_CLICKED_PROFILE', selectedProfile);
+  router.push({ name: 'LoadingProfile' });
 }
 
 function signOutHandler() {
   const auth = getAuth();
   signOut(auth).then(() => {
-    router.push({ name: "SignIn" });
-    store.dispatch("RESET_CURRENT_USER");
+    router.push({ name: 'SignIn' });
+    store.dispatch('RESET_CURRENT_USER');
   });
 }
 
 onClickOutside(clickOutsideRef, () => {
   isProfilesDropdownOpen.value = false;
 
-  emit("search", searchTerm.value);
+  emit('search', searchTerm.value);
 });
 
 //if widow width <= 1024px mobileView=true & nav should close else keep nav open
@@ -70,11 +71,11 @@ function handleView() {
 
 onMounted(() => {
   handleView();
-  window.addEventListener("resize", handleView);
+  window.addEventListener('resize', handleView);
 });
 
 onUnmounted(() => {
-  window.removeEventListener("resize", handleView);
+  window.removeEventListener('resize', handleView);
 });
 </script>
 
@@ -83,7 +84,11 @@ onUnmounted(() => {
     <nav :class="classes.nav">
       <div :class="classes.navLeft">
         <NetflixLogo />
-        <button :class="classes.browseBtn" @click="toggleNavLinks" v-if="mobileView">
+        <button
+          :class="classes.browseBtn"
+          @click="toggleNavLinks"
+          v-if="mobileView"
+        >
           Browse
           <span> <font-awesome-icon icon="angle-down" /></span>
         </button>
