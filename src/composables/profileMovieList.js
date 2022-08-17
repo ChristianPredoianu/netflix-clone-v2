@@ -15,9 +15,15 @@ import {
 export function useProfileMovieList() {
   const store = useStore();
 
-  const currentUser = computed(() => store.state.userData.currentUser),
-    clickedProfile = computed(() => store.state.userProfiles.clickedProfile),
-    userMoviesList = computed(() => store.state.userMovieList.userMovieList);
+  const currentUser = computed(() => store.state.userData.currentUser);
+
+  const clickedProfile = computed(
+    () => store.state.userProfiles.clickedProfile
+  );
+
+  const userMoviesList = computed(
+    () => store.state.userMovieList.userMovieList
+  );
 
   const db = getDatabase(),
     dbRef = storageRef(
