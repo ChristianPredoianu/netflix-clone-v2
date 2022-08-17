@@ -1,36 +1,42 @@
 <script setup>
-import { ref, computed } from "vue";
-import { useStore } from "vuex";
-import { getDatabase, ref as storageRef, set, push, onValue } from "firebase/database";
-import UserProfiles from "@/components/profiles/UserProfiles.vue";
-import ContinueBtn from "@/components/buttons/ContinueBtn.vue";
-import ProfilesBtn from "@/components/buttons/ProfilesBtn.vue";
+import { ref, computed } from 'vue';
+import { useStore } from 'vuex';
+import {
+  getDatabase,
+  ref as storageRef,
+  set,
+  push,
+  onValue,
+} from 'firebase/database';
+import UserProfiles from '@/components/profiles/UserProfiles.vue';
+import ContinueBtn from '@/components/buttons/ContinueBtn.vue';
+import ProfilesBtn from '@/components/buttons/ProfilesBtn.vue';
 
-const emits = defineEmits(["change-component"]),
-  store = useStore();
+const emits = defineEmits(['change-component']);
+const store = useStore();
 
-const profileName = ref(""),
-  nameInputErrorMsg = ref(null),
-  maxProfilesMsg = ref(null);
+const profileName = ref('');
+const nameInputErrorMsg = ref(null);
+const maxProfilesMsg = ref(null);
 
 const currentUserId = computed(() => store.state.userData.currentUser.id),
   userProfiles = computed(() => store.state.userProfiles.userProfiles);
 
 function addProfile() {
   if (!profileName.value) {
-    nameInputErrorMsg.value = "Please enter a user name";
+    nameInputErrorMsg.value = 'Please enter a user name';
   } else if (userProfiles.value.length >= 5) {
-    maxProfilesMsg.value = "You can only have a maximum of 5 Profiles.";
+    maxProfilesMsg.value = 'You can only have a maximum of 5 Profiles.';
   } else {
     addProfileToDb();
-    emits("change-component", UserProfiles);
+    emits('change-component', UserProfiles);
   }
 }
 
 function addProfileToDb() {
   const profile = {
     name: profileName.value,
-    icon: "smile",
+    icon: 'smile',
   };
 
   const db = getDatabase();
@@ -43,7 +49,7 @@ function addProfileToDb() {
 }
 
 function componentChange() {
-  emits("change-component", UserProfiles);
+  emits('change-component', UserProfiles);
 }
 </script>
 
