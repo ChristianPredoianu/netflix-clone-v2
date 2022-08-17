@@ -63,9 +63,9 @@ onClickOutside(clickOutsideRef, () => {
   emit('search', searchTerm.value);
 });
 
-//if widow width <= 1024px mobileView=true & nav should close else keep nav open
+//if widow width < 1024px mobileView=true & nav should close else keep nav open
 function handleView() {
-  mobileView.value = window.innerWidth <= 1024;
+  mobileView.value = window.innerWidth < 1024;
   mobileView.value ? (isNavOpen.value = false) : (isNavOpen.value = true);
 }
 
