@@ -1,8 +1,8 @@
 import { ref } from 'vue';
 
 export function useModal() {
-  const isMovieModalOpen = ref(false),
-    clickedMovie = ref(null);
+  const isMovieModalOpen = ref(false);
+  const clickedMovie = ref(null);
 
   function openModal(userClickedMovie) {
     isMovieModalOpen.value = true;
