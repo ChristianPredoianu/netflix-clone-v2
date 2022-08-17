@@ -1,3 +1,6 @@
+-------- Note about the 429 Error logged to the console. Themoviedb Api has a rate limit because of the limitations of the free api key. It didn't have this limit of 50 requests per second when I build the project and I was using more then 50 movies. Some movies may not show up correctly. Just give it a browser refresh after a second or two and all movies will show up correctly. You can read more abut this issue here: https://www.themoviedb.org/talk/62c7c1b258361b005fd2e747?page=1#62c83b78befd91005007a0c7 --------
+
+
 # Vue 3 + Vite 
 
 This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
