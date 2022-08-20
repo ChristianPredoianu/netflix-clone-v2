@@ -1,47 +1,59 @@
 <script setup>
-import { ref, computed } from "vue";
-import { useStore } from "vuex";
-import { update, remove, ref as storageRef, getDatabase } from "firebase/database";
-import UserProfiles from "@/components/profiles/UserProfiles.vue";
-import ManageProfiles from "@/components/profiles/ManageProfiles.vue";
-import ContinueBtn from "@/components/buttons/ContinueBtn.vue";
-import ProfilesBtn from "@/components/buttons/ProfilesBtn.vue";
+import { ref, computed, onMounted } from 'vue';
+import { useStore } from 'vuex';
+import {
+  update,
+  remove,
+  ref as storageRef,
+  getDatabase,
+  onValue,
+  set,
+} from 'firebase/database';
+import UserProfiles from '@/components/profiles/UserProfiles.vue';
+import ManageProfiles from '@/components/profiles/ManageProfiles.vue';
+import ContinueBtn from '@/components/buttons/ContinueBtn.vue';
+import ProfilesBtn from '@/components/buttons/ProfilesBtn.vue';
 
-const emits = defineEmits(["change-component"]),
-  store = useStore();
+const emits = defineEmits(['change-component']);
+const store = useStore();
 
-const clickedProfile = computed(() => store.state.userProfiles.clickedProfile),
-  currentUser = computed(() => store.state.userData.currentUser);
+const clickedProfile = computed(() => store.state.userProfiles.clickedProfile);
+const currentUser = computed(() => store.state.userData.currentUser.id);
+const userProfiles = computed(() => store.state.userProfiles);
 
-const icons = ["smile", "flushed", "grin-tongue-wink", "grin-tears"];
+console.log(clickedProfile.value);
 
-const newProfileName = ref(clickedProfile.value.name),
-  newProfileIcon = ref(clickedProfile.value.icon);
+const icons = ['smile', 'flushed', 'grin-tongue-wink', 'grin-tears'];
 
-const db = getDatabase(),
-  dbRef = storageRef(
-    db,
-    `users/${currentUser.value.id}/profiles/${clickedProfile.value.id}`
-  );
+const newProfileName = ref(clickedProfile.value.name);
+const newProfileIcon = ref(clickedProfile.value.icon);
+
+const db = getDatabase();
+const dbRef = storageRef(
+  db,
+  `users/${currentUser.value}/profiles/${clickedProfile.value.id}`
+);
 
 function newUserIcon(icon) {
   newProfileIcon.value = icon;
 }
 
 function updateProfile() {
-  const newProfile = { name: newProfileName.value, icon: newProfileIcon.value };
+  const newProfile = { icon: newProfileIcon.value, name: newProfileName.value };
 
-  update(dbRef, newProfile);
-  componentChange(UserProfiles);
+  update(dbRef, newProfile); /* .then(() =>
+    store.dispatch('SET_USER_PROFILES_FROM_DB') */
+
+  /* componentChange(UserProfiles); */
 }
 
-function deleteProfile() {
+/* function deleteProfile() {
   remove(dbRef);
   componentChange(UserProfiles);
-}
+} */
 
 function componentChange(comp) {
-  emits("change-component", comp);
+  emits('change-component', comp);
 }
 </script>
 
@@ -50,7 +62,10 @@ function componentChange(comp) {
     <h1 :class="classes.editProfileHeading">Edit profile</h1>
     <div :class="classes.profileInfo">
       <div :class="classes.iconsWrapper">
-        <font-awesome-icon :icon="newProfileIcon" :class="classes.profileIcon" />
+        <font-awesome-icon
+          :icon="newProfileIcon"
+          :class="classes.profileIcon"
+        />
       </div>
       <input
         type="text"
@@ -76,10 +91,13 @@ function componentChange(comp) {
     </div>
 
     <div :class="classes.ctaWrapper">
+      <button @click="updateProfile">dsadsa</button>
       <ContinueBtn @click="updateProfile">Save Profile</ContinueBtn>
       <ContinueBtn @click="deleteProfile">Delete Profile</ContinueBtn>
       <div :class="classes.cancelBtn">
-        <ProfilesBtn @click="componentChange(ManageProfiles)">Cancel</ProfilesBtn>
+        <ProfilesBtn @click="componentChange(ManageProfiles)"
+          >Cancel</ProfilesBtn
+        >
       </div>
     </div>
   </div>

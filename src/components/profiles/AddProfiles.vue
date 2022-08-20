@@ -19,8 +19,10 @@ const profileName = ref('');
 const nameInputErrorMsg = ref(null);
 const maxProfilesMsg = ref(null);
 
-const currentUserId = computed(() => store.state.userData.currentUser.id),
-  userProfiles = computed(() => store.state.userProfiles.userProfiles);
+const currentUserId = computed(() => store.state.userData.currentUser.id);
+const userProfiles = computed(() => store.state.userProfiles.userProfiles);
+
+console.log(userProfiles.value);
 
 function addProfile() {
   if (!profileName.value) {
@@ -41,11 +43,17 @@ function addProfileToDb() {
 
   const db = getDatabase();
   const profilesRef = storageRef(db, `users/${currentUserId.value}/profiles`);
-  const newProfilesRef = push(profilesRef);
 
-  onValue(profilesRef, (snapshot) => {
-    if (snapshot.size === 0 || snapshot.size <= 5) set(newProfilesRef, profile);
-  });
+  const newProfilesRef = push(profilesRef);
+  set(newProfilesRef, profile);
+  store.dispatch('SET_USER_PROFILES_FROM_DB');
+
+  /*   onValue(profilesRef, (snapshot) => {
+    if (snapshot.size === 0 || snapshot.size <= 5)
+      set(newProfilesRef, profile).then(() =>
+        store.dispatch('SET_USER_PROFILES_FROM_DB')
+      );
+  }); */
 }
 
 function componentChange() {
@@ -71,6 +79,7 @@ function componentChange() {
             : classes.nameInput,
         ]"
       />
+      <h1>{{ profileName }}</h1>
     </div>
     <p>{{ maxProfilesMsg }}</p>
 

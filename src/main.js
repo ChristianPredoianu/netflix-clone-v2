@@ -11,6 +11,7 @@ import '@/sass/main.scss';
 addIcons();
 
 let app;
+
 getAuth().onAuthStateChanged(() => {
   if (!app) {
     app = createApp(App)

@@ -7,8 +7,6 @@ import AddProfiles from '@/components/profiles/AddProfiles.vue';
 import ManageProfiles from '@/components/profiles/ManageProfiles.vue';
 import ProfileCard from '@/components/cards/ProfileCard.vue';
 
-onMounted(() => store.dispatch('SET_USER_PROFILES_FROM_DB'));
-
 const emits = defineEmits(['change-component']);
 const router = useRouter();
 const store = useStore();
@@ -19,6 +17,8 @@ function componentChange(comp) {
   emits('change-component', comp);
 }
 
+console.log(userProfiles.value);
+
 function goToBrowseWithSelectedProfile(selectedProfile) {
   store.dispatch('SET_CLICKED_PROFILE', selectedProfile);
   router.push({ name: 'Browse' });
@@ -28,7 +28,7 @@ function goToBrowseWithSelectedProfile(selectedProfile) {
 <template>
   <div :class="classes.userProfilesWrapper">
     <h1 :class="classes.profilesHeading">Who is watching?</h1>
-    <div :class="classes.profiles">
+    <div :class="classes.profiles" v-if="userProfiles">
       <ProfileCard
         v-for="profile in userProfiles"
         :key="profile.id"

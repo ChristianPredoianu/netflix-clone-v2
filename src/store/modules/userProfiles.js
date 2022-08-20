@@ -1,4 +1,4 @@
-import { getDatabase, ref, onValue } from 'firebase/database';
+import { getDatabase, ref, onValue, onChildAdded } from 'firebase/database';
 
 export default {
   state: {
@@ -17,27 +17,41 @@ export default {
   },
 
   actions: {
-    SET_USER_PROFILES_FROM_DB({ commit, rootState }) {
+    async SET_USER_PROFILES_FROM_DB({ commit, rootState }) {
       const profilesArray = [];
+
       const db = getDatabase();
 
       const profilesRef = ref(
         db,
         `users/${rootState.userData.currentUser.id}/profiles`
       );
-      onValue(profilesRef, (snapshot) => {
-        snapshot.forEach((childSnapshot) => {
-          const childData = childSnapshot.val();
-          const id = childSnapshot.key;
-          childData.id = id;
+      /*  onValue(profilesRef, (snapshot) => {
+        const data = snapshot.val();
+        console.log(data); */
+      onChildAdded(profilesRef, (data) => {
+        const profile = {
+          id: data.key,
+          icon: data.val().icon,
+          name: data.val().name,
+        };
 
-          const existingProfileIndex = profilesArray.findIndex(
-            (profile) => profile.id === id
-          );
-          if (existingProfileIndex === -1) profilesArray.push(childData);
-        });
-        commit('SET_USER_PROFILES_FROM_DB', profilesArray);
+        profilesArray.push(profile);
       });
+
+      /*       snapshot.forEach((childSnapshot) => {
+        const childData = childSnapshot.val();
+        const id = childSnapshot.key;
+        childData.id = id;
+
+        const existingProfileIndex = profilesArray.findIndex(
+          (profile) => profile.id === id
+        );
+        if (existingProfileIndex === -1) profilesArray.push(childData);
+      }); */
+
+      commit('SET_USER_PROFILES_FROM_DB', profilesArray);
+      console.log(profilesArray);
     },
 
     SET_CLICKED_PROFILE({ commit }, payload) {

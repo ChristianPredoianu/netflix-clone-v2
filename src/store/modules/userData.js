@@ -1,4 +1,4 @@
-import { getAuth } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 export default {
   state: {
     signUpUserEmail: null,
@@ -14,9 +14,14 @@ export default {
     },
 
     SET_CURRENT_USER(state) {
-      const currUser = getAuth().currentUser;
-      state.currentUser.email = currUser.email;
-      state.currentUser.id = currUser.uid;
+      const auth = getAuth();
+
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          state.currentUser.email = user.email;
+          state.currentUser.id = user.uid;
+        }
+      });
     },
 
     RESET_CURRENT_USER(state) {

@@ -1,17 +1,20 @@
 <script setup>
-import { shallowRef, onMounted } from 'vue';
+import { shallowRef, onMounted, computed } from 'vue';
 import { useStore } from 'vuex';
 import LogoNav from '@/components/navs/LogoNav.vue';
 import UserProfiles from '@/components/profiles/UserProfiles.vue';
 
 onMounted(() => {
   store.dispatch('SET_CURRENT_USER');
-  store.dispatch('SET_USER_PROFILES_FROM_DB');
+  /*   store.dispatch('SET_USER_PROFILES_FROM_DB'); */
 });
 
 let currentComponent = shallowRef(UserProfiles);
 
 const store = useStore();
+
+const userProfiles = computed(() => store.state.userProfiles.userProfiles);
+console.log(userProfiles.value);
 
 function changeComponent(comp) {
   currentComponent.value = comp;
@@ -23,7 +26,11 @@ function changeComponent(comp) {
   <section :class="classes.profiles">
     <div class="container">
       <Transition name="fade" mode="out-in">
-        <component :is="currentComponent" @change-component="changeComponent" />
+        <component
+          :is="currentComponent"
+          @change-component="changeComponent"
+          :userProfiles="userProfiles.value"
+        />
       </Transition>
     </div>
   </section>

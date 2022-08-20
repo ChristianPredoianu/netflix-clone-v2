@@ -4,12 +4,11 @@ import { useStore } from 'vuex';
 import EditProfiles from '@/components/profiles/EditProfiles.vue';
 import UserProfiles from '@/components/profiles/UserProfiles.vue';
 import ProfilesBtn from '@/components/buttons/ProfilesBtn.vue';
-
-const emits = defineEmits(['change-component']),
-  store = useStore();
+const emits = defineEmits(['change-component']);
+const store = useStore();
 
 const userProfiles = computed(() => store.state.userProfiles.userProfiles);
-
+console.log(userProfiles.value);
 function goToEditProfile(profile) {
   store.dispatch('SET_CLICKED_PROFILE', profile);
   emits('change-component', EditProfiles);
