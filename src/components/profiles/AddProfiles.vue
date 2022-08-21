@@ -1,13 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useStore } from 'vuex';
-import {
-  getDatabase,
-  ref as storageRef,
-  set,
-  push,
-  onValue,
-} from 'firebase/database';
+import { getDatabase, ref as storageRef, set, push } from 'firebase/database';
 import UserProfiles from '@/components/profiles/UserProfiles.vue';
 import ContinueBtn from '@/components/buttons/ContinueBtn.vue';
 import ProfilesBtn from '@/components/buttons/ProfilesBtn.vue';
@@ -16,20 +10,34 @@ const emits = defineEmits(['change-component']);
 const store = useStore();
 
 const profileName = ref('');
-const nameInputErrorMsg = ref(null);
-const maxProfilesMsg = ref(null);
+let inputErrorMsg = ref(null);
 
 const currentUserId = computed(() => store.state.userData.currentUser.id);
 const userProfiles = computed(() => store.state.userProfiles.userProfiles);
 
-console.log(userProfiles.value);
+function validateProfileInput() {
+  if (!profileName.value) {
+    inputErrorMsg.value = 'Please enter a user name';
+  } else if (userProfiles.value.length >= 5) {
+    inputErrorMsg.value = 'You can only have a maximum of 5 Profiles.';
+  } else if (checkIfProfileExists() !== -1) {
+    inputErrorMsg.value = 'This profile name already exists';
+  } else {
+    inputErrorMsg.value = null;
+  }
+}
+
+function checkIfProfileExists() {
+  const existingProfileIndex = userProfiles.value.findIndex(
+    (profile) => profile.name === profileName.value
+  );
+
+  return existingProfileIndex;
+}
 
 function addProfile() {
-  if (!profileName.value) {
-    nameInputErrorMsg.value = 'Please enter a user name';
-  } else if (userProfiles.value.length >= 5) {
-    maxProfilesMsg.value = 'You can only have a maximum of 5 Profiles.';
-  } else {
+  validateProfileInput();
+  if (checkIfProfileExists() === -1 && inputErrorMsg.value === null) {
     addProfileToDb();
     emits('change-component', UserProfiles);
   }
@@ -45,15 +53,11 @@ function addProfileToDb() {
   const profilesRef = storageRef(db, `users/${currentUserId.value}/profiles`);
 
   const newProfilesRef = push(profilesRef);
-  set(newProfilesRef, profile);
-  store.dispatch('SET_USER_PROFILES_FROM_DB');
 
-  /*   onValue(profilesRef, (snapshot) => {
-    if (snapshot.size === 0 || snapshot.size <= 5)
-      set(newProfilesRef, profile).then(() =>
-        store.dispatch('SET_USER_PROFILES_FROM_DB')
-      );
-  }); */
+  if (userProfiles.value.length < 5) {
+    set(newProfilesRef, profile);
+    store.dispatch('SET_USER_PROFILES_FROM_DB');
+  }
 }
 
 function componentChange() {
@@ -81,9 +85,8 @@ function componentChange() {
       />
       <h1>{{ profileName }}</h1>
     </div>
-    <p>{{ maxProfilesMsg }}</p>
 
-    <p v-if="nameInputErrorMsg">{{ nameInputErrorMsg }}</p>
+    <p v-if="inputErrorMsg">{{ inputErrorMsg }}</p>
     <div :class="classes.ctaWrapper">
       <div :class="classes.continueBtn">
         <ContinueBtn @click="addProfile">Continue</ContinueBtn>
