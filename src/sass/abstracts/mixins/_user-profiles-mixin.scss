@@ -10,13 +10,10 @@
     font-size: var(--size-heading-md);
   }
 
-  .userProfiles {
+  .profiles {
     @include flex-config($wrap: wrap, $justify: center, $align: center);
     width: 100%;
     gap: 2rem;
     padding: 10rem 0;
-    /*   grid-gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(186px, 1fr));
-    padding: 10rem 0; */
   }
 }
