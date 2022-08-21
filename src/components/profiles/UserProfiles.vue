@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import ProfilesBtn from '@/components/buttons/ProfilesBtn.vue';
@@ -8,6 +8,7 @@ import ManageProfiles from '@/components/profiles/ManageProfiles.vue';
 import ProfileCard from '@/components/cards/ProfileCard.vue';
 
 const emits = defineEmits(['change-component']);
+
 const router = useRouter();
 const store = useStore();
 
@@ -16,8 +17,6 @@ const userProfiles = computed(() => store.state.userProfiles.userProfiles);
 function componentChange(comp) {
   emits('change-component', comp);
 }
-
-console.log(userProfiles.value);
 
 function goToBrowseWithSelectedProfile(selectedProfile) {
   store.dispatch('SET_CLICKED_PROFILE', selectedProfile);
