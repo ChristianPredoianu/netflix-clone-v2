@@ -30,6 +30,7 @@ function componentChange() {
         v-for="profile in userProfiles"
         :key="profile.id"
         :profile="profile"
+        @click="goToEditProfile(profile)"
       />
     </div>
     <div>
