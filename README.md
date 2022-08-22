@@ -76,6 +76,7 @@ A Netflix clone made with Vue 3 + Vite + Firebase to mimic Netflix functionality
 * [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * [Sass](https://sass-lang.com/)
 * [Firebase](https://firebase.google.com/)
+* [Swiper.js](https://swiperjs.com/)
 
 
 <!-- GETTING STARTED -->
@@ -100,7 +101,7 @@ To get a local copy up and running follow these simple steps.
    ```sh
    npm install
    ``` 
-3. Serve with hot reload at localhost:1234
+3. Serve with hot reload at localhost:3000
    ```sh
     npm run dev
    ``` 
@@ -152,7 +153,6 @@ Project Link: [https://github.com/ChristianPredoianu/netflix-clone-v2](https://g
 ## Acknowledgements
 * [Themoviedb](https://www.themoviedb.org/)
 * [Google Fonts](https://fonts.google.com/)
-* [Swiper.js](https://swiperjs.com/)
 * [Font-Awesome](https://fontawesome.com/)
 
 
