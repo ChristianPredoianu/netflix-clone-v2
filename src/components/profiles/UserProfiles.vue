@@ -1,13 +1,11 @@
 <script setup>
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import ProfilesBtn from '@/components/buttons/ProfilesBtn.vue';
 import AddProfiles from '@/components/profiles/AddProfiles.vue';
 import ManageProfiles from '@/components/profiles/ManageProfiles.vue';
 import ProfileCard from '@/components/cards/ProfileCard.vue';
-
-onMounted(() => store.dispatch('SET_USER_PROFILES_FROM_DB'));
 
 const emits = defineEmits(['change-component']);
 
