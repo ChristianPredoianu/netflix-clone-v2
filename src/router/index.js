@@ -37,15 +37,6 @@ const routes = [
   },
 
   {
-    path: '/manage-profiles',
-    name: 'ManageProfiles',
-    component: () => import('@/views/ManageProfiles.vue'),
-    meta: {
-      requiresAuth: true,
-    },
-  },
-
-  {
     path: '/browse',
     name: 'Browse',
     component: () => import('@/views/Browse.vue'),
