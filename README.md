@@ -124,7 +124,7 @@ To get a local copy up and running follow these simple steps.
 
 To start using Netclone you have two options:
 
-1.1 Sign in to Netclone with an existing account for demo purposes https://netclonevue.netlify.app/signIn:
+1.1 Sign in to Netclone with an existing account for demo purposes https://netclonevue2.netlify.app/signIn:
 Username: test@test.com
 Password: testingnetclone => choose an existing profile
 
@@ -150,6 +150,7 @@ Project Link: [https://github.com/ChristianPredoianu/netflix-clone-v2](https://g
 
 <!-- ACKNOWLEDGEMENTS --> 
 ## Acknowledgements
+* [Themoviedb](https://www.themoviedb.org/)
 * [Google Fonts](https://fonts.google.com/)
 * [Swiper.js](https://swiperjs.com/)
 * [Font-Awesome](https://fontawesome.com/)
