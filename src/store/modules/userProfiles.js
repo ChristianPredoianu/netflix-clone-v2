@@ -37,7 +37,6 @@ export default {
       });
 
       commit('SET_USER_PROFILES_FROM_DB', profilesArray);
-      console.log(profilesArray);
     },
 
     SET_CLICKED_PROFILE({ commit }, payload) {

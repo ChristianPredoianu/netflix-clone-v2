@@ -83,7 +83,6 @@ function componentChange() {
             : classes.nameInput,
         ]"
       />
-      <h1>{{ profileName }}</h1>
     </div>
 
     <p v-if="inputErrorMsg">{{ inputErrorMsg }}</p>

@@ -41,16 +41,16 @@ function newUserIcon(icon) {
 function updateProfile() {
   const newProfile = { icon: newProfileIcon.value, name: newProfileName.value };
 
-  update(dbRef, newProfile); /* .then(() =>
-    store.dispatch('SET_USER_PROFILES_FROM_DB') */
-
-  /* componentChange(UserProfiles); */
+  update(dbRef, newProfile);
+  store.dispatch('SET_USER_PROFILES_FROM_DB');
+  componentChange(UserProfiles);
 }
 
-/* function deleteProfile() {
+function deleteProfile() {
   remove(dbRef);
+  store.dispatch('SET_USER_PROFILES_FROM_DB');
   componentChange(UserProfiles);
-} */
+}
 
 function componentChange(comp) {
   emits('change-component', comp);
