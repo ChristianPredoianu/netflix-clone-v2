@@ -27,7 +27,7 @@ function goToBrowseWithSelectedProfile(selectedProfile) {
 <template>
   <div :class="classes.userProfilesWrapper">
     <h1 :class="classes.profilesHeading">Who is watching?</h1>
-    <div :class="classes.profiles" v-if="userProfiles">
+    <div :class="classes.profiles">
       <ProfileCard
         v-for="profile in userProfiles"
         :key="profile.id"

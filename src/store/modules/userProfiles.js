@@ -17,7 +17,7 @@ export default {
   },
 
   actions: {
-    SET_USER_PROFILES_FROM_DB({ commit, rootState }) {
+    async SET_USER_PROFILES_FROM_DB({ commit, rootState }) {
       const profilesArray = [];
 
       const db = getDatabase();
