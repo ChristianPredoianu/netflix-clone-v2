@@ -25,7 +25,7 @@ This template should help get you started developing with Vue 3 in Vite. The tem
     <a href="https://github.com/ChristianPredoianu/netflix-clone-v2"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://christianpredoianu.com/">View Demo</a>
+    <a href="https://netclonevue2.netlify.app/">View Demo</a>
     ·
     <a href="https://github.com/ChristianPredoianu/netflix-clone-v2/issues">Report Bug</a>
     ·  
