@@ -20,6 +20,7 @@
 .profileFormWrapper {
   @include flex-config($justify: center, $align: center);
   background-color: rgba(37, 37, 37, 0.4);
+  margin: 5rem 0;
   padding: 5rem 3rem;
 
   @include respond(md) {
@@ -36,7 +37,7 @@
 .ctaWrapper {
   width: 90%;
 
-  @include respond(md) {
+  @include respond(sm) {
     width: 50%;
   }
 
