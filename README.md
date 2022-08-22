@@ -75,7 +75,7 @@ A Netflix clone made with Vue 3 + Vite + Firebase to mimic Netflix functionality
 * [HTML5](https://developer.mozilla.org/en-US/docs/Glossary/HTML5)
 * [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * [Sass](https://sass-lang.com/)
-* [Firebase](https://firebase.google.com/?gclid=CjwKCAjwo_KXBhAaEiwA2RZ8hI3FPK5630oR5OFUcmh5Y0_KPSDC28YPeujdLrVpk85-YyXq9Z4HLRoCE3AQAvD_BwE&gclsrc=aw.ds)
+* [Firebase](https://firebase.google.com/)
 
 
 <!-- GETTING STARTED -->
