@@ -68,7 +68,7 @@ A Netflix clone made with Vue 3 + Vite + Firebase to mimic Netflix functionality
 
 ### Built With
 
-* [Vue.js](https://vuejs.org/)
+* [Vue.js 3 (script setup)](https://vuejs.org/)
 * [Vite](https://vitejs.dev/)
 * [Vuex](https://vuex.vuejs.org/)
 * [Vue Router](https://router.vuejs.org/)
