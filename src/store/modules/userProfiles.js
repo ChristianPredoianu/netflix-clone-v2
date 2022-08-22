@@ -17,7 +17,7 @@ export default {
   },
 
   actions: {
-    async SET_USER_PROFILES_FROM_DB({ commit, rootState }) {
+    SET_USER_PROFILES_FROM_DB({ commit, rootState }) {
       const profilesArray = [];
 
       const db = getDatabase();
@@ -34,9 +34,8 @@ export default {
           name: data.val().name,
         };
         profilesArray.push(profile);
+        commit('SET_USER_PROFILES_FROM_DB', profilesArray);
       });
-
-      commit('SET_USER_PROFILES_FROM_DB', profilesArray);
     },
 
     SET_CLICKED_PROFILE({ commit }, payload) {
