@@ -6,7 +6,6 @@ import UserProfiles from '@/components/profiles/UserProfiles.vue';
 
 onMounted(() => {
   store.dispatch('SET_CURRENT_USER');
-  /*   store.dispatch('SET_USER_PROFILES_FROM_DB'); */
 });
 
 let currentComponent = shallowRef(UserProfiles);
