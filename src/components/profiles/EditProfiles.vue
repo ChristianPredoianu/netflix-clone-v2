@@ -91,7 +91,6 @@ function componentChange(comp) {
     </div>
 
     <div :class="classes.ctaWrapper">
-      <button @click="updateProfile">dsadsa</button>
       <ContinueBtn @click="updateProfile">Save Profile</ContinueBtn>
       <ContinueBtn @click="deleteProfile">Delete Profile</ContinueBtn>
       <div :class="classes.cancelBtn">
