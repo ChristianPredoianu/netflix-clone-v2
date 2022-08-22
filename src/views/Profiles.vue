@@ -13,7 +13,6 @@ let currentComponent = shallowRef(UserProfiles);
 const store = useStore();
 
 const userProfiles = computed(() => store.state.userProfiles.userProfiles);
-console.log(userProfiles.value);
 
 function changeComponent(comp) {
   currentComponent.value = comp;
