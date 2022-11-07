@@ -1,7 +1,4 @@
--------- Note about the 429 Error that may appear logged to the console. Themoviedb Api has a rate limit because of the limitations of the free api key. It didn't have this limit of 50 requests per second when I build the project and I was using more then 50 movies. Some movies may not be able to be fetched on initial page load because off this limitation. Just give it a browser refresh after a second or two and all movies will show up correctly. You can read more abut this issue here: https://www.themoviedb.org/talk/62c7c1b258361b005fd2e747?page=1#62c83b78befd91005007a0c7 --------
-
-
-# Vue 3 + Vite 
+# Netflix clone Vue 3 + Vite 
 
 This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
@@ -9,6 +6,8 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 
 - [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) 
  
+ # Note about the 429 Error 
+An 429 Error may appear logged to the console. Themoviedb Api has a rate limit because of the limitations of the free api key. It didn't have this limit of 50 requests per second when I build the project and I was using more then 50 movies. Some movies may not be able to be fetched on initial page load because off this limitation. Just give it a browser refresh after a second or two and all movies will show up correctly. You can read more abut this issue here: https://www.themoviedb.org/talk/62c7c1b258361b005fd2e747?page=1#62c83b78befd91005007a0c7
  
  <!-- PROJECT LOGO -->   
 <br />
@@ -20,16 +19,11 @@ This template should help get you started developing with Vue 3 in Vite. The tem
   <h3 align="center">Netflix clone</h3>
    
   <p align="center">
-   Netflix Clone
-    <br />
     <a href="https://github.com/ChristianPredoianu/netflix-clone-v2"><strong>Explore the docs »</strong></a>
-    <br />
     <br />
     <a href="https://netclonevue2.netlify.app/">View Demo</a>
     ·
     <a href="https://github.com/ChristianPredoianu/netflix-clone-v2/issues">Report Bug</a>
-    ·  
-   
   </p>
 </p>
 
@@ -101,7 +95,7 @@ To get a local copy up and running follow these simple steps.
    ```sh
    npm install
    ``` 
-3. Serve with hot reload at localhost:3000
+3. Serve with hot reload at localhost
    ```sh
     npm run dev
    ``` 
@@ -111,17 +105,8 @@ To get a local copy up and running follow these simple steps.
    
    ```
 
-   
-
-   
-   
-   
-   
-   
 <!-- USAGE EXAMPLES -->
 ## Usage
-
-
 
 To start using Netclone you have two options:
 
@@ -132,7 +117,6 @@ Password: testingnetclone => choose an existing profile
 1.2 Signup to Netclone with a dummy email made up by you. E.g (john@whatever.com) It doesn't need to be a valid email. And choose a password. => Add a profile and continue with the selected profile.
 
  
-
 
 <!-- LICENSE -->
 ## License
@@ -154,23 +138,3 @@ Project Link: [https://github.com/ChristianPredoianu/netflix-clone-v2](https://g
 * [Themoviedb](https://www.themoviedb.org/)
 * [Google Fonts](https://fonts.google.com/)
 * [Font-Awesome](https://fontawesome.com/)
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo.svg?style=for-the-badge 
-[license-url]: https://github.com/github_username/repo/blob/master/LICENSE.txt 
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/github_username    
- 
- 
- 
