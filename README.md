@@ -15,7 +15,7 @@ An 429 Error may appear logged to the console. Themoviedb Api has a rate limit b
   <a href="https://github.com/ChristianPredoianu/netflix-clone-v2">
     <img src="src/assets/images/netclone.png" alt="Logo" width="200" height="160">
   </a> 
-
+ 
   <h3 align="center">Netflix clone</h3>
    
   <p align="center">
