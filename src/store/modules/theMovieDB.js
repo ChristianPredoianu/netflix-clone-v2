@@ -12,7 +12,7 @@ export default {
       horror: { category: 'Horror', movies: [] },
       sciFi: { category: 'SciFi', movies: [] },
     },
-    loadingData: true,
+    isLoadingData: true,
     error: null,
     userSelectedGenre: 'popular',
     movieDetails: null,
@@ -35,14 +35,11 @@ export default {
     },
 
     SET_MOVIE_DATA(state, payload) {
-      state.movieData.popular.movies = payload.popular.results;
-      state.movieData.action.movies = payload.action.results;
-      state.movieData.comedy.movies = payload.comedy.results;
-      state.movieData.crime.movies = payload.crime.results;
-      state.movieData.animation.movies = payload.animation.results;
-      state.movieData.drama.movies = payload.drama.results;
-      state.movieData.horror.movies = payload.horror.results;
-      state.movieData.sciFi.movies = payload.sciFi.results;
+      Object.keys(payload).forEach((key) => {
+        if (state.movieData[key]) {
+          state.movieData[key].movies = payload[key].results;
+        }
+      });
     },
 
     SET_MOVIE_DETAILS(state, payload) {
@@ -127,9 +124,7 @@ export default {
 
     async FETCH_MOVIE_TRAILER({ commit }, payload) {
       try {
-        const response = await fetch(
-          `${url}${payload}/videos${apiKey}&language=en-US`
-        );
+        const response = await fetch(`${url}${payload}/videos${apiKey}&language=en-US`);
         const movieTrailer = await response.json();
         commit('SET_MOVIE_TRAILER', movieTrailer);
       } catch (err) {
