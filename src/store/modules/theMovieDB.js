@@ -1,4 +1,10 @@
-import { url, apiKey, categoryUrl, query } from '@/store/url';
+import {
+  API_BASE_URL,
+  API_KEY,
+  ENDPOINTS,
+  DEFAULT_PARAMS,
+  GENRES,
+} from '@/api/apiConfig';
 
 export default {
   state: {
@@ -25,7 +31,7 @@ export default {
     },
 
     GET_MOVIES_BY_GENRE(state) {
-      return state.movieData[state.userSelectedGenre].movies;
+      return state.movieData[state.userSelectedGenre]?.movies || [];
     },
   },
 
@@ -61,74 +67,56 @@ export default {
 
   actions: {
     async FETCH_MOVIES({ commit }) {
+      commit('SET_IS_LOADING_DATA', true);
       try {
-        const [
-          popularResponse,
-          actionResponse,
-          comedyResponse,
-          crimeResponse,
-          animationResponse,
-          dramaResponse,
-          horrorResponse,
-          sciFiResponse,
-        ] = await Promise.all([
+        const genreRequests = Object.entries(GENRES).map(async ([key, id]) => {
+          const response = await fetch(
+            `${API_BASE_URL}${ENDPOINTS.DISCOVER}?api_key=${API_KEY}&language=${DEFAULT_PARAMS.language}&page=${DEFAULT_PARAMS.page}&with_genres=${id}`
+          );
+          return { [key.toLowerCase()]: await response.json() };
+        });
+
+        const [popularResponse, ...genreResponses] = await Promise.all([
           fetch(
-            `
-                https://api.themoviedb.org/3/movie/popular${apiKey}&language=en-US&page=1`
-          ),
-          fetch(`${categoryUrl}${apiKey}${query}&with_genres=28`),
-          fetch(`${categoryUrl}${apiKey}${query}&with_genres=35`),
-          fetch(`${categoryUrl}${apiKey}${query}&with_genres=80`),
-          fetch(`${categoryUrl}${apiKey}${query}&with_genres=16`),
-          fetch(`${categoryUrl}${apiKey}${query}&with_genres=18`),
-          fetch(`${categoryUrl}${apiKey}${query}&with_genres=27`),
-          fetch(`${categoryUrl}${apiKey}${query}&with_genres=878`),
+            `${API_BASE_URL}${ENDPOINTS.POPULAR}?api_key=${API_KEY}&language=${DEFAULT_PARAMS.language}&page=${DEFAULT_PARAMS.page}`
+          ).then((res) => res.json()),
+          ...genreRequests,
         ]);
 
-        const popular = await popularResponse.json(),
-          action = await actionResponse.json(),
-          comedy = await comedyResponse.json(),
-          crime = await crimeResponse.json(),
-          animation = await animationResponse.json(),
-          drama = await dramaResponse.json(),
-          horror = await horrorResponse.json(),
-          sciFi = await sciFiResponse.json();
+        const payload = Object.assign(
+          {},
+          { popular: popularResponse },
+          ...genreResponses
+        );
 
-        const payload = {
-          popular,
-          action,
-          comedy,
-          crime,
-          animation,
-          drama,
-          horror,
-          sciFi,
-        };
-
-        commit('SET_IS_LOADING_DATA', false);
         commit('SET_MOVIE_DATA', payload);
+        commit('SET_IS_LOADING_DATA', false);
       } catch (error) {
-        if (error) commit('SET_ERROR', error);
+        commit('SET_ERROR', error);
+        commit('SET_IS_LOADING_DATA', false);
       }
     },
 
-    async FETCH_MOVIE_DETAILS({ commit }, payload) {
+    async FETCH_MOVIE_DETAILS({ state, commit }, movieId) {
+      if (state.movieDetails?.id === movieId) return;
       try {
-        const response = await fetch(`${url}${payload}${apiKey}`);
-        const movieDetails = await response.json();
-        commit('SET_MOVIE_DETAILS', movieDetails);
-      } catch (err) {
-        console.log(err);
+        const response = await fetch(
+          `${API_BASE_URL}${ENDPOINTS.MOVIE_DETAILS}/${movieId}?api_key=${API_KEY}&language=${DEFAULT_PARAMS.language}`
+        );
+        commit('SET_MOVIE_DETAILS', await response.json());
+      } catch (error) {
+        commit('SET_ERROR', error);
       }
     },
 
-    async FETCH_MOVIE_TRAILER({ commit }, payload) {
+    async FETCH_MOVIE_TRAILER({ commit }, movieId) {
       try {
-        const response = await fetch(`${url}${payload}/videos${apiKey}&language=en-US`);
-        const movieTrailer = await response.json();
-        commit('SET_MOVIE_TRAILER', movieTrailer);
-      } catch (err) {
-        console.log(err);
+        const response = await fetch(
+          `${API_BASE_URL}${ENDPOINTS.MOVIE_DETAILS}/${movieId}/videos?api_key=${API_KEY}&language=${DEFAULT_PARAMS.language}`
+        );
+        commit('SET_MOVIE_TRAILER', await response.json());
+      } catch (error) {
+        commit('SET_ERROR', error);
       }
     },
 
