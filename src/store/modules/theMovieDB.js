@@ -5,19 +5,17 @@ import {
   DEFAULT_PARAMS,
   GENRES,
 } from '@/api/apiConfig';
+import { useFetchData } from '@/composables/useFetchData';
 
 export default {
   state: {
-    movieData: {
-      popular: { category: 'Popular', movies: [] },
-      action: { category: 'Action', movies: [] },
-      comedy: { category: 'Comedy', movies: [] },
-      crime: { category: 'Crime', movies: [] },
-      animation: { category: 'Animation', movies: [] },
-      drama: { category: 'Drama', movies: [] },
-      horror: { category: 'Horror', movies: [] },
-      sciFi: { category: 'SciFi', movies: [] },
-    },
+    movieData: Object.keys(GENRES).reduce(
+      (acc, key) => ({
+        ...acc,
+        [key.toLowerCase()]: { category: key, movies: [] },
+      }),
+      { popular: { category: 'Popular', movies: [] } }
+    ),
     isLoadingData: true,
     error: null,
     userSelectedGenre: 'popular',
@@ -67,54 +65,56 @@ export default {
 
   actions: {
     async FETCH_MOVIES({ commit }) {
+      const { fetchData } = useFetchData();
       commit('SET_IS_LOADING_DATA', true);
+
       try {
         const genreRequests = Object.entries(GENRES).map(async ([key, id]) => {
-          const response = await fetch(
+          const data = await fetchData(
             `${API_BASE_URL}${ENDPOINTS.DISCOVER}?api_key=${API_KEY}&language=${DEFAULT_PARAMS.language}&page=${DEFAULT_PARAMS.page}&with_genres=${id}`
           );
-          return { [key.toLowerCase()]: await response.json() };
+          return { [key.toLowerCase()]: data };
         });
 
-        const [popularResponse, ...genreResponses] = await Promise.all([
-          fetch(
+        const [popularData, ...genreData] = await Promise.all([
+          fetchData(
             `${API_BASE_URL}${ENDPOINTS.POPULAR}?api_key=${API_KEY}&language=${DEFAULT_PARAMS.language}&page=${DEFAULT_PARAMS.page}`
-          ).then((res) => res.json()),
+          ),
           ...genreRequests,
         ]);
 
-        const payload = Object.assign(
-          {},
-          { popular: popularResponse },
-          ...genreResponses
-        );
+        const payload = { popular: popularData, ...Object.assign({}, ...genreData) };
 
         commit('SET_MOVIE_DATA', payload);
-        commit('SET_IS_LOADING_DATA', false);
       } catch (error) {
         commit('SET_ERROR', error);
+      } finally {
         commit('SET_IS_LOADING_DATA', false);
       }
     },
 
     async FETCH_MOVIE_DETAILS({ state, commit }, movieId) {
       if (state.movieDetails?.id === movieId) return;
+      const { fetchData } = useFetchData();
+
       try {
-        const response = await fetch(
+        const movieDetails = await fetchData(
           `${API_BASE_URL}${ENDPOINTS.MOVIE_DETAILS}/${movieId}?api_key=${API_KEY}&language=${DEFAULT_PARAMS.language}`
         );
-        commit('SET_MOVIE_DETAILS', await response.json());
+        commit('SET_MOVIE_DETAILS', movieDetails);
       } catch (error) {
         commit('SET_ERROR', error);
       }
     },
 
     async FETCH_MOVIE_TRAILER({ commit }, movieId) {
+      const { fetchData } = useFetchData();
+
       try {
-        const response = await fetch(
+        const trailerData = await fetchData(
           `${API_BASE_URL}${ENDPOINTS.MOVIE_DETAILS}/${movieId}/videos?api_key=${API_KEY}&language=${DEFAULT_PARAMS.language}`
         );
-        commit('SET_MOVIE_TRAILER', await response.json());
+        commit('SET_MOVIE_TRAILER', trailerData);
       } catch (error) {
         commit('SET_ERROR', error);
       }
